@@ -1,23 +1,24 @@
-# TÍTULO DO PROJETO
+# MovieFinder
 
-`CURSO`
+`Análise e Desenvolvimento de Sistemas`
 
-`DISCIPLINA`
+`Projeto – Desenvolvimento de uma Aplicação Interativa`
 
-`SEMESTRE`
+`Eixo 2 - 1º Semestre 2023`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+<p align="justify">O projeto em desenvolvimento é uma aplicação interativa que tem a finalidade de auxiliar jovens e adultos na busca por informações relevantes, objetivas e de qualidade sobre filmes e outros conteúdos pesquisados por este público, afim de sanar dúvidas e fornecer curiosidades de maneira eficiente. Esta aplicação possibilitará consultas diretas sobre os filmes desejados, exibição de assuntos relacionados que serão relevantes à pesquisa do usuário, além de possibilitar a criação de uma conta para o usuário aumentar e personalizar mais a interação e experiência com a ferramenta.</p>
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Felipe Augusto Duque Ferreira
+* Henrique Caramez Telles
+* Juliana Dutra Moreira
+* Pedro Mota Cassemiro
+* Vinicius Carneiro Gonçalves
 
 ## Orientador
 
-* Nome completo do professor 1
+* José Wilson da Costa
 
 ## Instruções de utilização
 
