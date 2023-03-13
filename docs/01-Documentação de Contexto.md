@@ -1,46 +1,35 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+<p align="justify">As artes têm uma grande importância na vida humana, envolvendo nas áreas cognitivas, emocionais, além do desenvolvimento do prazer estético e autodesenvolvimento. A Organização Mundial da Saúde (OMS) destaca contribuições no bem-estar humano como expressão emocional, regulação emocional e redução do estresse (Piçarra et al. 2022; Fancourt & Saoirse Finn, 2019). Entre estas artes destacam-se os filmes, um entretenimento de grande relevância na atual sociedade onde são fortes influenciadores na formação do sujeito social, político e cultural. Os filmes não se limitam a apenas entretenimento mas proporcionam um impacto educacional e terapêutico (Kalra  et al., 2018).</p>
+ 
+<p align="justify">Modelos teóricos sobre gerenciamento e ajuste de emoções evidenciam a relação existente entre a regulação de humor e o prazer proveniente da experiência de assistir a filmes (Zillmann, 2000; Knobloch, 2003; Zuckerman, 2006). Ainda segundo esses estudos, quando as narrativas coincidem com os valores e as experiências pessoais dos usuários, elas promovem sensação de significado, coerência e de compartilhamento de experiências. Os diferentes padrões de uso e de busca, realizados pelos usuários, são resultados de suas necessidades psicológicas e sociais e de como as diferentes formas de mídia contribuem para o suprimento de tais necessidades (Hall, 2005). Com isso, o prazer de assistir a um filme não vem apenas do prazer puro em si, mas também da satisfação por ter necessidades cognitivas e sociais supridas pela experiência (Bartsch, 2012).</p>
+ 
+<p align="justify">Embora atualmente existam meios para busca, navegação e recomendação de filmes para usuários que procuram por este entretenimento, os resultados e respostas destes métodos ainda não são claros e replicáveis (Piçarra et al. 2022). Perante o exposto torna-se evidente a necessidade de uma ferramenta de busca para auxiliar o usuário na localização dos filmes e outros conteúdos que ele deseje, com resultados confiantes e atualizados, a fim de otimizar e garantir confiabilidade na busca do seu entretenimento.</p>
+
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
-
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
-
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+<p align="justify">Diante do exposto, a falta de praticidade, demora na busca e informações desatualizadas dos atuais recursos disponíveis para localizar um filme, levam o usuário ao desânimo, e em muitos casos, desistência da ideia de ver filme desejado.</p>
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+<p align="justify">O objetivo central deste trabalho é desenvolver uma ferramenta que forneça ao usuário de forma objetiva e clara informações sobre filmes e conteúdos desejados.</p>
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+Objetivos específicos:  
+
+<ul>
+<li>Fornecer ao usuário informações e curiosidades sobre o conteúdo desejado;</li> 
+
+<li>Otimizar o tempo de busca e pesquisa fornecendo as informações de maneira concentrada.</li>
+</ul>
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+<p align="justify">A maneira como o entretenimento audiovisual é consumido foi drasticamente modificada pela consolidação do streaming. Há muito se perdeu o interesse e se tornou clara a inconveniência das mídias físicas para a distribuição de filmes e séries. A facilidade proporcionada pela conectividade e pela digitalização de mídias abriu caminho para o crescimento do consumo e produção de grandes produtos audiovisuais de apelo popular. Além disso, o aumento da quantidade de tarefas desempenhadas diariamente pelos consumidores de streaming aliado ao aumento expressivo do número de tais plataformas e seus produtos, evidencia a necessidade de um facilitador para os usuários.</p>
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+<p align="justify">À vista disso, a utilização de sistemas, à parte das plataformas de streaming, para armazenamento de informações e indicação objetiva sobre onde consumir filmes e séries, se torna uma estratégia oportuna para os usuários.</p>
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+<p align="justify">Esta aplicação é direcionada para usuários de plataformas de streaming, pessoas que têm o hábito de consumir filmes e séries online, mas que por vezes podem se encontrar em uma situação onde não sabem em qual plataforma se encontram o conteúdo que querem assistir.
+Com base em um estudo feito pelo pesquisador Renato Meirelles, 49% dos assinantes da Netflix têm até 29 anos e 40% têm de 30 a 49 anos. Vale lembrar que a plataforma pode atender novos assinantes que estão em busca de escolher qual plataforma assinar.</p>
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
