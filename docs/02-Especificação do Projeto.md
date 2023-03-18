@@ -81,7 +81,7 @@ Os requisitos do projeto descrevem a maneira de interação dos usuários com o 
 |RF-006| A aplicação deve sugerir conteúdos relacionados às buscas já realizadas anteriormente e faviritar conteúdos. | MÉDIA |
 |RF-007| A aplicação deve permitir ao usuário cadastrar, ler, atualizar e excluir suas informações de cadastro. | MÉDIA |
 |RF-008| A aplicação deve permitir ao usuário realizar login na plataforma. | MÉDIA |
-|RF-009| A aplicação deve realizar a verificação de loguin de usuário na plataforma. | MÉDIA |
+|RF-009| A aplicação deve realizar a verificação de login de usuário na plataforma. | MÉDIA |
 
 ### Requisitos não Funcionais
 
