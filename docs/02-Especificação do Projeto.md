@@ -109,5 +109,5 @@ A tabela a seguir indica as restrições para o desenvolvimento e realização d
 ## Diagrama de Casos de Uso
 
 <p align = "center">
-<img src="img/DiagramaCasosUso.jpeg" />
+<img src="img/DiagramaCasosUso.png" />
  </p>
