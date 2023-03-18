@@ -73,27 +73,27 @@ Os requisitos do projeto descrevem a maneira de interação dos usuários com o 
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| A aplicação deve permitir que o usuário faça a busca desejada | ALTA | 
+|RF-001| A aplicação deve permitir que o usuário faça a busca desejada. | ALTA | 
 |RF-002| A aplicação deve exibir resultados relacionados às palavras buscadas | ALTA |
-|RF-003| A aplicação deve conter filtros para auxiliar na busca do conteúdo pesquisado | ALTA |
-|RF-004| A aplicação deve exibir em qual plataforma de streaming o conteúdo desejado se encontra disponível para exibição | ALTA |
-|RF-005| A aplicação deve exibir informações como notas dos principais sites agregadores de crítica, duração total, gênero e outras informações relacionadas | ALTA |
-|RF-006| A aplicação deve sugerir conteúdos relacionados às buscas já realizadas anteriormente. | MÉDIA |
-|RF-007| A aplicação deve permitir ao usuário realizar cadastro que o permita ter uma experiência pessoal como ao favoritar conteúdos relevantes ao seu interesse | MÉDIA |
-|RF-008| A aplicação deve permitir ao usuário realizar login na plataforma | MÉDIA |
-|RF-009| A aplicação deve permitir ao usuário realizar login na plataforma | BAIXA |
+|RF-003| A aplicação deve conter filtros para auxiliar na busca do conteúdo pesquisado. | ALTA |
+|RF-004| A aplicação deve exibir em qual plataforma de streaming o conteúdo desejado se encontra disponível para exibição. | ALTA |
+|RF-005| A aplicação deve exibir informações como notas dos principais sites agregadores de crítica, duração total, gênero e outras informações relacionadas. | ALTA |
+|RF-006| A aplicação deve sugerir conteúdos relacionados às buscas já realizadas anteriormente e faviritar conteúdos. | MÉDIA |
+|RF-007| A aplicação deve permitir ao usuário cadastrar, ler, atualizar e excluir suas informações de cadastro. | MÉDIA |
+|RF-008| A aplicação deve permitir ao usuário realizar login na plataforma. | MÉDIA |
+|RF-009| A aplicação deve realizar a verificação de loguin de usuário na plataforma. | MÉDIA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| A aplicação deve permitir que o usuário opte por vincular sua conta Google à aplicação ou utilizá-la de forma pontual e sem criação de vínculo | MÉDIA | 
-|RNF-002| A aplicação deve permitir que o usuário, ao vincular sua conta Google à aplicação, tenha acesso a um perfil com preferências personalizáveis |  MÉDIA | 
-|RNF-003| A aplicação deve ser publicada em um ambiente acessível publicamente na Internet (GitHub Pages…) |  ALTA | 
-|RNF-004| A aplicação deverá ser responsiva permitindo a visualização em um celular de forma adequada |  ALTA |
+|RNF-001| A aplicação deve permitir que o usuário opte por vincular sua conta Google à aplicação ou utilizá-la de forma pontual e sem criação de vínculo. | MÉDIA | 
+|RNF-002| A aplicação deve permitir que o usuário, ao vincular sua conta Google à aplicação, tenha acesso a um perfil com preferências personalizáveis. |  MÉDIA | 
+|RNF-003| A aplicação deve ser publicada em um ambiente acessível publicamente na Internet (GitHub Pages…). |  ALTA | 
+|RNF-004| A aplicação deverá ser responsiva permitindo a visualização em um celular de forma adequada. |  ALTA |
 |RNF-005| A aplicação deve ter bom nível de contraste entre os elementos da tela em conformidade. |  MÉDIA |
 |RNF-006| A aplicação deve ser compatível com os principais navegadores do mercado (Google Chrome, Firefox, Microsoft Edge). |  ALTA |
-|RNF-007| A aplicação deve retornar resultados equivalentes nos idiomas português e inglês|  BAIXA |
+|RNF-007| A aplicação deve retornar resultados equivalentes nos idiomas português e inglês. |  BAIXA |
 
 ## Restrições
 
@@ -102,12 +102,12 @@ A tabela a seguir indica as restrições para o desenvolvimento e realização d
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |RE-01| O projeto deve ser entregue até o final do semestre 2023.1 |
-|RE-02| O projeto não possui orçamento definido |
-|RE-03| Apenas a própria equipe será responsável pelo desenvolvimento do projeto        |
-|RE-04| O projeto fará uso de um banco de dados relacional  |
+|RE-02| O projeto não possui orçamento definido. |
+|RE-03| Apenas a própria equipe será responsável pelo desenvolvimento do projeto. |
+|RE-04| O projeto fará uso de um banco de dados relacional. |
 
 ## Diagrama de Casos de Uso
 
 <p align = "center">
-<img src="img/DiagramaCasosUso.png" />
- </p>
+<img src="docs/img/DiagramaCasosUso.png" />
+</p>
