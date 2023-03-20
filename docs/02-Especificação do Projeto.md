@@ -111,3 +111,10 @@ A tabela a seguir indica as restrições para o desenvolvimento e realização d
 <p align = "center">
 <img src="img/DiagramaCasosUso.png" />
 </p>
+
+## Backlog e Plano de Sprints
+
+A equipe definiu a ferramenta Trello como plataforma para o gerenciamento de projeto e organização e distribuição de tarefas.
+
+
+[Trello - MovieFinder](https://trello.com/invite/b/8tOr5q9j/ATTIeae19eb8d4a66751c9411544031a3d815E47F8FA/kanban-moviefinder)
