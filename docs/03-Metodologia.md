@@ -29,12 +29,14 @@ e é apresentado na figura abaixo
 
 Figura - Tela do kanban no Trello utilizada pelo grupo
 
-# Ferramentas
+Ferramentas
 As ferramentas do projeto são:
-Editor de código: Visual Studio / Visual Studio Code
-Ferramenta de gerenciamento: Github / Trello
-Ferramenta de comunicação: Microsoft Teams / Discord
-Ferramenta de desenho de tela (wireframing): 
+
+<p>Editor de código: Visual Studio / Visual Studio Code </p>
+<p>Ferramenta de gerenciamento: Github / Trello </p>
+<p>Ferramenta de comunicação: Microsoft Teams / Discord </p>
+<p>Ferramenta de desenho de tela (wireframing): </p>
+
 
 
 |AMBIENTE    | PLATAFORMA  | LINK DE ACESSO |
