@@ -24,8 +24,11 @@ Done: nesta lista são colocadas as tarefas finalizadas e as que passaram pelos 
 
 O quadro kanban do grupo no Trello está disponível no link https://trello.com/b/8tOr5q9j/kanban-moviefinder
 e é apresentado na figura abaixo
-<img src="pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder/docs/img/tela-kaban.png" />
+
+<img src="img/tela-kaban.png" />
+
 Figura - Tela do kanban no Trello utilizada pelo grupo
+
 # Ferramentas
 As ferramentas do projeto são:
 Editor de código: Visual Studio / Visual Studio Code
