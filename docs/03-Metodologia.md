@@ -29,8 +29,9 @@ e é apresentado na figura abaixo
 
 Figura - Tela do kanban no Trello utilizada pelo grupo
 
-Ferramentas
-As ferramentas do projeto são:
+# Ferramentas
+
+<p>As ferramentas do projeto são: </p>
 
 <p>Editor de código: Visual Studio / Visual Studio Code </p>
 <p>Ferramenta de gerenciamento: Github / Trello </p>
