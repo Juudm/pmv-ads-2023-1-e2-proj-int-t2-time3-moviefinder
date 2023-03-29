@@ -37,4 +37,7 @@ Ferramenta de comunicação: Microsoft Teams / Discord
 Ferramenta de desenho de tela (wireframing): 
 
 
-
+|AMBIENTE    | PLATAFORMA  | LINK DE ACESSO |
+|------|-----------------------------------------|----|
+|Repositório de código fonte| GitHub | (https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder) | 
+|Kaban| Trello | (https://trello.com/b/8tOr5q9j/kanban-moviefinder) |
