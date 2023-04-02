@@ -33,11 +33,11 @@ Apresentamos a seguir os testes funcionais a serem executados e seus respectivos
 | Passos 	| 1 - Abrir o navegador <br> 2 - Acessar a aplicação <br> 3 - Na página inicial, clicar em filtros e selecionar um filtro <br> 4 - Buscar por um conteúdo com base no filtro selecionado |
 |Critério de Êxito | - O conteúdo retornado está de acordo com o filtro selecionado pelo usuário |
 |   |   |
-| **Caso de Teste** 	| **CT-06 – Filtro/pesquisa de receitas através de ingredientes**	|
+| **Caso de Teste** 	| **CT-06 – Informação sobre a plataforma de streaming que apresenta o conteúdo**	|
 |Requisito Associado | RF-004 - A aplicação deve exibir em qual plataforma de streaming o conteúdo desejado se encontra disponível para exibição. |
 | Objetivo do Teste 	| Verificar se o conteúdo selecionado ou pesquisado apresenta a plataforma de streaming na qual está disponível para exibição. |
 | Passos 	| 1 - Abrir o navegador <br> 2 - Acessar a aplicação <br> 3 - Na página inicial, selecionar um dos conteúdos exibidos ou realizar uma busca específica <br> 4 - Verificar se o conteúdo escolhido apresenta a plataforma de streaming na qual está presente entre os dados fornecidos |
-|Critério de Êxito | - A informação sobre a plataforma de streaming está presenta entre os diversos dados fornecidos sobre o conteúdo selecionado |
+|Critério de Êxito | - A informação sobre a plataforma de streaming está presente entre os diversos dados fornecidos sobre o conteúdo selecionado |
 |  	|  	|
 | **Caso de Teste** 	| **CT-07 – Visualizar informações sobre os conteúdos**	|
 |Requisito Associado | RF-005	- A aplicação deve exibir informações como notas dos principais sites agregadores de crítica, duração total, gênero e outras informações relacionadas. |
