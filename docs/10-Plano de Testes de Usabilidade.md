@@ -57,7 +57,7 @@ Simule clicar no botão de pesquisa, no qual, deverá ser possível digitar nome
 Simule clicar nos conteúdos recomendados, cujo o qual, ao ser selecionado abrirá uma nova pagina apresentando o filme selecionado e todas as informações como sinopse, elenco, notas e em qual streaming se encontrá.
 
 
-#### Possíveis Problemas Encontrados:
+#### Possíveis Problemas Encontrados
 
 
     • Os botões não foram responsivos.
@@ -90,7 +90,7 @@ Ao clicar em Cadastrar Nova Conta, se o usuário desistir de faze-lo por quaisqu
 
 O usuário estando no Menú Inicial, simulará clicar em “Recuperar Senha” o qual atualizará o Menú em um novo pop-up. Neste novo Menú o usuário observará que existe apneas uma aba a ser preenchida descrita “ E-mail de recuperação” o qual o usuário descreverá o seu e-mail cadastrado. Após o e-mail cadastrado ser preenchido na aba o usuário clicará no botão de “Enviar Senha”. Caso o e-mail esteja corretamente cadastrado o Menú fechará e a senha de cadastro do usuário será enviada a seu e-mail cadastrado. Contudo, caso o e-mail não esteja de acordo um Erro aparecerá indicando que o e-mail não está cadastrado.
 
-#### Possíveis Problemas de Usabilidades:
+#### Possíveis Problemas Encontrados
 
     • O usuário encontrou problemas ao fazer o login
     • O usuário encontrou problemas ao tentar realizar o cadastro
@@ -107,7 +107,7 @@ Por outro lado, caso o usuário não verifique o conteúdo desejado na Pagina In
 
 O usuário estando satisfeito com as informações, caso deseje procurar um novo conteúdo, simulará, na própria página do conteúdo já pesquisado, clicar novamente na aba de "Pesquisar" para obter acesso a nova busca de um outro conteúdo.
 
-#### Possíveis Problemas de Usabilidades:
+#### Possíveis Problemas Encontrados
 
     • O usuário encontrou dificuldades ao selecionar o filme/série/documentário
     • O usuário encontrou problemas com as informações associadas ao conteúdo indicado
@@ -116,5 +116,5 @@ O usuário estando satisfeito com as informações, caso deseje procurar um novo
 
 ## Informações Coletadas
 
-Atividade Planejada - Relatório
+Atividade Planejada - Relatórios
 
