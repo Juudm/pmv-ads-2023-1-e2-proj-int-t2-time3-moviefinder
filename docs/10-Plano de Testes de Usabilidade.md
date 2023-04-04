@@ -94,8 +94,8 @@ O usuário estando no Menú Inicial, simulará clicar em “Recuperar Senha” o
 
     • O usuário encontrou problemas ao fazer o login
     • O usuário encontrou problemas ao tentar realizar o cadastro
-    •  O usuário encontrou problemas ao tentar recuperar sua senha.
-    •  O usuário teve problemas para voltar a página principal.
+    • O usuário encontrou problemas ao tentar recuperar sua senha.
+    • O usuário teve problemas para voltar a página principal.
     • O usuário teve problema ao receber sua senha durante a recuperação de senha.
     
     
@@ -109,10 +109,10 @@ O usuário estando satisfeito com as informações, caso deseje procurar um novo
 
 #### Possíveis Problemas de Usabilidades:
 
-    • Encontrou dificuldades ao selecionar o filme/série/documentário
-    • Encontrou atrito com as informações associadas ao conteúdo indicado
-    • Encontrou dificuldade ao ser direcionado as novas páginas, seja durante a pesquisa ou ao selecionar qualquer conteúdo.
-    • Erro no que tange a nota ou em qual streaming o filme está disponivel.
+    • O usuário encontrou dificuldades ao selecionar o filme/série/documentário
+    • O usuário encontrou problemas com as informações associadas ao conteúdo indicado
+    • O usuário encontrou dificuldade ao ser direcionado as novas páginas, seja durante a pesquisa ou ao selecionar qualquer conteúdo.
+    • O usuário encontrou Erro no que tange a nota ou em qual streaming o filme está disponibilizado.
 
 ## Informações Coletadas
 
