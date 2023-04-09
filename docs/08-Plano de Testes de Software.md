@@ -10,7 +10,7 @@ Apresentamos a seguir os testes funcionais a serem executados e seus respectivos
 |Critério de Êxito | - O cadastro foi realizado com sucesso. |
 |  	|  	|
 | **Caso de Teste** 	| **CT-02 – Efetuar login**	|
-|Requisito Associado | RF-008 - O usuário deve conseguir realizar login na plataforma. |
+|Requisito Associado | RF-008 - O usuário deve conseguir realizar login na plataforma. <br> RF-009 - A aplicação deve realizar a verificação de login de usuário na plataforma.|
 | Objetivo do Teste 	| Verificar se o login está ocorrendo corretamente |
 | Passos 	| 1 - Abrir o navegador <br> 2 - Acessar a aplicação <br> 3 - Na página inicial, clicar em "Login" <br> 4 - Preencher os campos obrigatórios: E-mail e senha <br> 5 - Clicar em "Entrar" |
 |Critério de Êxito | - O login foi realizado com sucesso, o conteúdo apresentado está associado às preferências do usuário e o mesmo é capaz de acessar o seu perfil |
