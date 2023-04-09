@@ -8,10 +8,10 @@
 # Divisão de Papéis
 
 <p> a equipe está organizada da seguinte maneira: </p>
-<p> Scrum Master: </p>
+<p> Scrum Master: Felipe </p>
 <p> Product Owner: José Wilson da Costa </p>
-<p> Equipe de Desenvolvimento: </p>
-<p>Equipe de Design: </p>
+<p> Equipe de Desenvolvimento: Juliana e Pedro </p>
+<p>Equipe de Design: Vinicius e Henrique </p>
 
 # Processo
 <p> Para organização e distribuição das tarefas do projeto, a equipe está utilizando o Trello, estruturado com as seguintes listas: </p>
