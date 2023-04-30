@@ -1,0 +1,31 @@
+.resultado-movie {
+    background-color: rebeccapurple;
+}
+
+.resultado-movie-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.resultado-movie-header h1{
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.resultado-movie-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recommendation-movies-text{
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.recommendation-movies {
+    margin-left: 2%;
+    margin-right: 2%;
+}
