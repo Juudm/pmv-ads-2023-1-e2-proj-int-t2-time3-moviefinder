@@ -1,4 +1,6 @@
-﻿namespace moviefinder.dto;
+﻿using Newtonsoft.Json;
+
+namespace moviefinder.dto;
 
 public class FilmePesquisaDto
 {
@@ -13,6 +15,8 @@ public class FilmePesquisaDto
     public string Overview { get; set; }
 
     public double Popularity { get; set; }
+    
+    public string Poster_path { get; set; }
 
     public string Release_date { get; set; }
 
@@ -22,7 +26,7 @@ public class FilmePesquisaDto
 
     public int Vote_count { get; set; }
 
-    public FilmePesquisaDto(List<int> genreIds, int id, string originalLanguage, string originalTitle, string overview, double popularity, string releaseDate, string title, double voteAverage, int voteCount)
+    public FilmePesquisaDto(List<int> genreIds, int id, string originalLanguage, string originalTitle, string overview, double popularity, string posterPath, string releaseDate, string title, double voteAverage, int voteCount)
     {
         Genre_ids = genreIds;
         Id = id;
@@ -30,6 +34,7 @@ public class FilmePesquisaDto
         Original_title = originalTitle;
         Overview = overview;
         Popularity = popularity;
+        Poster_path = posterPath;
         Release_date = releaseDate;
         Title = title;
         Vote_average = voteAverage;
