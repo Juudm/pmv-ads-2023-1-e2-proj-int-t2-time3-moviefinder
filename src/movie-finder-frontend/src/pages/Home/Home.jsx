@@ -4,9 +4,13 @@ import { api } from "../../services/api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MdKeyboardArrowRight } from "react-icons/Md"
 import { GoSearch } from "react-icons/go"
+import { HiOutlineMail } from "react-icons/hi"
+import { RiLockPasswordFill } from "react-icons/ri"
 import SwiperCore, { Autoplay, Pagination, Navigation, Virtual } from "swiper";
 import { Link } from 'react-router-dom';
 import Rodal from 'rodal';
+import Input from '@mui/joy/Input';
+import Button from '@mui/joy/Button';
 
 import './Home.css'
 import "swiper/css";
@@ -101,15 +105,30 @@ function Home() {
               >
                 <div className="modal-login-home">
                   <h1>MovieFinder</h1>
-                  <h2>Login</h2>
-                  <p>Faça seu login em sua conta no MovieFinder</p>
-                  <label htmlFor="">Email</label>
-                  <input type="text" name="" id="" />
-                  <label htmlFor="">Senha</label>
-                  <input type="text" name="" id="" />
-                  <p>Esqueceu a senha?</p>
-                  <button>Entrar</button>
-                  <button>Cadastrar nova conta</button>
+                  <div className="modal-login-body">
+                    <div className="modal-login-text">
+                      <h2>Login</h2>
+                    </div>
+                    <div className="modal-login-input-label">
+                      <Input
+                        color="neutral"
+                        disabled={false}
+                        size="md"
+                        placeholder="Email..."
+                      />
+                      <Input
+                        color="neutral"
+                        disabled={false}
+                        placeholder="Senha..."
+                        size="md"
+                      />
+                    </div>
+                    <div className="modal-login-in">
+                      <p>Esqueceu a senha?</p>
+                      <Button className="modal-button-login">Entrar</Button>
+                    </div>
+                  </div>
+                    <Button className="modal-button-login">Cadastrar nova conta</Button>
                 </div>
               </Rodal>
               <Rodal
@@ -126,17 +145,37 @@ function Home() {
                >
                 <div className="modal-register-home">
                   <h1>MovieFinder</h1>
-                  <h2>Cadastro</h2>
-                  <p>Crie sua conta agora no MovieFinder</p>
-                  <label htmlFor="">Nome completo</label>
-                  <input type="text" name="" id="" />
-                  <label htmlFor="">Email</label>
-                  <input type="text" name="" id="" />
-                  <label htmlFor="">Senha</label>
-                  <input type="text" name="" id="" />
-                  <label htmlFor="">Confirme sua senha</label>
-                  <input type="text" name="" id="" />
-                  <button>Cadastrar</button>
+                  <div className="modal-register-input-button">
+                    <div className="modal-register-text">
+                      <h2>Cadastro</h2>
+                    </div>
+                    <Input
+                      color="neutral"
+                      disabled={false}
+                      size="md"
+                      placeholder="Nome Completo..."
+                    />
+                    <Input
+                      color="neutral"
+                      disabled={false}
+                      size="md"
+                      placeholder="Email..."
+                    />
+                    <Input
+                      color="neutral"
+                      disabled={false}
+                      placeholder="Senha..."
+                      size="md"
+                    />
+                    <Input
+                      color="neutral"
+                      disabled={false}
+                      placeholder="Confirme sua senha..."
+                      size="md"
+                    />
+                    <p>Crie sua conta agora no MovieFinder</p>
+                    <Button className="modal-register-button" >Cadastrar</Button>
+                  </div>
                 </div>
               </Rodal>
             </div>
