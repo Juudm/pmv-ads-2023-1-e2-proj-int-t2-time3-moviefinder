@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FAZMLQVbzzpCzxjxXP6Q5+AwaeSRqefMiXvvQTFIg7nXgLzEAe3o/xuA3ubfrRlOnrUkLpfHXruDMi2Z3saMVg==",
+  "dgSpecHash": "Sq/VlnjXmeTu45mk5yqnWGXttvwGWcZyQZo1tQMj/wNeNfnKX6LY5Rmzm9EUs68z2F4kaRo5tjrA0GMn2xYmbg==",
   "success": true,
-  "projectFilePath": "D:\\MovieFinderCSharp-main\\moviefinder.csproj",
+  "projectFilePath": "D:\\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\\src\\MovieFinderCSharp-main\\moviefinder.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@coreui/react": "^4.7.0",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@mui/joy": "^5.0.0-alpha.77",
@@ -17,11 +18,14 @@
     "install": "^0.13.0",
     "mobiscroll": "^3.0.0-beta6",
     "npm": "^9.6.5",
+    "primereact": "^9.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
+    "react-pro-sidebar": "^1.0.0",
     "react-router-dom": "^6.11.0",
     "rodal": "^2.0.1",
+    "semantic-ui-react": "^2.1.4",
     "swiper": "^9.2.4"
   },
   "devDependencies": {

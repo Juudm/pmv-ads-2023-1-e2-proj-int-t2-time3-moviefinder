@@ -1,24 +1,57 @@
-.busca-body {
+.search-body {
     display: flex;
-    gap: 100px;
-    height: 1000px;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: rgba(0, 0, 0, 0.123);
 }
 
-.sidebar-busca {
-    background-color: rebeccapurple;
-    display: flex;
-    flex-direction: column;
+.ps-menuitem-root .css-12vkui9 {
+    background: rgba(6,10,64,1);   
+}
+
+.ps-menu-button:hover {
+    background:rgba(6, 10, 64, 0.473) !important;
+}
+
+.sidebar-search-all { 
+    color: rgba(255, 255, 255, 0.849);
+    background: rgb(6,35,64);   
+    background: linear-gradient(0deg, rgba(6,35,64,1) 24%, rgba(6,10,64,1) 49%, rgba(11,4,46,1) 68%); 
+    -webkit-box-shadow: inset -1px 200px 92px -14px rgba(0,0,0,1);
+    -moz-box-shadow: inset -1px 200px 92px -14px rgba(0,0,0,1);
+    box-shadow: inset -1px 200px 92px -14px rgba(0,0,0,1);
+}
+
+.sidebar-search-all h1{
     text-align: center;
-    width: 300px;
+    font-size: 40px;
+    font-weight: 900;
 }
 
-.sidebar-busca-arrow {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
+.sidebar-search-all h2{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 900;
 }
 
-.sidebar-busca-filters-dropdown {
+.sidebar-menu-search {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
+
+
+.results-search {
+    width: 100%;
+    height: 100%;
+}
+
+.results-search h1 {
+    padding-left: 40px;
+}
+
+.results-search-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 16px;
+}
+

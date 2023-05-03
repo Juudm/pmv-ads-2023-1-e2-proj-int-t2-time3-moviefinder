@@ -2,9 +2,6 @@ import './MovieCard.css'
 
 function MovieCard(props) {
 
-  console.log(props.posterSize);
-  console.log(props.movie);
-  
   return (
     <div className='movie-card-all'>
       <div className="movie-card"  style={{ width: props.posterSize || "auto" }}>
