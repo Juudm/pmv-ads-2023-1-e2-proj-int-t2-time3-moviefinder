@@ -4,13 +4,15 @@ import { api } from "../../services/api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MdKeyboardArrowRight } from "react-icons/Md"
 import { GoSearch } from "react-icons/go"
-import { HiOutlineMail } from "react-icons/hi"
-import { RiLockPasswordFill } from "react-icons/ri"
 import SwiperCore, { Autoplay, Pagination, Navigation, Virtual } from "swiper";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Rodal from 'rodal';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 import './Home.css'
 import "swiper/css";
@@ -31,6 +33,8 @@ function Home() {
   const [topRatedMovies, setTopRatedMovies ] = useState([])
   const [discoverList, setDiscoverList ] = useState([])
   
+  const navigate = useNavigate()
+
   const showModalLogin = () => { setvisibleLogin(true);}
   const closeModalLogin = () => {setvisibleLogin(false);}
   const showModalRegister = () => { setvisibleRegister(true);}
@@ -64,6 +68,8 @@ function Home() {
     const response = await api.get(`/movieFinder/discover/movie?genreId=${genreId}`)
     return response.data.results
   }
+
+  const gotoDetails = () => { navigate('/Resultado'); console.log("teste"); }
 
   useEffect(() => {
     getPopularMovies()
@@ -173,6 +179,17 @@ function Home() {
                       placeholder="Confirme sua senha..."
                       size="md"
                     />
+                    <Select placeholder="Gênero…" className="modal-register-select">
+                      <Option value="Homem">Homem</Option>
+                      <Option value="Mulher">Mulher</Option>
+                    </Select>
+                    <Input
+                      color="neutral"
+                      type="number"
+                      disabled={false}
+                      placeholder="Digite sua idade..."
+                      size="md"
+                    />
                     <p>Crie sua conta agora no MovieFinder</p>
                     <Button className="modal-register-button" >Cadastrar</Button>
                   </div>
@@ -196,14 +213,14 @@ function Home() {
           className="swiper-home-header"
         >
           {popularMovies.map((movie) => (
-            <SwiperSlide className="swiper-header-img" style={{
-              height: "850px",
-              backgroundImage: `url(${"http://image.tmdb.org/t/p/original" + movie.backdrop_path})`,
-              backgroundPosition: "center",
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: "cover",
-            }}>
-            </SwiperSlide>
+              <SwiperSlide onClick={ gotoDetails } className="swiper-header-img" style={{
+                height: "850px",
+                backgroundImage: `url(${"http://image.tmdb.org/t/p/original" + movie.backdrop_path})`,
+                backgroundPosition: "center",
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: "cover",
+              }}>
+              </SwiperSlide>
           ))}
         </Swiper>
       </div>

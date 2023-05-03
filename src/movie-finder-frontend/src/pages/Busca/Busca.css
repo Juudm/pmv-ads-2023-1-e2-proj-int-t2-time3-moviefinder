@@ -1,7 +1,16 @@
 .search-body {
     display: flex;
     color: rgba(0, 0, 0, 0.87);
-    background-color: rgba(0, 0, 0, 0.123);
+}
+
+.sidebar-search-all a {
+    z-index: 100;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.849);
+}
+
+.results-search {
+    background-color: rgba(0, 0, 0, 0.123) !important;
 }
 
 .ps-menuitem-root .css-12vkui9 {
@@ -9,7 +18,7 @@
 }
 
 .ps-menu-button:hover {
-    background:rgba(6, 10, 64, 0.473) !important;
+    background: rgba(18, 31, 221, 0.26) !important;
 }
 
 .sidebar-search-all { 
@@ -19,6 +28,7 @@
     -webkit-box-shadow: inset -1px 200px 92px -14px rgba(0,0,0,1);
     -moz-box-shadow: inset -1px 200px 92px -14px rgba(0,0,0,1);
     box-shadow: inset -1px 200px 92px -14px rgba(0,0,0,1);
+    width: 400px !important;
 }
 
 .sidebar-search-all h1{
@@ -29,7 +39,7 @@
 
 .sidebar-search-all h2{
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 900;
 }
 
@@ -38,7 +48,6 @@
     justify-content: center;
     text-align: center;
 }
-
 
 .results-search {
     width: 100%;
@@ -51,7 +60,51 @@
 
 .results-search-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 16px;
 }
 
+@media only screen and (max-width: 800px)  {
+
+    .search-body {
+        display: flex;
+        width: 100% !important;
+    }
+
+    .sidebar-search-all{
+        width: 100px !important;
+    }
+
+    .teste {
+        font-size: 10px !important;
+        width: 150px;
+    }
+    
+    .MuiFormControl-root, .MuiFormControl-vertical, .MuiFormControl-sizeMd, .css-1nont9e-JoyFormControl-root {
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .sidebar-search-all h1{
+        text-align: center;
+        font-size: 30px;
+        font-weight: 900;
+    }
+    
+    .sidebar-search-all h2{
+        text-align: center;
+        font-size: 20px;
+        font-weight: 900;
+    }
+    
+    .ps-menu-label {
+        width: 10px;
+    }
+
+    .MuiAutocomplete-root {
+        margin: 0 !important;
+        width: 100%;
+    }
+}

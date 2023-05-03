@@ -1,7 +1,8 @@
 .movie-card {
     display: flex;
     flex-direction: column;
-    width: auto;
+    width: 100%;
+    height: 100%;
 }
 
 .movie-card-all {
@@ -18,4 +19,8 @@
 .movie-card-img {
     display: flex;
     flex-direction: column;
+}
+
+.movie-card-img img{
+    border-radius: 2px;
 }

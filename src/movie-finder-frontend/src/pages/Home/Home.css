@@ -6,6 +6,12 @@
     -webkit-box-shadow: inset -6px -200px 47px -91px rgba(0,0,0,1);
     -moz-box-shadow: inset -6px -200px 47px -91px rgba(0,0,0,1);
     box-shadow: inset -6px -200px 47px -91px rgba(0,0,0,1);
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-header-img img{
+    z-index: 10000;
 }
 
 :root {
@@ -21,7 +27,7 @@
     background-color: black;
 }
 
-.swiper-header-img {
+.swiper-home-header {
     width: 100%;
     height: 100%;
 }   
@@ -30,7 +36,7 @@
     display: flex;
     position: absolute;
     width: 100%;
-    height: 400px;
+    height: 150px;
     padding-top: 15px;
     color: rgba(255, 255, 255, 0.849);
     z-index: 100000;
@@ -230,6 +236,11 @@
 .modal-register-input-button input{
     gap: 10px;
     width: 250px;
+    align-items: center;
+}
+.modal-register-select {
+    gap: 10px;
+    width: 276px;
     align-items: center;
 }
 
