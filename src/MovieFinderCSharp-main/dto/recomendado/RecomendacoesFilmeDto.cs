@@ -22,13 +22,10 @@ public class RecomendacoesFilmeDto
     [JsonProperty("vote_average")]
     public double VoteAverage { get; set; }
 
-<<<<<<< HEAD
-    public int Vote_count { get; set; }
     public string Poster_path { get; set; }
-=======
+
     [JsonProperty("vote_count")]
     public int VoteCount { get; set; }
->>>>>>> 8d1cc6db20a2d0f29e104eb314c4e9991c786174
 
     public RecomendacoesFilmeDto(int id, string title, string originalLanguage, string originalTitle, string overview, string releaseDate, double voteAverage, int voteCount)
     {
