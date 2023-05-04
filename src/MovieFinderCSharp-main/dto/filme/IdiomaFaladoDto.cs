@@ -1,14 +1,18 @@
-﻿namespace moviefinder.dto;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+
+namespace moviefinder.dto;
 
 public class IdiomaFaladoDto
 {
-    public string Iso_639_1 { get; set; }
+    [JsonProperty("iso_639_1")]
+    public string Iso6391 { get; set; }
     
     public string Name { get; set; }
 
     public IdiomaFaladoDto(string iso6391, string name)
     {
-        Iso_639_1 = iso6391;
+        Iso6391 = iso6391;
         Name = name;
     }
 }

@@ -1,20 +1,43 @@
-﻿namespace moviefinder.dto.pessoa;
+﻿using Newtonsoft.Json;
+
+namespace moviefinder.dto.pessoa;
 
 public class TopRatedFilmesDto
 {
-        public string Poster_path { get; set; }
+        [JsonProperty("poster_path")]
+        public string PosterPath { get; set; }
+        
         public bool Adult { get; set; }
+        
         public string Overview { get; set; }
-        public string Release_date { get; set; }
-        public IEnumerable<int> Genre_ids { get; set; }
+        
+        [JsonProperty("release_date")]
+        public string ReleaseDate { get; set; }
+        
+        [JsonProperty("genre_ids")]
+        public IEnumerable<int> GenreIds { get; set; }
+        
         public int Id { get; set; }
-        public string Original_title { get; set; }
-        public string Original_language { get; set; }
+        
+        [JsonProperty("original_title")]
+        public string OriginalTitle { get; set; }
+        
+        [JsonProperty("original_language")]
+        public string OriginalLanguage { get; set; }
+        
         public string Title { get; set; }
-        public string Backdrop_path { get; set; }
+        
+        [JsonProperty("backdrop_path")]
+        public string BackdropPath { get; set; }
+        
         public double Popularity { get; set; }
-        public int Vote_count { get; set; }
+        
+        [JsonProperty("vote_count")]
+        public int VoteCount { get; set; }
+        
         public bool Video { get; set; }
-        public double Vote_average { get; set; }
+        
+        [JsonProperty("vote_average")]
+        public double VoteAverage { get; set; }
 
 }
