@@ -1,4 +1,6 @@
-﻿namespace moviefinder.dto.recomendado;
+﻿using Newtonsoft.Json;
+
+namespace moviefinder.dto.recomendado;
 
 public class RecomendacoesFilmeDto
 {
@@ -6,27 +8,32 @@ public class RecomendacoesFilmeDto
 
     public string Title { get; set; }
 
-    public string Original_language { get; set; }
+    [JsonProperty("original_language")]
+    public string OriginalLanguage { get; set; }
 
-    public string Original_title { get; set; }
+    [JsonProperty("original_title")]
+    public string OriginalTitle { get; set; }
 
     public string Overview { get; set; }
 
-    public string Release_date { get; set; }
+    [JsonProperty("release_date")]
+    public string ReleaseDate { get; set; }
 
-    public double Vote_average { get; set; }
+    [JsonProperty("vote_average")]
+    public double VoteAverage { get; set; }
 
-    public int Vote_count { get; set; }
+    [JsonProperty("vote_count")]
+    public int VoteCount { get; set; }
 
     public RecomendacoesFilmeDto(int id, string title, string originalLanguage, string originalTitle, string overview, string releaseDate, double voteAverage, int voteCount)
     {
         Id = id;
         Title = title;
-        Original_language = originalLanguage;
-        Original_title = originalTitle;
+        OriginalLanguage = originalLanguage;
+        OriginalTitle = originalTitle;
         Overview = overview;
-        Release_date = releaseDate;
-        Vote_average = voteAverage;
-        Vote_count = voteCount;
+        ReleaseDate = releaseDate;
+        VoteAverage = voteAverage;
+        VoteCount = voteCount;
     }
 }

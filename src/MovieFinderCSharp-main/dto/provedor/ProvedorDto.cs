@@ -1,14 +1,18 @@
-﻿namespace moviefinder.dto.provedor;
+﻿using Newtonsoft.Json;
+
+namespace moviefinder.dto.provedor;
 
 public class ProvedorDto
 {
-    public string Provider_name { get; set; }
+    [JsonProperty("provider_name")]
+    public string ProviderName { get; set; }
 
-    public string Provider_id { get; set; }
+    [JsonProperty("provider_id")]
+    public string ProviderId { get; set; }
 
     public ProvedorDto(string providerName, string providerId)
     {
-        Provider_name = providerName;
-        Provider_id = providerId;
+        ProviderName = providerName;
+        ProviderId = providerId;
     }
 }

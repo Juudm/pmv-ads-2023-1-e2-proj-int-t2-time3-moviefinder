@@ -1,12 +1,14 @@
-﻿namespace moviefinder.dto;
+﻿using moviefinder.dto.filme;
+
+namespace moviefinder.dto;
 
 public class FilmeCreditosDto
 {
-    public List<CreditosDto> Cast { get; set; }
+    public List<CreditosAtoresDto> Cast { get; set; }
     
-    public List<CreditosDto> Crew { get; set; }
+    public List<CreditosEquipeDto> Crew { get; set; }
 
-    public FilmeCreditosDto(List<CreditosDto> cast, List<CreditosDto> crew)
+    public FilmeCreditosDto(List<CreditosAtoresDto> cast, List<CreditosEquipeDto> crew)
     {
         this.Cast = cast;
         this.Crew = crew;

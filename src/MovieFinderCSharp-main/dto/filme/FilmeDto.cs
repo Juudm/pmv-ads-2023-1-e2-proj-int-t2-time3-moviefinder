@@ -2,7 +2,7 @@
 using moviefinder.dto.recomendado;
 using Newtonsoft.Json;
 
-namespace moviefinder.dto;
+namespace moviefinder.dto.filme;
 
 public class FilmeDto
 {
@@ -12,25 +12,31 @@ public class FilmeDto
 
     public int Id { get; set; }
 
-    public string Original_language { get; set; }
+    [JsonProperty("original_language")]
+    public string OriginalLanguage { get; set; }
 
-    public string Original_title { get; set; }
+    [JsonProperty("original_title")]
+    public string OriginalTitle { get; set; }
 
     public string Overview { get; set; }
 
     public double Popularity { get; set; }
 
-    public string Release_date { get; set; }
+    [JsonProperty("release_date")]
+    public string ReleaseDate { get; set; }
 
     public int Runtime { get; set; }
 
-    public List<IdiomaFaladoDto> Spoken_languages { get; set; }
+    [JsonProperty("spoken_languages")]
+    public List<IdiomaFaladoDto> SpokenLanguages { get; set; }
 
     public string Title { get; set; }
 
-    public double Vote_average { get; set; }
+    [JsonProperty("vote_average")]
+    public double VoteAverage { get; set; }
 
-    public int Vote_count { get; set; }
+    [JsonProperty("vote_count")]
+    public int VoteCount { get; set; }
 
     public FilmeCreditosDto Credits { get; set; }
 
@@ -44,16 +50,16 @@ public class FilmeDto
         Budget = budget;
         Genres = genres;
         Id = id;
-        Original_language = originalLanguage;
-        Original_title = originalTitle;
+        OriginalLanguage = originalLanguage;
+        OriginalTitle = originalTitle;
         Overview = overview;
         Popularity = popularity;
-        Release_date = releaseDate;
+        ReleaseDate = releaseDate;
         Runtime = runtime;
-        Spoken_languages = spokenLanguages;
+        SpokenLanguages = spokenLanguages;
         Title = title;
-        Vote_average = voteAverage;
-        Vote_count = voteCount;
+        VoteAverage = voteAverage;
+        VoteCount = voteCount;
         Credits = credits;
         Recommendations = recommendations;
         Providers = providers;

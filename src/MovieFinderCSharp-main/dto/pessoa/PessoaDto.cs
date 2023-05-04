@@ -1,8 +1,11 @@
-﻿namespace moviefinder.dto.pessoa;
+﻿using Newtonsoft.Json;
+
+namespace moviefinder.dto.pessoa;
 
 public class PessoaDto
 {
-    public List<string> Also_known_as { get; set; }
+    [JsonProperty("also_known_as")]
+    public List<string> AlsoKnownAs { get; set; }
 
     public string Biography { get; set; }
 
@@ -14,28 +17,31 @@ public class PessoaDto
 
     public int Id { get; set; }
 
-    public string Known_for_department { get; set; }
+    [JsonProperty("known_for_department")]
+    public string KnownForDepartment { get; set; }
 
     public string Name { get; set; }
 
-    public string Place_of_birth { get; set; }
+    [JsonProperty("place_of_birth")]
+    public string PlaceOfBirth { get; set; }
 
     public double Popularity { get; set; }
 
-    public CreditosFilmeDto Movie_credits { get; set; }
+    [JsonProperty("movie_credits")]
+    public CreditosFilmeDto MovieCredits { get; set; }
 
     public PessoaDto(List<string> alsoKnownAs, string biography, string birthday, string deathday, int gender, int id, string knownForDepartment, string name, string placeOfBirth, double popularity, CreditosFilmeDto movieCredits)
     {
-        Also_known_as = alsoKnownAs;
+        AlsoKnownAs = alsoKnownAs;
         Biography = biography;
         Birthday = birthday;
         Deathday = deathday;
         Gender = gender;
         Id = id;
-        Known_for_department = knownForDepartment;
+        KnownForDepartment = knownForDepartment;
         Name = name;
-        Place_of_birth = placeOfBirth;
+        PlaceOfBirth = placeOfBirth;
         Popularity = popularity;
-        Movie_credits = movieCredits;
+        MovieCredits = movieCredits;
     }
 }

@@ -7,6 +7,9 @@ using moviefinder.dto.provedor;
 using moviefinder.dto.recomendado;
 using Newtonsoft.Json;
 using System.Text.Json.Nodes;
+using moviefinder.dto.filme;
+using moviefinder.Entities;
+using moviefinder.service;
 
 namespace moviefinder.controller;
 
@@ -17,12 +20,16 @@ public class FilmeController : ControllerBase
     private readonly TheMovieDataBaseClient _theMovieDataBaseClient;
     private readonly string _apiKey;
     private readonly string _apiLanguage;
+    private readonly FilmeService _filmeService;
+    private readonly UsuarioService _usuarioService;
     
-    public FilmeController(TheMovieDataBaseClient theMovieDataBaseClient)
+    public FilmeController(TheMovieDataBaseClient theMovieDataBaseClient, FilmeService filmeService, UsuarioService usuarioService)
     {
         _theMovieDataBaseClient = theMovieDataBaseClient;
         _apiKey = "a99efb9137ad32d6eb76bc2453ba6c28";
         _apiLanguage = "pt-BR";
+        _filmeService = filmeService;
+        _usuarioService = usuarioService;
     }
 
     [HttpGet("movie/popularity")]
@@ -104,4 +111,19 @@ public class FilmeController : ControllerBase
         var recommendations = JsonConvert.DeserializeObject<RecomendadoDto>(response);
         return Ok(recommendations);
     }
+
+    [HttpPost("favoritarFilme/{userId}")]
+    public async Task<IActionResult> FavoritarFilme(string userId, [FromBody] FilmeDto filmeDto)
+    {
+        await _filmeService.FavoritarFilme(userId, filmeDto);
+        return Ok("Filme favoritado com sucesso!");
+    }
+    
+    [HttpPost("cadastrarUsuario")]
+    public async Task<IActionResult> CadastrarUsuario([FromBody] Usuario usuario)
+    {
+        await _usuarioService.CadastrarUsuario(usuario);
+        return Ok("Usuario cadastrado com sucesso!");
+    }
+    
 }
