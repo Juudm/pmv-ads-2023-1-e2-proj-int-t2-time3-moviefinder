@@ -69,7 +69,7 @@ function Home() {
     return response.data.results
   }
 
-  const gotoDetails = () => { navigate('/Resultado'); console.log("teste"); }
+  const gotoDetails = () => { navigate('/Resultado'); }
 
   useEffect(() => {
     getPopularMovies()

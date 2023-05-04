@@ -7,9 +7,7 @@ import MovieCard from '../../components/MovieCard/MovieCard'
 
 import { Link } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem, SubMenu, sidebarClasses } from 'react-pro-sidebar';
-import styled from 'styled-components';
 import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
 
 function Busca() {
@@ -49,9 +47,7 @@ function Busca() {
     const response = await api.get('/movieFinder/genre/list')
     setGenreList(response.data.genres) 
   }
-  const CardWrapper = styled.div`
-  `;
-
+  
   useEffect(() => {
     getPopularMovies()
     getGenreList()

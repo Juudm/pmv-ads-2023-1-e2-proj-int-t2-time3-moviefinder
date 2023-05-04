@@ -17,6 +17,7 @@ public class RecomendacoesFilmeDto
     public double Vote_average { get; set; }
 
     public int Vote_count { get; set; }
+    public string Poster_path { get; set; }
 
     public RecomendacoesFilmeDto(int id, string title, string originalLanguage, string originalTitle, string overview, string releaseDate, double voteAverage, int voteCount)
     {
