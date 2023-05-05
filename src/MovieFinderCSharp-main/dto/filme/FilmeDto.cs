@@ -1,6 +1,7 @@
 ﻿using moviefinder.dto.genero;
 using moviefinder.dto.recomendado;
 using Newtonsoft.Json;
+using System.Security.Cryptography.X509Certificates;
 
 namespace moviefinder.dto.filme;
 
@@ -28,15 +29,14 @@ public class FilmeDto
     [JsonProperty("backdrop_path")]
     public string BackdropPath { get; set; }
 
-
     [JsonProperty("release_date")]
     public string ReleaseDate { get; set; }
-
+    public int Revenue { get; set; }
     public int Runtime { get; set; }
 
     [JsonProperty("spoken_languages")]
     public List<IdiomaFaladoDto> SpokenLanguages { get; set; }
-
+    public string status { get; set; }
     public string Title { get; set; }
 
     [JsonProperty("vote_average")]

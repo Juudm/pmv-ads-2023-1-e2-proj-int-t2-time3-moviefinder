@@ -24,7 +24,7 @@ function Resultado() {
   const [visibleFavorites, setvisibleFavorites] = useState(false)
   const [starFill, setStarFill] = useState(false)
   const [recomendationMovies, setRecomendationMovies ] = useState([])
-  const [movie, setMovie ] = useState([])
+  const [movie, setMovie ] = useState({})
   const [discoverList, setDiscoverList ] = useState([])
 
   const navigate = useNavigate()
@@ -34,14 +34,17 @@ function Resultado() {
     return Math.floor(totalTimeInMin / 60) + 'h' + totalTimeInMin % 60 + 'm'
   }
 
+  let USDollar = new Intl.NumberFormat('en-US', {
+    currency: 'USD',
+  });
+
   const showModalFavorites = () => { setvisibleFavorites(true);}
   const closeModalFavorites = () => {setvisibleFavorites(false);}
   
   const starFillCheck = () =>  setStarFill(!starFill) 
 
   const gotoDetails = (movie) => { 
-    navigate(`/Resultados/${movie.id}`);
-    window.location.reload(true)
+    navigate(`/Resultado/${movie.id}`);
   }
 
   const getMovie = async () => {
@@ -82,7 +85,7 @@ function Resultado() {
     getRecomendationMovies()
     getMovie()
     window.scrollTo(0, 0)
-  },[])
+  },[id])
 
   return (
     <div className="results-body">
@@ -141,9 +144,7 @@ function Resultado() {
             }}             
             />
             <div className='results-movie-details-card-streaming'>
-              {/* {movie.providers && movie.providers.results.BR.flatrate?.length > 0 && movie.providers.results.BR.flatrate.map((provider) => (
-                <img src={"https://image.tmdb.org/t/p/original" + provider.logoPath} alt="plataforma" />
-              ))} */}
+              <img src={"https://image.tmdb.org/t/p/original/" + movie?.providers?.results?.br?.flatrate[0].logoPath} alt="plataforma" />
               <div className='results-movie-details-favorite'>
                 <h4 className='results-movie-details-favorite-circle' onClick={ starFillCheck }>
                   {starFill ? <span><MdOutlineFavorite className='results-movie-details-favorite-icon' style={{color: "rgba(255, 0, 0, 0.596"}} /></span> :
@@ -164,7 +165,7 @@ function Resultado() {
               </div>
               <div className='results-movie-details-subdetails'>
                 <p>{movie.releaseDate}</p>
-                <p>{movie.originalLanguage}</p>
+                <p>{movie.originalLanguage?.toUpperCase()}</p>
                 <span><BsFillCircleFill /></span>
                 {movie?.genres?.map((movie) => (
                   <p>{movie.name}</p>
@@ -193,7 +194,7 @@ function Resultado() {
                         size={70}
                       />
                       <CircularProgress
-                        value={Math.round((movie.voteCount / 10) * movie.voteAverage)}
+                        value={Math.round(movie.voteAverage * 10)}
                         variant="determinate"
                         theme={theme}
                         size={70}
@@ -215,7 +216,7 @@ function Resultado() {
                         component="div"
                         color="rgba(255, 255, 255, 0.849)"
                         >
-                          {`${Math.round((movie.voteCount / 10) * movie.voteAverage)}%`}
+                          {`${Math.round(movie.voteAverage * 10)}%`}
                         </Typography>
                       </Box>
                     </div>
@@ -230,7 +231,7 @@ function Resultado() {
             </div>
             <div className='results-movie-details-title-subdetails'>
               <h2>Nome Diretor</h2>
-              <p>Diretor</p>
+              <p>{movie?.credits?.crew?.find(crewMember => crewMember.job === "Director").name}</p>
             </div>
           </div>
         </div>
@@ -241,21 +242,21 @@ function Resultado() {
             <h1>Elenco Principal</h1>
             <div className='content-body-details-elenco-card'>
               <img src="" alt="foto ator" />
-              <p>Nome Ator</p>
+              {movie.credits?.cast?.map(actor => <p>{actor.name}</p>)}
             </div>
           </div>
           <div className='content-body-details-additional'>
             <div>
               <h2>Orçamento</h2>
-              <p>$ 100.000,00</p>
+              <p>$ {USDollar.format(movie.budget)}</p>
             </div>
             <div>
               <h2>Receita</h2>
-              <p>$ 100.000,00</p>
+              <p>$ {USDollar.format(movie.revenue)}</p>
             </div>
             <div>
               <h2>Situação</h2>
-              <p>Lançado</p>
+              <p>{movie.status}</p>
             </div>
           </div>
         </div>
@@ -317,7 +318,7 @@ function Resultado() {
             }}
           >
             {discoverList.map(movie => (
-              <SwiperSlide className="swiper-cards-slide" >
+              <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide" >
                 <MovieCard movie={movie} posterSize="200px" /> 
               </SwiperSlide>
             ))}

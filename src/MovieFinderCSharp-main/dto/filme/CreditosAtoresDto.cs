@@ -15,13 +15,15 @@ public class CreditosAtoresDto
     public string OriginalName { get; set; }
 
     public double Popularity { get; set; }
+    public string ProfilePath { get; set; } 
 
-    public CreditosAtoresDto(int id, string knownForDepartment, string name, string originalName, double popularity)
+    public CreditosAtoresDto(int id, string knownForDepartment, string name, string originalName, string profilePath, double popularity)
     {
         Id = id;
         KnownForDepartment = knownForDepartment;
         Name = name;
         OriginalName = originalName;
+        ProfilePath = profilePath;
         Popularity = popularity;
     }
 }

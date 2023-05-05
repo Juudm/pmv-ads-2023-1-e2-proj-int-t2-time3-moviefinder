@@ -132,7 +132,7 @@
 }
 
 .results-movie-details-card-streaming-text {
-    text-align: center;
+    text-align: start;
 }
 .results-movie-details-card-streaming-text p{
     font-size: 10px;
