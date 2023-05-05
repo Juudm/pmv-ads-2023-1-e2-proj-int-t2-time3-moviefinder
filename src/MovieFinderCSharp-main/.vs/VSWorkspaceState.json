@@ -3,8 +3,7 @@
     "",
     "\\client",
     "\\controller",
-    "\\dto",
-    "\\Entities"
+    "\\dto"
   ],
   "SelectedNode": "\\moviefinder.sln",
   "PreviewInSolutionExplorer": false

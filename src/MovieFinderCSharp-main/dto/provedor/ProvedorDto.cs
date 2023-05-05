@@ -10,9 +10,13 @@ public class ProvedorDto
     [JsonProperty("provider_id")]
     public string ProviderId { get; set; }
 
-    public ProvedorDto(string providerName, string providerId)
+    [JsonProperty("logo_path")]
+    public string LogoPath { get; set; }
+
+    public ProvedorDto(string providerName, string providerId, string logoPath)
     {
         ProviderName = providerName;
         ProviderId = providerId;
+        LogoPath = logoPath;
     }
 }

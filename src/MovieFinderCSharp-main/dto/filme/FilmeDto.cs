@@ -22,6 +22,13 @@ public class FilmeDto
 
     public double Popularity { get; set; }
 
+    [JsonProperty("poster_path")]
+    public string PosterPath { get; set; }
+
+    [JsonProperty("backdrop_path")]
+    public string BackdropPath { get; set; }
+
+
     [JsonProperty("release_date")]
     public string ReleaseDate { get; set; }
 
@@ -45,7 +52,7 @@ public class FilmeDto
     [JsonProperty("watch/providers")]
     public ProvedoresFilmeDto Providers { get; set; }
 
-    public FilmeDto(int budget, List<GeneroDto> genres, int id, string originalLanguage, string originalTitle, string overview, double popularity, string releaseDate, int runtime, List<IdiomaFaladoDto> spokenLanguages, string title, double voteAverage, int voteCount, FilmeCreditosDto credits, RecomendadoDto recommendations, ProvedoresFilmeDto providers)
+    public FilmeDto(int budget, List<GeneroDto> genres, int id, string originalLanguage, string backdropPath, string originalTitle,  string overview, double popularity, string posterPath, string releaseDate, int runtime, List<IdiomaFaladoDto> spokenLanguages, string title, double voteAverage, int voteCount, FilmeCreditosDto credits, RecomendadoDto recommendations, ProvedoresFilmeDto providers)
     {
         Budget = budget;
         Genres = genres;
@@ -63,5 +70,7 @@ public class FilmeDto
         Credits = credits;
         Recommendations = recommendations;
         Providers = providers;
-    }
+        PosterPath = posterPath;
+        BackdropPath = backdropPath;
+}
 }

@@ -103,7 +103,7 @@ function Busca() {
       <div className='results-search'>
         <h1>Resultados</h1>
         <div className='results-search-cards'>
-          {movies.map((movie) => movie.poster_path && <MovieCard movie={movie} posterSize="200px"/>)} 
+          {movies.map((movie) => movie.posterPath && <MovieCard movie={movie} posterSize="200px"/>)} 
         </div>
       </div>
 

@@ -2,7 +2,7 @@ import Footer from '../../components/Footer/Footer'
 import { useEffect, useState } from 'react'
 import { api } from "../../services/api";
 
-import { Link } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import MovieCard from '../../components/MovieCard/MovieCard'
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -11,22 +11,59 @@ import { MdKeyboardArrowRight } from "react-icons/Md"
 import { BsListStars, BsFillCircleFill } from "react-icons/bs"
 import { MdOutlineFavorite } from "react-icons/Md"
 import { Typography, CircularProgress } from '@mui/material';
+import { Swiper, SwiperSlide } from "swiper/react";
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { Swiper, SwiperSlide } from "swiper/react";
+import Rodal from 'rodal';
 
 import './Resultado.css'
 
 function Resultado() {
 
+  const { id } = useParams()
+  const [visibleFavorites, setvisibleFavorites] = useState(false)
   const [starFill, setStarFill] = useState(false)
   const [recomendationMovies, setRecomendationMovies ] = useState([])
+  const [movie, setMovie ] = useState([])
+  const [discoverList, setDiscoverList ] = useState([])
+
+  const navigate = useNavigate()
+
+  const toHoursAndMinutes = () => {
+    const totalTimeInMin = movie.runtime
+    return Math.floor(totalTimeInMin / 60) + 'h' + totalTimeInMin % 60 + 'm'
+  }
+
+  const showModalFavorites = () => { setvisibleFavorites(true);}
+  const closeModalFavorites = () => {setvisibleFavorites(false);}
+  
+  const starFillCheck = () =>  setStarFill(!starFill) 
+
+  const gotoDetails = (movie) => { 
+    navigate(`/Resultados/${movie.id}`);
+    window.location.reload(true)
+  }
+
+  const getMovie = async () => {
+    const response = await api.get(`/movieFinder/movie/${id}`)
+    const movie = response.data
+    setMovie(movie)
+    const genres = movie.genres.map((genre) => genre.id).join()
+    getDiscoverList(genres)
+  }
+
+  const getDiscoverList = async (genreIds) => {
+    const response = await api.get(`/movieFinder/discover/movie?genreId=${genreIds}`)
+    setDiscoverList(response.data.results) 
+  }
 
   const getRecomendationMovies = async () => {
-    const response = await api.get(`/movieFinder/recommendation/list/${Id}`)
+    const response = await api.get(`/movieFinder/recommendation/list/${id}`)
     setRecomendationMovies(response.data.results)
+
   }
-  const starFillCheck = () =>  setStarFill(!starFill) 
+
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -40,14 +77,25 @@ function Resultado() {
     },
   });
 
+
   useEffect(() => {
     getRecomendationMovies()
+    getMovie()
+    window.scrollTo(0, 0)
   },[])
 
   return (
     <div className="results-body">
 
-      <div className='results-movie'> 
+      <div 
+        className='results-movie'
+        style={{
+          backgroundImage: `url(${"http://image.tmdb.org/t/p/original" + movie.backdropPath})`,
+          backgroundPosition: "center",
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: "cover",
+        }}
+      > 
         <div className='results-movie-header'>
           <div className='results-header-left'>
             <Link to="/Busca" > <h2> <GoSearch style={{color: "rgba(255, 255, 255, 0.849)"}}/>Pesquisar</h2> </Link>
@@ -58,23 +106,44 @@ function Resultado() {
             </Link>
           </div>
           <div className="results-header-right">
-            <span>
+            <span onClick={showModalFavorites}>
               <BsListStars/>
             </span>
+            <Rodal
+                visible={visibleFavorites}
+                onClose={closeModalFavorites}
+                showMask={true}
+                closeOnEsc={true}
+                closeMaskOnClick={true}
+                showCloseButton={true}
+                className="rodal-favorites-results"
+                width={600}
+                height={600}
+                customStyles={{
+                  background: 'linear-gradient(45deg, rgba(6,35,64,1) 24%, rgba(6,10,64,1) 49%, rgba(11,4,46,1) 68%)',
+                  borderRadius: '10px',
+                }}
+              >
+                <div className="modal-favorites-results">
+                  <h1>MovieFinder</h1>
+                </div>
+              </Rodal>
           </div>
         </div>
         <div className='results-movie-details'>
           <div className='results-movie-details-card'>
             <img
-             src="https://assets.materialup.com/uploads/4045167a-85e3-4787-a6d1-e91a32071bf7/preview.jpg"
-             alt="card"
-             style={{
-              width: "300px",
+            src={"http://image.tmdb.org/t/p/original" + movie?.posterPath}
+            alt="card"
+            style={{
+              width: "100%",
               height: "450px"
-             }}             
+            }}             
             />
             <div className='results-movie-details-card-streaming'>
-              <img src="https://assets.materialup.com/uploads/4045167a-85e3-4787-a6d1-e91a32071bf7/preview.jpg" alt="plataforma" />
+              {/* {movie.providers && movie.providers.results.BR.flatrate?.length > 0 && movie.providers.results.BR.flatrate.map((provider) => (
+                <img src={"https://image.tmdb.org/t/p/original" + provider.logoPath} alt="plataforma" />
+              ))} */}
               <div className='results-movie-details-favorite'>
                 <h4 className='results-movie-details-favorite-circle' onClick={ starFillCheck }>
                   {starFill ? <span><MdOutlineFavorite className='results-movie-details-favorite-icon' style={{color: "rgba(255, 0, 0, 0.596"}} /></span> :
@@ -90,16 +159,18 @@ function Resultado() {
           <div className='results-movie-details-text' >
             <div className='results-movie-details-title-subdetails'>
               <div className='results-movie-details-title'>
-                <h1>Filme titulo - Movie Finder</h1>  
+                <h1>{movie.title}</h1>  
                 <h1>(ANO)</h1>  
               </div>
               <div className='results-movie-details-subdetails'>
-                <p>da/ta/2023</p>
-                <p>language</p>
+                <p>{movie.releaseDate}</p>
+                <p>{movie.originalLanguage}</p>
                 <span><BsFillCircleFill /></span>
-                <p>genero</p>
+                {movie?.genres?.map((movie) => (
+                  <p>{movie.name}</p>
+                ))}
                 <span><BsFillCircleFill /></span>
-                <p>duração</p>
+                <p>{toHoursAndMinutes()}</p>  
               </div>
             </div>
             <div className='results-movie-details-rating-all'>
@@ -122,7 +193,7 @@ function Resultado() {
                         size={70}
                       />
                       <CircularProgress
-                        value={80}
+                        value={Math.round((movie.voteCount / 10) * movie.voteAverage)}
                         variant="determinate"
                         theme={theme}
                         size={70}
@@ -144,7 +215,7 @@ function Resultado() {
                         component="div"
                         color="rgba(255, 255, 255, 0.849)"
                         >
-                          {`${Math.round(1)}%`}
+                          {`${Math.round((movie.voteCount / 10) * movie.voteAverage)}%`}
                         </Typography>
                       </Box>
                     </div>
@@ -153,11 +224,11 @@ function Resultado() {
                 <div className='results-movie-details-rating-text'>Avaliação <p>feita pelo</p> <p>TMDB</p></div>
               </div>
             </div>
-            <div>
+            <div className='results-movie-details-title-subdetails'>
               <h2>Sinopse</h2>
-              <p>plataforma diponivel</p>
+              <p>{movie.overview}</p>
             </div>
-            <div>
+            <div className='results-movie-details-title-subdetails'>
               <h2>Nome Diretor</h2>
               <p>Diretor</p>
             </div>
@@ -213,8 +284,8 @@ function Resultado() {
               },
             }}
           >
-          {recomendationMovies.map((movie, index) => movie.poster_path && (
-            <SwiperSlide className="swiper-cards-slide"virtualIndex={index}>
+          {recomendationMovies.map((movie, index) => movie.posterPath && (
+            <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide"virtualIndex={index}>
               <MovieCard movie={movie} posterSize="200px" /> 
             </SwiperSlide>
           ))}
@@ -222,7 +293,7 @@ function Resultado() {
         </div>
         <div className='recommendation-movies'>
           <div className='recommendation-movies-text'>
-            <h2>Filmes Genero do filme</h2>
+            <h2>Filmes do mesmo gênero</h2>
             <MdKeyboardArrowRight />
           </div>
           <Swiper
@@ -245,9 +316,11 @@ function Resultado() {
               },
             }}
           >
-            <SwiperSlide className="swiper-cards-slide" >
-              <MovieCard posterSize="200px" /> 
-            </SwiperSlide>
+            {discoverList.map(movie => (
+              <SwiperSlide className="swiper-cards-slide" >
+                <MovieCard movie={movie} posterSize="200px" /> 
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

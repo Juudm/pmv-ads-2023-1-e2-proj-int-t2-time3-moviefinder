@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/Busca" element={<ProSidebarProvider><Busca/></ProSidebarProvider>} />
-        <Route path="/Resultado" element={<Resultado/>} />
+        <Route path="/Resultado/:id" element={<Resultado/>} />
       </Routes>
     </BrowserRouter>
   )

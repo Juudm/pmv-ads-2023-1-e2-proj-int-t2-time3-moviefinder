@@ -8,11 +8,10 @@ import SwiperCore, { Autoplay, Pagination, Navigation, Virtual } from "swiper";
 import { Link, useNavigate } from 'react-router-dom';
 import Rodal from 'rodal';
 import Input from '@mui/joy/Input';
-import Button from '@mui/joy/Button';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 import './Home.css'
 import "swiper/css";
@@ -32,6 +31,12 @@ function Home() {
   const [popularMovies, setPopularMovies ] = useState([])
   const [topRatedMovies, setTopRatedMovies ] = useState([])
   const [discoverList, setDiscoverList ] = useState([])
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [age, setAge] = useState('');
+  const [genre, setGenre] = useState('');
+  const [open, setOpen] = React.useState(false);
   
   const navigate = useNavigate()
 
@@ -39,7 +44,30 @@ function Home() {
   const closeModalLogin = () => {setvisibleLogin(false);}
   const showModalRegister = () => { setvisibleRegister(true);}
   const closeModalRegister = () => {setvisibleRegister(false);}
- 
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await api.post('/movieFinder/cadastrarUsuario', {
+        nome: name,
+        email,
+        senha: password,
+        idade: parseInt(age),
+        genero: genre,
+      })
+      closeModalRegister()
+      setOpen(true)
+    } catch (error) {
+      
+    }
+  }
+
   const getPopularMovies = async () => {
     const response = await api.get('/movieFinder/movie/popularity')
     setPopularMovies(response.data)
@@ -69,12 +97,15 @@ function Home() {
     return response.data.results
   }
 
-  const gotoDetails = () => { navigate('/Resultado'); }
+  const gotoDetails = (movie) => { 
+    navigate(`/Resultado/${movie.id}`);
+  }
 
   useEffect(() => {
     getPopularMovies()
     getTopRatedMovies()
     getGenreList()
+    window.scrollTo(0, 0)
   }, [])
 
   return (
@@ -104,7 +135,6 @@ function Home() {
                 width={450}
                 height={500}
                 customStyles={{
-                  background: 'rgb(60,140,220)',
                   background: 'linear-gradient(45deg, rgba(6,35,64,1) 24%, rgba(6,10,64,1) 49%, rgba(11,4,46,1) 68%)',
                   borderRadius: '10px',
                 }}
@@ -121,6 +151,7 @@ function Home() {
                         disabled={false}
                         size="md"
                         placeholder="Email..."
+
                       />
                       <Input
                         color="neutral"
@@ -144,7 +175,6 @@ function Home() {
                 width={450}
                 height={500}
                 customStyles={{
-                  background: 'rgb(60,140,220)',
                   background: 'linear-gradient(45deg, rgba(6,35,64,1) 24%, rgba(6,10,64,1) 49%, rgba(11,4,46,1) 68%)',
                   borderRadius: '10px',
                 }}
@@ -160,18 +190,24 @@ function Home() {
                       disabled={false}
                       size="md"
                       placeholder="Nome Completo..."
+                      value={name}
+                      onChange={e => setName(e.target.value )}
                     />
                     <Input
                       color="neutral"
                       disabled={false}
                       size="md"
                       placeholder="Email..."
+                      value={email}
+                      onChange={e => setEmail(e.target.value )}
                     />
                     <Input
                       color="neutral"
                       disabled={false}
                       placeholder="Senha..."
                       size="md"
+                      value={password}
+                      onChange={e => setPassword(e.target.value )}
                     />
                     <Input
                       color="neutral"
@@ -179,22 +215,39 @@ function Home() {
                       placeholder="Confirme sua senha..."
                       size="md"
                     />
-                    <Select placeholder="Gênero…" className="modal-register-select">
-                      <Option value="Homem">Homem</Option>
-                      <Option value="Mulher">Mulher</Option>
-                    </Select>
+
+                    <select                   
+                      value={genre}
+                      className="modal-register-select"
+                      onChange={e => setGenre(e.target.value)}
+                    >
+                      <option value="Homem">Homem</option>
+                      <option value="Mulher">Mulher</option>
+                    </select>
                     <Input
                       color="neutral"
                       type="number"
                       disabled={false}
                       placeholder="Digite sua idade..."
                       size="md"
+                      value={age}
+                      onChange={e => setAge(e.target.value)}
                     />
                     <p>Crie sua conta agora no MovieFinder</p>
-                    <Button className="modal-register-button" >Cadastrar</Button>
+                    <Button
+                     className="modal-register-button"
+                     onClick={handleSubmit}
+                    >
+                      Cadastrar
+                    </Button>
                   </div>
                 </div>
               </Rodal>
+              <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert elevation={100000000} onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                  This is a success message!
+                </Alert>
+              </Snackbar>
             </div>
         </div>
 
@@ -213,9 +266,9 @@ function Home() {
           className="swiper-home-header"
         >
           {popularMovies.map((movie) => (
-              <SwiperSlide onClick={ gotoDetails } className="swiper-header-img" style={{
+              <SwiperSlide onClick={ () => gotoDetails(movie) } className="swiper-header-img" style={{
                 height: "850px",
-                backgroundImage: `url(${"http://image.tmdb.org/t/p/original" + movie.backdrop_path})`,
+                backgroundImage: `url(${"http://image.tmdb.org/t/p/original" + movie.backdropPath})`,
                 backgroundPosition: "center",
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: "cover",
@@ -253,7 +306,7 @@ function Home() {
               }}
             >
               {topRatedMovies.map((movie, index) => (
-                <SwiperSlide className="swiper-cards-slide" key={movie} virtualIndex={index}>
+                <SwiperSlide onClick={ () => gotoDetails(movie) }  className="swiper-cards-slide" key={movie} virtualIndex={index}>
                   <MovieCard movie={movie} posterSize="200px" /> 
                 </SwiperSlide>
                 ))}
@@ -286,14 +339,14 @@ function Home() {
               }}
             >
               <SwiperSlide className="swiper-cards-slide">
-                <MovieCard posterSize="200px" /> 
+                <MovieCard onClick={ () => gotoDetails(movie) } posterSize="200px" /> 
               </SwiperSlide>
             </Swiper>
           </div>
           {discoverList.map((moviesByGenre) => (
           <div className='recommendation-movies'>
             <div className='recommendation-movies-text'>
-              <h2>Filme {moviesByGenre.genreName}</h2>
+              <h2>Filmes de {moviesByGenre.genreName}</h2>
               <MdKeyboardArrowRight />
             </div>
             <Swiper
@@ -317,7 +370,7 @@ function Home() {
               }}
             >
               {moviesByGenre.movies.map((movie) => 
-                <SwiperSlide className="swiper-cards-slide">
+                <SwiperSlide onClick={ () => gotoDetails(movie) } className="swiper-cards-slide">
                   <MovieCard movie={movie} posterSize="200px" /> 
                 </SwiperSlide>
               )}

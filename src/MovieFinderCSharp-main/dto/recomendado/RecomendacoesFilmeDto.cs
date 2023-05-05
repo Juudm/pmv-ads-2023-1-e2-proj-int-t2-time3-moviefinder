@@ -22,12 +22,14 @@ public class RecomendacoesFilmeDto
     [JsonProperty("vote_average")]
     public double VoteAverage { get; set; }
 
-    public string Poster_path { get; set; }
-
     [JsonProperty("vote_count")]
     public int VoteCount { get; set; }
 
-    public RecomendacoesFilmeDto(int id, string title, string originalLanguage, string originalTitle, string overview, string releaseDate, double voteAverage, int voteCount)
+    [JsonProperty("poster_path")]
+    public string PosterPath { get; set; }
+
+
+    public RecomendacoesFilmeDto(int id, string title, string originalLanguage, string originalTitle, string overview, string releaseDate, double voteAverage, int voteCount, string posterPath)
     {
         Id = id;
         Title = title;
@@ -37,5 +39,6 @@ public class RecomendacoesFilmeDto
         ReleaseDate = releaseDate;
         VoteAverage = voteAverage;
         VoteCount = voteCount;
+        PosterPath = posterPath;
     }
 }

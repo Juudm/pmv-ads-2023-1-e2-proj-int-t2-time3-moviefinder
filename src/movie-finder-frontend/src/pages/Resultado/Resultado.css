@@ -1,10 +1,8 @@
 .results-body {
-    background: rgb(6,35,64) ;
     background: linear-gradient(0deg, rgba(6,35,64,1) 24%, rgba(6,10,64,1) 49%, rgba(11,4,46,1) 68%);
 }
 
 .results-movie {
-    background-color: royalblue;
     color: rgba(255, 255, 255, 0.849);
     -webkit-box-shadow: inset -6px -200px 47px -91px rgba(0,0,0,1);
     -moz-box-shadow: inset -6px -200px 47px -91px rgba(0,0,0,1);
@@ -56,6 +54,14 @@
 .results-header-right  span{
     padding-top: 15px;
     padding-top: 15px;
+    cursor: pointer;
+}
+
+.rodal-login-home {
+    -webkit-box-shadow: inset 10px 10px 0px 700px rgba(0,0,0,0.9);
+    -moz-box-shadow: inset 10px 10px 0px 700px rgba(0,0,0,0.9);
+    box-shadow: inset 10px 10px 0px 700px rgba(0,0,0,0.9);
+    z-index: 100000;
 }
 
 .results-header-left {
@@ -89,18 +95,24 @@
     gap: 30px;
 }
 
+.results-movie-details-text {
+    text-shadow: -1px 7px 18px #000000, -1px 0px 20px #000000, -1px 0px 20px #000000;
+    width: 50%;
+}
+
 .results-movie-details-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     background: rgb(6,35,64) ;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 5px 5px 10px 10px;
 }
 
 
 .results-movie-details-card img { 
     border-radius: 5px 5px 0px 0px;
-    z-index: 100000;
+    z-index: 1000;
+
 }
 
 .results-movie-details-card-streaming { 
@@ -120,10 +132,11 @@
 }
 
 .results-movie-details-card-streaming-text {
-    text-align: start;
+    text-align: center;
 }
 .results-movie-details-card-streaming-text p{
     font-size: 10px;
+    
 }
 .results-movie-details-card-streaming-text h2{
     font-size: 15px;
@@ -137,7 +150,7 @@
     left: 50%;
     top: -30px;
     transform: translate(-50%);
-    z-index: 100000;
+    z-index: 1000;
 }
 
 .results-movie-details-favorite-circle {
