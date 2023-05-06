@@ -17,8 +17,7 @@ Com base nas funcionalidades, requisitos e casos de testes propostos no item ant
 | Objetivo do Teste | Verificar se a pesquisa e o seu filtro funcionam corretamente e retornam o filmes desejado e sugerem complemento de palavras durante a digitação. |
 | Passos | 1 - Abrir o navegador <br> 2 - Acessar a aplicação <br> 3 - Na página inicial, digitar o título de um filmes desejado no campo de busca|
 | Critérios de Êxito | - O resultado retornado corresponde aos dados do filmes buscado e durante a digitação, palavras são sugeridas de acordo as palavras utilizadas na busca |
-| Print dos Testes | https://user-images.githubusercontent.com/114538749/236646233-32d8120c-0b44-40ce-a873-45f13143c4eb.mp4
- |
+| Print dos Testes | https://user-images.githubusercontent.com/114538749/236646233-32d8120c-0b44-40ce-a873-45f13143c4eb.mp4 |
 | Conclusão do teste | O teste de pesquisa foi realizado com sucesso. Ao digitar as palavras desejadas, resultados relacionados eram exibidos, inclusive, em português e inglês. A adição de filtros ainda não é executada. |
 
 | Caso de Teste | CT-08 – Conteúdos relacionados e favoritos |
