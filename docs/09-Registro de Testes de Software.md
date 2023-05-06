@@ -8,8 +8,8 @@ Com base nas funcionalidades, requisitos e casos de testes propostos no item ant
 | Objetivo do Teste | Verificar se o cadastro é realizado de maneira correta |
 | Passos | 1 - Abrir o navegador <br> 2 - Acessar a aplicação <br> 3 - Na página inicial, clicar em "Cadastrar-se" <br> 4 - Selecionar se irá se cadastrar ou acessar a aplicação com a conta do Google <br> 5 - Caso deseje se cadastrar, preencher os campos obrigatórios: Nome, Sobrenome, e-mail, senha e confirmação de senha e clicar em "Cadastrar". Caso deseje acessar a aplicação com a conta do google, clicar em "Acessar com o Google"|
 | Critérios de Êxito | - O cadastro foi realizado com sucesso. |
-| Print dos Testes |  |
-| Conclusão do teste |  |
+| Print dos Testes | https://user-images.githubusercontent.com/114538749/236645954-be4a4301-661f-4455-9e1a-1bfb341c8cd1.mp4 |
+| Conclusão do teste | O cadastro foi realizado com sucesso, adicionando todos os dados de Nome, Sobrenome, e-mail, senha, confirmação de senha e outros. O cadsatro foi registrado no banco.|
 
 | Caso de Teste | CT-04 – Pesquisa de filmes |
 |---------------|--------------------------|
@@ -17,8 +17,9 @@ Com base nas funcionalidades, requisitos e casos de testes propostos no item ant
 | Objetivo do Teste | Verificar se a pesquisa e o seu filtro funcionam corretamente e retornam o filmes desejado e sugerem complemento de palavras durante a digitação. |
 | Passos | 1 - Abrir o navegador <br> 2 - Acessar a aplicação <br> 3 - Na página inicial, digitar o título de um filmes desejado no campo de busca|
 | Critérios de Êxito | - O resultado retornado corresponde aos dados do filmes buscado e durante a digitação, palavras são sugeridas de acordo as palavras utilizadas na busca |
-| Print dos Testes |  |
-| Conclusão do teste |  |
+| Print dos Testes | https://user-images.githubusercontent.com/114538749/236646233-32d8120c-0b44-40ce-a873-45f13143c4eb.mp4
+ |
+| Conclusão do teste | O teste de pesquisa foi realizado com sucesso. Ao digitar as palavras desejadas, resultados relacionados eram exibidos, inclusive, em português e inglês. A adição de filtros ainda não é executada. |
 
 | Caso de Teste | CT-08 – Conteúdos relacionados e favoritos |
 |---------------|--------------------------|
