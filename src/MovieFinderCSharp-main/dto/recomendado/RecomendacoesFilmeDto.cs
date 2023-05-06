@@ -26,8 +26,7 @@ public class RecomendacoesFilmeDto
     public int VoteCount { get; set; }
 
     [JsonProperty("poster_path")]
-    public string PosterPath { get; set; }
-
+    public string? PosterPath { get; set; }
 
     public RecomendacoesFilmeDto(int id, string title, string originalLanguage, string originalTitle, string overview, string releaseDate, double voteAverage, int voteCount, string posterPath)
     {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using moviefinder.dto;
 using moviefinder.dto.filme;
 using moviefinder.Entities;
@@ -14,36 +15,52 @@ public class FilmeService
         _context = context;
     }
 
-    public async Task FavoritarFilme(string userId, FilmeDto filmeDto)
+    public async Task<bool> FavoritarFilme(string userId, FilmeDto filmeDto)
     {
         try
         {
-            var filmeFavorito = new FilmeFavorito();
-            
-            var filme = new Filme
-            {
-                Nome = filmeDto.Title,
-                TheMovieDbId = filmeDto.Id
-            };
+            var theMovieDbId = filmeDto.Id;
+            var filmeDb = await GetFilmeByTheMovieDbId(theMovieDbId);
+            var usuario = await _context.Usuarios.FindAsync(int.Parse(userId));
 
-            var usuario = _context.Usuarios.FindAsync(int.Parse(userId));
-            var usuarioResult = usuario.Result;
-
-            if (usuarioResult != null)
+            if (filmeDb != null)
             {
-                filmeFavorito = new FilmeFavorito
+                var filmesFavoritosByUsuarioAndFilme = await GetFilmesFavoritosByUsuarioAndFilme(usuario, filmeDb);
+
+                if (filmesFavoritosByUsuarioAndFilme == null)
+                {
+                    var filmeFavorito = new FilmeFavorito
+                    {
+                        IdFilme = filmeDb,
+                        IdUsuario = usuario
+                    };
+                    
+                    _context.Add(filmeFavorito);
+                    await _context.SaveChangesAsync();
+
+                    return true;
+                }
+
+                return false;
+            }
+
+            {
+                var filme = new Filme
+                {
+                    Nome = filmeDto.Title,
+                    TheMovieDbId = filmeDto.Id
+                };
+
+                var filmeFavorito = new FilmeFavorito
                 {
                     IdFilme = filme,
-                    IdUsuario = usuarioResult
+                    IdUsuario = usuario
                 };
+                
+                _context.Add(filmeFavorito);
+                await _context.SaveChangesAsync();
+                return true;
             }
-            else
-            {
-                Console.WriteLine("Usuário não encontrado!");
-            }
-            
-            _context.Add(filmeFavorito);
-            await _context.SaveChangesAsync();
         }
         catch (Exception e)
         {
@@ -51,4 +68,20 @@ public class FilmeService
             throw;
         }
     }
+    
+    private async Task<Filme?> GetFilmeByTheMovieDbId(int theMovieDbId)
+    {
+        var filme = await _context.Filmes.FirstOrDefaultAsync(f => f.TheMovieDbId == theMovieDbId);
+        return filme;
+    }
+
+    private async Task<FilmeFavorito?> GetFilmesFavoritosByUsuarioAndFilme(Usuario usuario, Filme filme)
+    {
+        
+        var filmeFavorito = await _context.FilmesFavoritos
+            .FirstOrDefaultAsync(ff => ff.IdUsuario == usuario && ff.IdFilme == filme);
+    
+        return filmeFavorito;
+    }
 }
+

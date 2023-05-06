@@ -10,7 +10,7 @@ public class FilmeCreditosDto
 
     public FilmeCreditosDto(List<CreditosAtoresDto> cast, List<CreditosEquipeDto> crew)
     {
-        this.Cast = cast;
-        this.Crew = crew;
+        Cast = cast;
+        Crew = crew;
     }
 }

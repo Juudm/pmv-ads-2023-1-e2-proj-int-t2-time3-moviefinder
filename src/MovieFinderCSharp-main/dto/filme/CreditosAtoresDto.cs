@@ -15,7 +15,9 @@ public class CreditosAtoresDto
     public string OriginalName { get; set; }
 
     public double Popularity { get; set; }
-    public string ProfilePath { get; set; } 
+    
+    [JsonProperty("profile_path")]
+    public string? ProfilePath { get; set; } 
 
     public CreditosAtoresDto(int id, string knownForDepartment, string name, string originalName, string profilePath, double popularity)
     {

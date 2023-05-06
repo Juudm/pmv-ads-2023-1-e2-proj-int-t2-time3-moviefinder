@@ -8,6 +8,7 @@ using moviefinder.dto.recomendado;
 using Newtonsoft.Json;
 using System.Text.Json.Nodes;
 using moviefinder.dto.filme;
+using moviefinder.dto.usuario;
 using moviefinder.Entities;
 using moviefinder.service;
 
@@ -115,15 +116,39 @@ public class FilmeController : ControllerBase
     [HttpPost("favoritarFilme/{userId}")]
     public async Task<IActionResult> FavoritarFilme(string userId, [FromBody] FilmeDto filmeDto)
     {
-        await _filmeService.FavoritarFilme(userId, filmeDto);
-        return Ok("Filme favoritado com sucesso!");
+        var filmeFavoritado = await _filmeService.FavoritarFilme(userId, filmeDto);
+        
+        if (filmeFavoritado)
+        {
+            return Ok("Filme favoritado com sucesso!");
+        }
+
+        return BadRequest("Filme já favoritado!");
+
     }
     
     [HttpPost("cadastrarUsuario")]
     public async Task<IActionResult> CadastrarUsuario([FromBody] Usuario usuario)
     {
-        await _usuarioService.CadastrarUsuario(usuario);
-        return Ok("Usuario cadastrado com sucesso!");
+        var cadastrarUsuario = await _usuarioService.CadastrarUsuario(usuario);
+        if (cadastrarUsuario)
+        {
+            return Ok("Usuario cadastrado com sucesso!");
+        }
+
+        return BadRequest("Já existe usuário cadastrado com esse endereço de e-mail!");
+    }
+    
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] UsuarioDto usuarioDto)
+    {
+        var loginValido = await _usuarioService.Login(usuarioDto);
+        if (loginValido)
+        {
+            return Ok("Login com sucesso!");
+        }
+
+        return Unauthorized("Credenciais inválidas!");
     }
     
 }
