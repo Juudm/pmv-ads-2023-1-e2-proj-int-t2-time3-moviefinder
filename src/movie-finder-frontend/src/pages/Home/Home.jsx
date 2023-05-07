@@ -293,6 +293,8 @@ function Home() {
                       disabled={false}
                       placeholder="Confirme sua senha..."
                       size="md"
+                      value={passwordConfirmation}
+                      onChange={e => setPasswordConfirmation(e.target.value)}
                     />
 
                     <select                   
