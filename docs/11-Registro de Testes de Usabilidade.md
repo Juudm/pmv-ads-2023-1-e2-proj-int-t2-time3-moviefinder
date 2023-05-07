@@ -61,10 +61,14 @@ O usúario deve testar se a aba "procurar" está procurando os filmes.
 
 ### Conclusão dos Testes 1 - Usuabilidade da Página Principal.
 
-    • Conforme teste realizado e postado no video abaixo, concluímos que a aplicação está abrindo o Pop-up de acordo com o desejado. 
-    • Aplicação também demonstrou que a Aba de pesquisa está funcional, podendo ser descrito o nome do produto desejado e o redirecionamento para sua respectiva página.
+    • Conforme teste realizado, concluímos que a aplicação está abrindo o Pop-up de acordo com o desejado. 
+    • Aplicação também demonstrou que a Aba de pesquisa está funcional, podendo ser descrito o nome do produto desejado
+      e o seu devido redirecionamento para a respectiva página.
+
+### Video do Teste 1
 
 https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511-890d-27dfe6b8b758.mp4 
+
 
 
 ### Teste - 2 - Cadastro
@@ -85,6 +89,24 @@ https://user-images.githubusercontent.com/116127734/236685398-4b4cf940-55fe-4d31
 
     • O usuário encontrou problemas ao tentar realizar o cadastro
     • O usuário teve problemas para voltar a página principal ao cancelar a tentativa de cadastro.
+    
+    
+### Conclusão dos Testes 2 - Usuabilidade do Cadastro.
+
+    • Conforme teste realizado e postado no video abaixo, concluímos que a aplicação está cadastrando devidamente o usuário. 
+    • Aplicação também demonstrou que a Aba de pesquisa está funcional, podendo ser descrito o nome do produto desejado
+      e o seu devido redirecionamento para a respectiva página.    
+      
+### Videos do Teste 2     
+
+Video 1 - Cadastro
+
+https://user-images.githubusercontent.com/116127734/236686237-85866560-852f-4009-bd1b-50aa5dcde5d9.mp4 
+    
+Video 2 - Teste de sair do Pop-up
+
+https://user-images.githubusercontent.com/116127734/236685398-4b4cf940-55fe-4d31-b259-83506e5d0347.mp4 
+    
     
 ### Teste - 3 - Buscando o Conteúdo Desejado
 
