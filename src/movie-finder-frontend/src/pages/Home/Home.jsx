@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import { api } from "../../services/api";
+import React, {useEffect, useState} from "react";
+import {api} from "../../services/api";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { MdKeyboardArrowRight } from "react-icons/Md"
-import { GoSearch } from "react-icons/go"
-import SwiperCore, { Autoplay, Pagination, Navigation, Virtual } from "swiper";
-import { Link, useNavigate } from 'react-router-dom';
+import {Swiper, SwiperSlide} from "swiper/react";
+import {MdKeyboardArrowRight} from "react-icons/Md"
+import {GoSearch} from "react-icons/go"
+import SwiperCore, {Autoplay, Navigation, Pagination, Virtual} from "swiper";
+import {Link, useNavigate} from 'react-router-dom';
 import Rodal from 'rodal';
 import Input from '@mui/joy/Input';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -21,7 +20,6 @@ import 'rodal/lib/rodal.css';
 
 import MovieCard from '../../components/MovieCard/MovieCard';
 import Footer from '../../components/Footer/Footer';
-import {FormHelperText} from "@mui/joy";
 
 SwiperCore.use([Virtual, Navigation, Pagination]);
 
@@ -287,7 +285,7 @@ function Home() {
                       color={isEmailValid ? 'neutral' : 'danger'}
                       disabled={false}
                       size="md"
-                      placeholder="Email..."
+                      placeholder="E-mail..."
                       value={email}
                       onChange={e => setEmail(e.target.value )}
                     />
