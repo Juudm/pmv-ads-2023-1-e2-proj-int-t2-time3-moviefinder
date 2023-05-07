@@ -47,57 +47,31 @@ O objetivo das atividades será de encontrar quaisquer dificuldades que os usuá
 No total serão 5 Participantes que realizarão todo o processo de testes simulando atividades na aplicação.
 
 
-### Teste - 1 - Usabilidade da Página Principal
+### Teste - 1 - Usabilidade da Página Principal - Abrir o Pop-up De Login, Cadastro e Recuperação de conta.
 
 
 O usuário se encontra na página principal da aplicação, simule clicar nos botões de Login, cadastro para acessar o pop-up com novas informações.
 
-Simule clicar no botão de pesquisa, no qual, deverá ser possível digitar nomes de filmes, os quais, quando terminados de serem descritos no campo de pesquisa, a aplicação apresentará o filme indicado.
-
-Simule clicar nos conteúdos recomendados, cujo o qual, ao ser selecionado abrirá uma nova pagina apresentando o filme selecionado e todas as informações como sinopse, elenco, notas e em qual streaming se encontrá.
-
 
 #### Possíveis Problemas Encontrados
 
-
     • Os botões não foram responsivos.
-    • O campo de preenchimento na aba pesquisar não funcionou 
-    • O filme/série/documentário descrito não foi encontrado por erro da aplicação
     • O pop-up de login e cadastro não apareceu.
-    • O filme pesquisado ou recomendado, ao ser selecionado, não levou o usuário para a página desejada.
 
-
-### Teste - 2 - Cadastro, Login e Recuperação de Conta
+### Teste - 2 - Cadastro
 
 O Usuário encontrando-se na pagina inicial, ao clicará em login ou em cadastrar, deste modo, um pop-up aparecerá no meio de sua tela. Este pop-up conterá as seguintes informações: Login - Cadastrar - Recuperar Senha.
 
-
-#### Login 
-
-Em Login, o usuário já cadastrado simulará seu login descrevendo seu E-mail e sua Senha cadastradas, em suas respectivas abas “Email” e “Senha”.  Após o preenchimento, clicar em Login, fazendo com que a aplicação verifique se seu Email e Senha estão de acordo. Se E-mail e Senha estiverem devidamente cadastrados e associados, a aplicação retornará a página principal dando ao usuário os beneficios de estar logado ao site. Caso contrário, e o E-mail e Senha não estejam devidamente cadastrados ou associados, a aplicação citará o ERRO e descreverá qual erro ocorreu.
-
-Os Beneficios que o usuário adquire ao efetuar corretamente seu login será de receber sugestões de filmes, séries e documentários de acordo com suas pesquisas prévias e conteúdos favoritados por ele.
-
-
 #### Cadastrar
 
-O usuário simulará o cadastro após abrir o menú interativo, seja clicando em Login ou Cadastrar na pagina Inicial. No Menú interativo teremos o botão de "Cadastrar Nova Conta", o qual, após ser clicado pelo usuário, atualizará o Menu Interativo com novas informações que deverão serem preenchidas. O usuário neste novo menú, preenchera respectivamente, seu Nome, Sobrenome, Genero, E-mail, Senha e novamente a confirmação desta Senha, em seguida clicará no botão confirmar. Após todo o processo e Clicando em confirmar seu cadastro será devidamente concluído. Com seu cadastro realização, o usuário poderá logar na aplicação e obter os benefícios de estar logado.
+O usuário simulará o cadastro após abrir o menú interativo, seja clicando em Login ou Cadastrar na pagina Inicial. No Menú interativo teremos o botão de "Cadastrar Nova Conta", o qual, após ser clicado pelo usuário, atualizará o Menu Interativo com novas informações que deverão serem preenchidas. O usuário neste novo menú, preenchera respectivamente, seu Nome, Sobrenome, Genero, Idade, E-mail, Senha e novamente a confirmação desta Senha, em seguida clicará no botão confirmar. Após todo o processo e Clicando em confirmar seu cadastro será devidamente concluído. Com seu cadastro realização, o usuário perceberar um pop-up com uma mensagem confirmando o cadastro.
 
 Ao clicar em Cadastrar Nova Conta, se o usuário desistir de faze-lo por quaisquer motivos, bastará clicar em voltar, que o Menú Interativo voltará para Menu inicial de Login/Cadastro/Recuperar Senha.
 
-
-#### Recuperar Senha
-
-O usuário estando no Menú Inicial, simulará clicar em “Recuperar Senha” o qual atualizará o Menú em um novo pop-up. Neste novo Menú o usuário observará que existe apneas uma aba a ser preenchida descrita “ E-mail de recuperação” o qual o usuário descreverá o seu e-mail cadastrado. Após o e-mail cadastrado ser preenchido na aba o usuário clicará no botão de “Enviar Senha”. Caso o e-mail esteja corretamente cadastrado o Menú fechará e a senha de cadastro do usuário será enviada a seu e-mail cadastrado. Contudo, caso o e-mail não esteja de acordo um Erro aparecerá indicando que o e-mail não está cadastrado.
-
 #### Possíveis Problemas Encontrados
 
-    • O usuário encontrou problemas ao fazer o login
     • O usuário encontrou problemas ao tentar realizar o cadastro
-    • O usuário encontrou problemas ao tentar recuperar sua senha.
-    • O usuário teve problemas para voltar a página principal.
-    • O usuário teve problema ao receber sua senha durante a recuperação de senha.
-    
+    • O usuário teve problemas para voltar a página principal ao cancelar a tentativa de cadastro.
     
 ### Teste - 3 - Buscando o Conteúdo Desejado
 
@@ -109,10 +83,36 @@ O usuário estando satisfeito com as informações, caso deseje procurar um novo
 
 #### Possíveis Problemas Encontrados
 
+    • O campo de preenchimento na aba pesquisar não funcionou
+    • O filme/série/documentário descrito não foi encontrado por erro da aplicação
     • O usuário encontrou dificuldades ao selecionar o filme/série/documentário
+    • O filme pesquisado ou recomendado, ao ser selecionado, não levou o usuário para a página desejada.
     • O usuário encontrou problemas com as informações associadas ao conteúdo indicado
     • O usuário encontrou dificuldade ao ser direcionado as novas páginas, seja durante a pesquisa ou ao selecionar qualquer conteúdo.
     • O usuário encontrou Erro no que tange a nota ou em qual streaming o filme está disponibilizado.
+    
+    
+### Teste - 4 - Login e Recuperação de Senha
+
+O usuário se encontra na página principal da aplicação, simule clicar nos botões de Login, cadastro para acessar o pop-up com novas informações.
+
+#### Login 
+
+Em Login, o usuário já cadastrado simulará seu login descrevendo seu E-mail e sua Senha cadastradas, em suas respectivas abas “Email” e “Senha”.  Após o preenchimento, clicar em Login, fazendo com que a aplicação verifique se seu Email e Senha estão de acordo. Se E-mail e Senha estiverem devidamente cadastrados e associados, a aplicação retornará a página principal dando ao usuário os beneficios de estar logado ao site. Caso contrário, e o E-mail e Senha não estejam devidamente cadastrados ou associados, a aplicação citará o ERRO e descreverá qual erro ocorreu.
+
+Os Beneficios que o usuário adquire ao efetuar corretamente seu login será de receber sugestões de filmes, séries e documentários de acordo com suas pesquisas prévias e conteúdos favoritados por ele.
+
+#### Recuperar Senha
+
+O usuário estando no Menú Inicial, simulará clicar em “Recuperar Senha” o qual atualizará o Menú em um novo pop-up. Neste novo Menú o usuário observará que existe apneas uma aba a ser preenchida descrita “ E-mail de recuperação” 
+o qual o usuário descreverá o seu e-mail cadastrado. Após o e-mail cadastrado ser preenchido na aba o usuário clicará no botão de “Enviar Senha”. 
+Caso o e-mail esteja corretamente cadastrado o Menú fechará e a senha de cadastro do usuário será enviada a seu e-mail cadastrado. Contudo, caso o e-mail não esteja de acordo um Erro aparecerá indicando que o e-mail não está cadastrado.
+
+#### Possíveis Problemas Encontrados
+
+    • O usuário encontrou problemas ao fazer o login
+    • O usuário encontrou problemas ao tentar recuperar sua senha.
+    • O usuário teve problema ao receber sua senha durante a recuperação de senha.
 
 ## Informações Coletadas
 
