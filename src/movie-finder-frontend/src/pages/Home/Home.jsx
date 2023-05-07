@@ -79,9 +79,8 @@ function Home() {
       if ((isGenreValid && genre !== '') &&
           (isNameValid && name !== '') &&
           (validateEmail(email) && isEmailValid && email !== '') &&
-          (isPasswordValid && password !== '' && 5 <= password.length <= 8) &&
-          ((isPasswordConfirmationValid && passwordConfirmation !== '') &&
-              (passwordConfirmation === password) && passwordConfirmation.length <= 8) &&
+          (isPasswordValid && password !== '' && (password.length >= 5 && password.length <= 8)) &&
+          (isPasswordConfirmationValid && passwordConfirmation !== '' && (passwordConfirmation.length >= 5 && passwordConfirmation.length <= 8 && passwordConfirmation === password)) &&
           ((isAgeValid && age !== '') && 12 <= age <= 100)) {
         const response = await api.post('/movieFinder/cadastrarUsuario', {
           nome: name,
@@ -111,12 +110,12 @@ function Home() {
         } else {
           setIsEmailValid(true);
         }
-        if (password === '' || password.length < 5 || password.length > 8) {
+        if (password === '' || password.length < 5 || password.length > 8 || passwordConfirmation !== password) {
           setIsPasswordValid(false);
         } else {
           setIsPasswordValid(true);
         }
-        if (passwordConfirmation === '' || passwordConfirmation.length > 8 || passwordConfirmation !== password) {
+        if (passwordConfirmation === '' || passwordConfirmation < 5 || passwordConfirmation.length > 8 || passwordConfirmation !== password) {
           setIsPasswordConfirmationValid(false);
         } else {
           setIsPasswordConfirmationValid(true);
@@ -186,6 +185,61 @@ function Home() {
     } else {
       setIsGenreValid(false);
       setGenre('');
+    }
+  };
+
+  const handleNameChange = e => {
+    const name = e.target.value;
+    if (name !== '') {
+      setIsNameValid(true);
+      setName(name);
+    } else {
+      setIsNameValid(false);
+      setName('');
+    }
+  };
+
+  const handleEmailChange = e => {
+    const email = e.target.value;
+    if (email !== '') {
+      setIsEmailValid(true);
+      setEmail(email);
+    } else {
+      setIsEmailValid(false);
+      setEmail('');
+    }
+  };
+
+  const handlePasswordChange = e => {
+    const password = e.target.value;
+    if (password !== '') {
+      setIsPasswordValid(true);
+      setPassword(password);
+    } else {
+      setIsPasswordValid(false);
+      setPassword('');
+    }
+  };
+
+  const handlePasswordConfirmationChange = e => {
+    const passwordConfirmation = e.target.value;
+    if (passwordConfirmation !== '') {
+      setIsPasswordConfirmationValid(true);
+      setPasswordConfirmation(passwordConfirmation);
+    } else {
+      setIsPasswordConfirmationValid(false);
+      setPasswordConfirmation('');
+    }
+  };
+
+  const handleAgeChange = e => {
+    const age = e.target.value;
+    if (age !== '' && 12 <= age <= 100) {
+      setIsAgeValid(true);
+      setAge(age);
+    } else {
+      setIsAgeValid(false);
+      setAge('');
     }
   };
 
@@ -279,7 +333,7 @@ function Home() {
                       size="md"
                       placeholder="Nome Completo..."
                       value={name}
-                      onChange={e => setName(e.target.value )}
+                      onChange={handleNameChange}
                     />
                     <Input
                       color={isEmailValid ? 'neutral' : 'danger'}
@@ -287,7 +341,7 @@ function Home() {
                       size="md"
                       placeholder="E-mail..."
                       value={email}
-                      onChange={e => setEmail(e.target.value )}
+                      onChange={handleEmailChange}
                     />
                     <Input
                       color={isPasswordValid ? 'neutral' : 'danger'}
@@ -295,7 +349,7 @@ function Home() {
                       placeholder="Senha... (min 5, máx 8 caracteres)"
                       size="md"
                       value={password}
-                      onChange={e => setPassword(e.target.value )}
+                      onChange={handlePasswordChange}
                     />
                     <Input
                       color={isPasswordConfirmationValid ? 'neutral' : 'danger'}
@@ -303,7 +357,7 @@ function Home() {
                       placeholder="Confirme sua senha..."
                       size="md"
                       value={passwordConfirmation}
-                      onChange={e => setPasswordConfirmation(e.target.value)}
+                      onChange={handlePasswordConfirmationChange}
                     />
 
                     <select                   
@@ -324,7 +378,7 @@ function Home() {
                       placeholder="Digite sua idade..."
                       size="md"
                       value={age}
-                      onChange={e => setAge(e.target.value)}
+                      onChange={handleAgeChange}
                     />
                     <p>Crie sua conta agora no MovieFinder</p>
                     <Button
