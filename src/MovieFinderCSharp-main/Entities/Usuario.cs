@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace moviefinder.Entities;
 
@@ -20,3 +21,5 @@ public class Usuario
     public string Genero { get; set; }
     
 }
+
+

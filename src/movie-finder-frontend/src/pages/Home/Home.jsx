@@ -36,6 +36,7 @@ function Home() {
   const [password, setPassword] = useState('');
   const [age, setAge] = useState('');
   const [genre, setGenre] = useState('');
+  const [isGenreValid, setIsGenreValid] = useState(true);
   const [open, setOpen] = React.useState(false);
   
   const navigate = useNavigate()
@@ -54,17 +55,24 @@ function Home() {
 
   const handleSubmit = async () => {
     try {
-      await api.post('/movieFinder/cadastrarUsuario', {
-        nome: name,
-        email,
-        senha: password,
-        idade: parseInt(age),
-        genero: genre,
-      })
-      closeModalRegister()
-      setOpen(true)
+      if (isGenreValid && genre !== '') {
+        await api.post('/movieFinder/cadastrarUsuario', {
+          nome: name,
+          email,
+          senha: password,
+          idade: parseInt(age),
+          genero: genre,
+        })
+        closeModalRegister()
+        setOpen(true)
+        console.log('Form submitted successfully');
+      } else {
+        setIsGenreValid(false);
+        console.log('Please select a valid option (Masculino or Feminino)');
+      }
+
     } catch (error) {
-      
+
     }
   }
 
@@ -100,6 +108,17 @@ function Home() {
   const gotoDetails = (movie) => { 
     navigate(`/Resultado/${movie.id}`);
   }
+
+  const handleGenreChange = e => {
+    const selectedGenre = e.target.value;
+    if (selectedGenre === 'Masculino' || selectedGenre === 'Feminino') {
+      setIsGenreValid(true);
+      setGenre(selectedGenre);
+    } else {
+      setIsGenreValid(false);
+      setGenre('');
+    }
+  };
 
   useEffect(() => {
     getPopularMovies()
@@ -218,11 +237,14 @@ function Home() {
 
                     <select                   
                       value={genre}
-                      className="modal-register-select"
-                      onChange={e => setGenre(e.target.value)}
+                      className={`modal-register-select ${isGenreValid ? '' : 'invalid'}`}
+                      onChange={handleGenreChange}
                     >
-                      <option value="Homem">Homem</option>
-                      <option value="Mulher">Mulher</option>
+                      <option value="">
+                        Selecione o gênero...
+                      </option>
+                      <option value="Masculino">Masculino</option>
+                      <option value="Feminino">Feminino</option>
                     </select>
                     <Input
                       color="neutral"
