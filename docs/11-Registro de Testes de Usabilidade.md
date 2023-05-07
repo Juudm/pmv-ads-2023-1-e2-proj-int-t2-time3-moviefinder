@@ -1,7 +1,7 @@
 # Registro de Testes de Usabilidade
 
 
-Os testes de usabilidade permitem avaliar a qualidade da interface com o usuário da aplicação interativa. Este plano de testes busca definir possíveis critérios para realização de teste futuros.
+Os Resgistros de testes de usabilidade permitem avaliar a qualidade da interface com o usuário da aplicação interativa.
 
 
 ## Objetivos Principais Dos Testes
