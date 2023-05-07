@@ -52,11 +52,15 @@ No total serão 5 Participantes que realizarão todo o processo de testes simula
 
 O usuário se encontra na página principal da aplicação, simule clicar nos botões de Login, cadastro para acessar o pop-up com novas informações.
 
+Além disso o usúario deve testar se a aba "procurar" está procurando os filmes.
+
+https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511-890d-27dfe6b8b758.mp4 (teste de responsividade do Pop-up e da aba procurar)
 
 #### Possíveis Problemas Encontrados
 
     • Os botões não foram responsivos.
     • O pop-up de login e cadastro não apareceu.
+    • A aba de pesquisa não foi responsiva
 
 ### Teste - 2 - Cadastro
 
@@ -66,7 +70,11 @@ O Usuário encontrando-se na pagina inicial, ao clicará em login ou em cadastra
 
 O usuário simulará o cadastro após abrir o menú interativo, seja clicando em Login ou Cadastrar na pagina Inicial. No Menú interativo teremos o botão de "Cadastrar Nova Conta", o qual, após ser clicado pelo usuário, atualizará o Menu Interativo com novas informações que deverão serem preenchidas. O usuário neste novo menú, preenchera respectivamente, seu Nome, Sobrenome, Genero, Idade, E-mail, Senha e novamente a confirmação desta Senha, em seguida clicará no botão confirmar. Após todo o processo e Clicando em confirmar seu cadastro será devidamente concluído. Com seu cadastro realização, o usuário perceberar um pop-up com uma mensagem confirmando o cadastro.
 
+https://user-images.githubusercontent.com/116127734/236686237-85866560-852f-4009-bd1b-50aa5dcde5d9.mp4 ( Teste de Cadastros )
+
 Ao clicar em Cadastrar Nova Conta, se o usuário desistir de faze-lo por quaisquer motivos, bastará clicar em voltar, que o Menú Interativo voltará para Menu inicial de Login/Cadastro/Recuperar Senha.
+
+https://user-images.githubusercontent.com/116127734/236685398-4b4cf940-55fe-4d31-b259-83506e5d0347.mp4 ( teste se a aplicação está entrando e saindo do pop-up inicial)
 
 #### Possíveis Problemas Encontrados
 
@@ -76,6 +84,8 @@ Ao clicar em Cadastrar Nova Conta, se o usuário desistir de faze-lo por quaisqu
 ### Teste - 3 - Buscando o Conteúdo Desejado
 
 O usuário verificará se na pagina inicial, o filme/série/documentário que deseja obter informações, está presente, caso sim o usuário clicará no conteúdo em questão e a aplicação o levará até a tela do conteúdo buscado, no qual ele terá a sua disposição as informações como; Descrição, Imagem, Elenco e Nota do filme como também conteúdo recomendado que estará associado as informações supracitadas na página como também em qual Streaming o filme se encontra disponível.
+
+https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511-890d-27dfe6b8b758.mp4 (teste de responsividade da aba procurar)
 
 Por outro lado, caso o usuário não verifique o conteúdo desejado na Pagina Inicial, este deverá selecionar a aba de pesquisa, clicando em pesquisar. Com a aba de pesquisa aberta o usuário descreverá qual é o Filme/série/documentário desejado. Concluindo a pesquisa a aplicação mostrará na tela o conteúdo buscado, dando deste modo, a oportunidade do usuário de clicar e possibilitar a aplicação de redireciona-lo a Pagina desejada.
 
