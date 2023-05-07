@@ -67,8 +67,9 @@ O usúario deve testar se a aba "procurar" está procurando os filmes.
 
 ### Video do Teste 1
 
-https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511-890d-27dfe6b8b758.mp4 
+Video - 1 - Demonstração do funcionamento e saída do Pop-Up
 
+https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511-890d-27dfe6b8b758.mp4 
 
 
 ### Teste - 2 - Cadastro
@@ -79,11 +80,7 @@ O Usuário encontrando-se na pagina inicial, ao clicará em login ou em cadastra
 
 O usuário simulará o cadastro após abrir o menú interativo, seja clicando em Login ou Cadastrar na pagina Inicial. No Menú interativo teremos o botão de "Cadastrar Nova Conta", o qual, após ser clicado pelo usuário, atualizará o Menu Interativo com novas informações que deverão serem preenchidas. O usuário neste novo menú, preenchera respectivamente, seu Nome, Sobrenome, Genero, Idade, E-mail, Senha e novamente a confirmação desta Senha, em seguida clicará no botão confirmar. Após todo o processo e Clicando em confirmar seu cadastro será devidamente concluído. Com seu cadastro realização, o usuário perceberar um pop-up com uma mensagem confirmando o cadastro.
 
-https://user-images.githubusercontent.com/116127734/236686237-85866560-852f-4009-bd1b-50aa5dcde5d9.mp4 ( Teste de Cadastros )
-
 Ao clicar em Cadastrar Nova Conta, se o usuário desistir de faze-lo por quaisquer motivos, bastará clicar em voltar, que o Menú Interativo voltará para Menu inicial de Login/Cadastro/Recuperar Senha.
-
-https://user-images.githubusercontent.com/116127734/236685398-4b4cf940-55fe-4d31-b259-83506e5d0347.mp4 ( teste se a aplicação está entrando e saindo do pop-up inicial)
 
 #### Possíveis Problemas Encontrados
 
@@ -93,7 +90,7 @@ https://user-images.githubusercontent.com/116127734/236685398-4b4cf940-55fe-4d31
     
 ### Conclusão dos Testes 2 - Usuabilidade do Cadastro.
 
-    • Conforme teste realizado e postado no video abaixo, concluímos que a aplicação está cadastrando devidamente o usuário. 
+    • Conforme teste realizado, concluímos que a aplicação está cadastrando devidamente o usuário. 
     • Aplicação também demonstrou que a Aba de pesquisa está funcional, podendo ser descrito o nome do produto desejado
       e o seu devido redirecionamento para a respectiva página.    
       
@@ -112,8 +109,6 @@ https://user-images.githubusercontent.com/116127734/236685398-4b4cf940-55fe-4d31
 
 O usuário verificará se na pagina inicial, o filme/série/documentário que deseja obter informações, está presente, caso sim o usuário clicará no conteúdo em questão e a aplicação o levará até a tela do conteúdo buscado, no qual ele terá a sua disposição as informações como; Descrição, Imagem, Elenco e Nota do filme como também conteúdo recomendado que estará associado as informações supracitadas na página como também em qual Streaming o filme se encontra disponível.
 
-https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511-890d-27dfe6b8b758.mp4 (teste de responsividade da aba procurar)
-
 Por outro lado, caso o usuário não verifique o conteúdo desejado na Pagina Inicial, este deverá selecionar a aba de pesquisa, clicando em pesquisar. Com a aba de pesquisa aberta o usuário descreverá qual é o Filme/série/documentário desejado. Concluindo a pesquisa a aplicação mostrará na tela o conteúdo buscado, dando deste modo, a oportunidade do usuário de clicar e possibilitar a aplicação de redireciona-lo a Pagina desejada.
 
 O usuário estando satisfeito com as informações, caso deseje procurar um novo conteúdo, simulará, na própria página do conteúdo já pesquisado, clicar novamente na aba de "Pesquisar" para obter acesso a nova busca de um outro conteúdo.
@@ -128,6 +123,18 @@ O usuário estando satisfeito com as informações, caso deseje procurar um novo
     • O usuário encontrou dificuldade ao ser direcionado as novas páginas, seja durante a pesquisa ou ao selecionar qualquer conteúdo.
     • O usuário encontrou Erro no que tange a nota ou em qual streaming o filme está disponibilizado.
     
+    
+### Conclusão dos Testes 3 - Usuabilidade Da Busca
+    
+    • Conforme teste realizado, concluimos que a aba de Pesquisa da Aplicação está funcional, pesquisando os filmes desejados.
+    • Aplicação também demonstrou que os resultados encontrados, após serem demonstrados e selecionados, o usuário é redirecionado
+      corretamente até a respectiva página.
+    
+### Videos do Teste 3     
+    
+Video - 1 - Demonstração da Aba de Pesquisa e a Visualisação das Paginas Redirecionadas.
+ 
+https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511-890d-27dfe6b8b758.mp4
     
 ### Teste - 4 - Login e Recuperação de Senha
 
