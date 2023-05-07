@@ -32,9 +32,15 @@ function Home() {
   const [topRatedMovies, setTopRatedMovies ] = useState([])
   const [discoverList, setDiscoverList ] = useState([])
   const [name, setName] = useState('');
+  const [isNameValid, setIsNameValid] = useState(true);
   const [email, setEmail] = useState('');
+  const [isEmailValid, setIsEmailValid] = useState(true);
   const [password, setPassword] = useState('');
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [isPasswordConfirmationValid, setIsPasswordConfirmationValid] = useState(true);
   const [age, setAge] = useState('');
+  const [isAgeValid, setIsAgeValid] = useState(true);
   const [genre, setGenre] = useState('');
   const [isGenreValid, setIsGenreValid] = useState(true);
   const [open, setOpen] = React.useState(false);
@@ -44,7 +50,21 @@ function Home() {
   const showModalLogin = () => { setvisibleLogin(true);}
   const closeModalLogin = () => {setvisibleLogin(false);}
   const showModalRegister = () => { setvisibleRegister(true);}
-  const closeModalRegister = () => {setvisibleRegister(false);}
+  const closeModalRegister = () => {
+    setvisibleRegister(false);
+    setIsNameValid(true);
+    setName('');
+    setIsEmailValid(true);
+    setEmail('');
+    setIsPasswordValid(true);
+    setPassword('');
+    setIsPasswordConfirmationValid(true);
+    setPasswordConfirmation('');
+    setIsGenreValid(true);
+    setGenre('');
+    setIsAgeValid(true);
+    setAge('');
+  }
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -55,7 +75,13 @@ function Home() {
 
   const handleSubmit = async () => {
     try {
-      if (isGenreValid && genre !== '') {
+      if ((isGenreValid && genre !== '') &&
+          (isNameValid && name !== '') &&
+          (validateEmail(email) && isEmailValid && email !== '') &&
+          (isPasswordValid && password !== '' && password.length <= 8) &&
+          ((isPasswordConfirmationValid && passwordConfirmation !== '') &&
+              (passwordConfirmation === password) && passwordConfirmation.length <= 8) &&
+          ((isAgeValid && age !== '') && 12 <= age <= 100)) {
         await api.post('/movieFinder/cadastrarUsuario', {
           nome: name,
           email,
@@ -67,13 +93,47 @@ function Home() {
         setOpen(true)
         console.log('Form submitted successfully');
       } else {
-        setIsGenreValid(false);
+        if (genre === '') {
+          setIsGenreValid(false);
+        } else {
+          setIsGenreValid(true);
+        }
+        if (name === '') {
+          setIsNameValid(false);
+        } else {
+          setIsNameValid(true);
+        }
+        if (email === '' || !validateEmail(email)) {
+          setIsEmailValid(false);
+        } else {
+          setIsEmailValid(true);
+        }
+        if (password === '' || password.length > 8) {
+          setIsPasswordValid(false);
+        } else {
+          setIsPasswordValid(true);
+        }
+        if (passwordConfirmation === '' || passwordConfirmation.length > 8 || passwordConfirmation !== password) {
+          setIsPasswordConfirmationValid(false);
+        } else {
+          setIsPasswordConfirmationValid(true);
+        }
+        if (age === '' || age < 12 || age > 100) {
+          setIsAgeValid(false);
+        } else {
+          setIsAgeValid(true);
+        }
         console.log('Please select a valid option (Masculino or Feminino)');
       }
 
     } catch (error) {
 
     }
+  }
+
+  function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
   }
 
   const getPopularMovies = async () => {
@@ -205,7 +265,7 @@ function Home() {
                       <h2>Cadastro</h2>
                     </div>
                     <Input
-                      color="neutral"
+                      color={isNameValid ? 'neutral' : 'danger'}
                       disabled={false}
                       size="md"
                       placeholder="Nome Completo..."
@@ -213,7 +273,7 @@ function Home() {
                       onChange={e => setName(e.target.value )}
                     />
                     <Input
-                      color="neutral"
+                      color={isEmailValid ? 'neutral' : 'danger'}
                       disabled={false}
                       size="md"
                       placeholder="Email..."
@@ -221,7 +281,7 @@ function Home() {
                       onChange={e => setEmail(e.target.value )}
                     />
                     <Input
-                      color="neutral"
+                      color={isPasswordValid ? 'neutral' : 'danger'}
                       disabled={false}
                       placeholder="Senha..."
                       size="md"
@@ -229,7 +289,7 @@ function Home() {
                       onChange={e => setPassword(e.target.value )}
                     />
                     <Input
-                      color="neutral"
+                      color={isPasswordConfirmationValid ? 'neutral' : 'danger'}
                       disabled={false}
                       placeholder="Confirme sua senha..."
                       size="md"
@@ -247,7 +307,7 @@ function Home() {
                       <option value="Feminino">Feminino</option>
                     </select>
                     <Input
-                      color="neutral"
+                      color={isAgeValid ? 'neutral' : 'danger'}
                       type="number"
                       disabled={false}
                       placeholder="Digite sua idade..."
