@@ -76,8 +76,6 @@ https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511
 
 O Usuário encontrando-se na pagina inicial, ao clicará em login ou em cadastrar, deste modo, um pop-up aparecerá no meio de sua tela. Este pop-up conterá as seguintes informações: Login - Cadastrar - Recuperar Senha.
 
-#### Cadastrar
-
 O usuário simulará o cadastro após abrir o menú interativo, seja clicando em Login ou Cadastrar na pagina Inicial. No Menú interativo teremos o botão de "Cadastrar Nova Conta", o qual, após ser clicado pelo usuário, atualizará o Menu Interativo com novas informações que deverão serem preenchidas. O usuário neste novo menú, preenchera respectivamente, seu Nome, Sobrenome, Genero, Idade, E-mail, Senha e novamente a confirmação desta Senha, em seguida clicará no botão confirmar. Após todo o processo e Clicando em confirmar seu cadastro será devidamente concluído. Com seu cadastro realização, o usuário perceberar um pop-up com uma mensagem confirmando o cadastro.
 
 Ao clicar em Cadastrar Nova Conta, se o usuário desistir de faze-lo por quaisquer motivos, bastará clicar em voltar, que o Menú Interativo voltará para Menu inicial de Login/Cadastro/Recuperar Senha.
