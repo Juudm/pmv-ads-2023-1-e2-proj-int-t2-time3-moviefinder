@@ -44,23 +44,28 @@ Todos os testes de usabilidade serão realizados em ambiente remoto e os resulta
 
 O objetivo das atividades será de encontrar quaisquer dificuldades que os usuários encontrarem durante a utilização da aplicação.
 
-No total serão 5 Participantes que realizarão todo o processo de testes simulando atividades na aplicação.
-
 
 ### Teste - 1 - Usabilidade da Página Principal - Abrir o Pop-up De Login, Cadastro e Recuperação de conta.
 
 
 O usuário se encontra na página principal da aplicação, simule clicar nos botões de Login, cadastro para acessar o pop-up com novas informações.
 
-Além disso o usúario deve testar se a aba "procurar" está procurando os filmes.
+O usúario deve testar se a aba "procurar" está procurando os filmes.
 
-https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511-890d-27dfe6b8b758.mp4 (teste de responsividade do Pop-up e da aba procurar)
 
 #### Possíveis Problemas Encontrados
 
     • Os botões não foram responsivos.
     • O pop-up de login e cadastro não apareceu.
     • A aba de pesquisa não foi responsiva
+
+### Conclusão dos Testes 1 - Usuabilidade da Página Principal.
+
+    • Conforme teste realizado e postado no video abaixo, concluímos que a aplicação está abrindo o Pop-up de acordo com o desejado. 
+    • Aplicação também demonstrou que a Aba de pesquisa está funcional, podendo ser descrito o nome do produto desejado e o redirecionamento para sua respectiva página.
+
+https://user-images.githubusercontent.com/116127734/236685596-dadcc9f1-f8b2-4511-890d-27dfe6b8b758.mp4 
+
 
 ### Teste - 2 - Cadastro
 
