@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using moviefinder.dto.usuario;
 using moviefinder.Entities;
+using moviefinder.exception;
 
 namespace moviefinder.service;
 
@@ -18,7 +20,10 @@ public class UsuarioService
         try
         {
             var usuarioDb = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == usuario.Email);
-            if (usuarioDb != null) return false;
+            if (usuarioDb != null)
+            {
+                return false;
+            }
             _context.Add(usuario);
             await _context.SaveChangesAsync();
             return true;

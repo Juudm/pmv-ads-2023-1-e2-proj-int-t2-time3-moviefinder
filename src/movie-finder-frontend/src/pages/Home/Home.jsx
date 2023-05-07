@@ -21,6 +21,7 @@ import 'rodal/lib/rodal.css';
 
 import MovieCard from '../../components/MovieCard/MovieCard';
 import Footer from '../../components/Footer/Footer';
+import {FormHelperText} from "@mui/joy";
 
 SwiperCore.use([Virtual, Navigation, Pagination]);
 
@@ -44,6 +45,8 @@ function Home() {
   const [genre, setGenre] = useState('');
   const [isGenreValid, setIsGenreValid] = useState(true);
   const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = useState('');
+  const [severity, setSeverity] = useState('');
   
   const navigate = useNavigate()
 
@@ -82,7 +85,7 @@ function Home() {
           ((isPasswordConfirmationValid && passwordConfirmation !== '') &&
               (passwordConfirmation === password) && passwordConfirmation.length <= 8) &&
           ((isAgeValid && age !== '') && 12 <= age <= 100)) {
-        await api.post('/movieFinder/cadastrarUsuario', {
+        const response = await api.post('/movieFinder/cadastrarUsuario', {
           nome: name,
           email,
           senha: password,
@@ -90,8 +93,10 @@ function Home() {
           genero: genre,
         })
         closeModalRegister()
+        setSeverity("success");
+        setMessage(response.data);
         setOpen(true)
-        console.log('Form submitted successfully');
+        console.log(response.data);
       } else {
         if (genre === '') {
           setIsGenreValid(false);
@@ -123,11 +128,17 @@ function Home() {
         } else {
           setIsAgeValid(true);
         }
-        console.log('Please select a valid option (Masculino or Feminino)');
       }
 
     } catch (error) {
-
+      if (error.response && error.response.data) {
+        setSeverity("error");
+        setMessage(error.response.data);
+        setOpen(true);
+        console.error(error.response.data);
+      } else {
+        console.error(error);
+      }
     }
   }
 
@@ -283,7 +294,7 @@ function Home() {
                     <Input
                       color={isPasswordValid ? 'neutral' : 'danger'}
                       disabled={false}
-                      placeholder="Senha..."
+                      placeholder="Senha... (min 5, máx 8 caracteres)"
                       size="md"
                       value={password}
                       onChange={e => setPassword(e.target.value )}
@@ -327,9 +338,9 @@ function Home() {
                   </div>
                 </div>
               </Rodal>
-              <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={open} autoHideDuration={1000} onClose={handleClose}>
-                <Alert elevation={100000000} onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                  This is a success message!
+              <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={open} autoHideDuration={3000} onClose={handleClose}>
+                <Alert elevation={100000000} onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                  { message }
                 </Alert>
               </Snackbar>
             </div>
