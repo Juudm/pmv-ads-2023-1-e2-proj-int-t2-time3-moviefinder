@@ -1,4 +1,4 @@
-# Registro de Testes de Usabilidade
+# Registro dos Testes de Usabilidade
 
 
 Os Resgistros de testes de usabilidade permitem avaliar a qualidade da interface com o usuário da aplicação interativa.
