@@ -78,7 +78,7 @@ function Home() {
       if ((isGenreValid && genre !== '') &&
           (isNameValid && name !== '') &&
           (validateEmail(email) && isEmailValid && email !== '') &&
-          (isPasswordValid && password !== '' && password.length <= 8) &&
+          (isPasswordValid && password !== '' && 5 <= password.length <= 8) &&
           ((isPasswordConfirmationValid && passwordConfirmation !== '') &&
               (passwordConfirmation === password) && passwordConfirmation.length <= 8) &&
           ((isAgeValid && age !== '') && 12 <= age <= 100)) {
@@ -108,7 +108,7 @@ function Home() {
         } else {
           setIsEmailValid(true);
         }
-        if (password === '' || password.length > 8) {
+        if (password === '' || password.length < 5 || password.length > 8) {
           setIsPasswordValid(false);
         } else {
           setIsPasswordValid(true);
@@ -327,7 +327,7 @@ function Home() {
                   </div>
                 </div>
               </Rodal>
-              <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={open} autoHideDuration={6000} onClose={handleClose}>
+              <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={open} autoHideDuration={1000} onClose={handleClose}>
                 <Alert elevation={100000000} onClose={handleClose} severity="success" sx={{ width: '100%' }}>
                   This is a success message!
                 </Alert>
