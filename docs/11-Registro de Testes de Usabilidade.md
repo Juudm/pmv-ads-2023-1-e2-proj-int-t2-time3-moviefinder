@@ -96,13 +96,12 @@ Ao clicar em Cadastrar Nova Conta, se o usuário desistir de faze-lo por quaisqu
 
 Video 1 - Cadastro
 
-https://user-images.githubusercontent.com/116127734/236686237-85866560-852f-4009-bd1b-50aa5dcde5d9.mp4 
-    
+https://user-images.githubusercontent.com/107152636/236705684-0cd06873-d2c5-41dc-b086-102a9925086f.mp4
+
 Video 2 - Teste de sair do Pop-up
 
-https://user-images.githubusercontent.com/116127734/236685398-4b4cf940-55fe-4d31-b259-83506e5d0347.mp4 
-    
-    
+https://user-images.githubusercontent.com/107152636/236705718-b0c6c2c1-1d9a-4c39-8102-23a6bd7f858b.mp4
+
 ### Teste - 3 - Buscando o Conteúdo Desejado
 
 O usuário verificará se na pagina inicial, o filme/série/documentário que deseja obter informações, está presente, caso sim o usuário clicará no conteúdo em questão e a aplicação o levará até a tela do conteúdo buscado, no qual ele terá a sua disposição as informações como; Descrição, Imagem, Elenco e Nota do filme como também conteúdo recomendado que estará associado as informações supracitadas na página como também em qual Streaming o filme se encontra disponível.
