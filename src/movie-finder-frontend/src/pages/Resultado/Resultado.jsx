@@ -12,10 +12,14 @@ import { BsListStars, BsFillCircleFill } from "react-icons/bs"
 import { MdOutlineFavorite } from "react-icons/Md"
 import { Typography, CircularProgress } from '@mui/material';
 import { Swiper, SwiperSlide } from "swiper/react";
-import PropTypes from 'prop-types';
+
+
 import Box from '@mui/material/Box';
 import Rodal from 'rodal';
+import moment from 'moment/moment';
 
+import "swiper/css";
+import "swiper/css/scrollbar";
 import './Resultado.css'
 
 function Resultado() {
@@ -144,7 +148,9 @@ function Resultado() {
             }}             
             />
             <div className='results-movie-details-card-streaming'>
+              {movie?.providers?.results?.br?.flatrate[0].logoPath ? 
               <img src={"https://image.tmdb.org/t/p/original/" + movie?.providers?.results?.br?.flatrate[0].logoPath} alt="plataforma" />
+              : <p>?</p> }
               <div className='results-movie-details-favorite'>
                 <h4 className='results-movie-details-favorite-circle' onClick={ starFillCheck }>
                   {starFill ? <span><MdOutlineFavorite className='results-movie-details-favorite-icon' style={{color: "rgba(255, 0, 0, 0.596"}} /></span> :
@@ -160,11 +166,10 @@ function Resultado() {
           <div className='results-movie-details-text' >
             <div className='results-movie-details-title-subdetails'>
               <div className='results-movie-details-title'>
-                <h1>{movie.title}</h1>  
-                <h1>(ANO)</h1>  
+                <h1>{movie.title + "  " }({moment(movie.releaseDate).format("YYYY")})</h1>  
               </div>
               <div className='results-movie-details-subdetails'>
-                <p>{movie.releaseDate}</p>
+                <p>{moment(movie.releaseDate).format("DD/MM/YYYY")}</p>
                 <p>{movie.originalLanguage?.toUpperCase()}</p>
                 <span><BsFillCircleFill /></span>
                 {movie?.genres?.map((movie) => (
@@ -240,10 +245,41 @@ function Resultado() {
         <div className='content-body-details'>
           <div className='content-body-details-elenco'>
             <h1>Elenco Principal</h1>
-            <div className='content-body-details-elenco-card'>
-              <img src="" alt="foto ator" />
-              {movie.credits?.cast?.map(actor => <p>{actor.name}</p>)}
-            </div>
+          <Swiper
+            className='content-body-details-elenco-card'
+            style={{
+              overflowX: 'auto',
+              overflowY: 'auto',
+            }}
+            breakpoints={{
+              "@0.00": {
+                slidesPerView: 2,
+              },
+              "@0.75": {
+                slidesPerView: 4,
+              },
+              "@1.00": {
+                slidesPerView: 4,
+              },
+              "@1.50": {
+                slidesPerView: 8,
+              },
+            }}
+            >
+            {movie.credits?.cast?.map((actor) =>
+            <SwiperSlide>
+              <div className='content-body-details-elenco-card-img-name'>
+                <div className='content-body-details-elenco-card-img-name-inside'>
+                  {actor.profilePath ?
+                  <img src={"https://image.tmdb.org/t/p/w185/" + actor.profilePath} alt="foto ator" />
+                  : <img src="https://i.mydramalist.com/23E3Of.jpg" style={{width: "185px", height: "277px"}} alt="" />
+                  }
+                  <p>{actor.name }</p>
+                </div>
+              </div>
+            </SwiperSlide>
+            )}
+          </Swiper>
           </div>
           <div className='content-body-details-additional'>
             <div>
@@ -298,10 +334,10 @@ function Resultado() {
             <MdKeyboardArrowRight />
           </div>
           <Swiper
-            loop={true}
             loopPreventsSliding={true}
             navigation={true}
             virtual
+            loop={true}
             breakpoints={{
               "@0.00": {
                 slidesPerView: 1,
