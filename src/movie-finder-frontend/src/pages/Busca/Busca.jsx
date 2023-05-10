@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 
 import MovieCard from '../../components/MovieCard/MovieCard'
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem, SubMenu, sidebarClasses } from 'react-pro-sidebar';
 import FormControl from '@mui/joy/FormControl';
 import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
@@ -17,6 +17,37 @@ function Busca() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [genreList, setGenreList] = useState([])
   
+  const navigate = useNavigate()
+
+  const gotoDetails = (movie) => { 
+    navigate(`/Resultado/${movie.id}`);
+  }
+
+  const orderReleaseDate = () => {
+    const orderMovies = [...movies].sort((a, b) => {
+      a = a.releaseDate.split('/').reverse().join('');
+      b = b.releaseDate.split('/').reverse().join('');
+      return b > a ? 1 : b < a ? -1 : 0;
+    })
+    setMovies(orderMovies)
+    console.log(orderMovies);
+  }
+
+  const getDiscoverList = async (name) => {
+    const response = await api.get(`/movieFinder/discover/movie?genreId=${name.id}`)
+    setMovies(response.data.results)
+  }
+
+  const orderMoviesByBestVote = () => {
+    const orderMovies = [...movies].sort((a, b) => b.voteAverage - a.voteAverage)
+    setMovies(orderMovies)
+  }
+
+  const orderMoviesByWorstVote = () => {
+    const orderMovies = [...movies].sort((a, b) => a.voteAverage - b.voteAverage)
+    setMovies(orderMovies)
+  }
+
   const filterOptions = createFilterOptions({
     matchFrom: 'start',
     stringify: (option) => option.title,
@@ -79,31 +110,31 @@ function Busca() {
           </FormControl>
           <div className="sidebar-filter-search">
             <h2>Filtros</h2>
-            <MenuItem>Lançamentos</MenuItem>
+            <MenuItem onClick={orderReleaseDate}>Lançamentos</MenuItem>
             <SubMenu label="Generos" >
               {genreList.map((name) => (
-                <MenuItem>
+                <MenuItem onClick={() => getDiscoverList(name)}>
                   <p>
                     {name.name}
                   </p>
                 </MenuItem>
               ))}
             </SubMenu>
-            <SubMenu label="Ordem alfabetica">
-              <MenuItem> A-Z </MenuItem>
-              <MenuItem> Z-A </MenuItem>
-            </SubMenu>
             <SubMenu label="Por nota">
-              <MenuItem> Melhores avaliados </MenuItem>
-              <MenuItem> Piores avaliados </MenuItem>
+              <MenuItem onClick={orderMoviesByBestVote}> Melhores avaliados </MenuItem>
+              <MenuItem onClick={orderMoviesByWorstVote}> Piores avaliados </MenuItem>
             </SubMenu>
           </div>
-          </Menu>
+        </Menu>
       </Sidebar>
       <div className='results-search'>
         <h1>Resultados</h1>
         <div className='results-search-cards'>
-          {movies.map((movie) => movie.posterPath && <MovieCard movie={movie} posterSize="200px"/>)} 
+          {movies.map((movie) => movie.posterPath && 
+            <div onClick={ () => gotoDetails(movie) }>
+              <MovieCard movie={movie} posterSize="200px"/>
+            </div>
+          )} 
         </div>
       </div>
 

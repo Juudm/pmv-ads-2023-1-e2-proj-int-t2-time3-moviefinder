@@ -300,6 +300,7 @@ function Home() {
                         disabled={false}
                         placeholder="Senha..."
                         size="md"
+                        type="password"
                       />
                     </div>
                     <div className="modal-login-in">
@@ -307,7 +308,6 @@ function Home() {
                       <Button className="modal-button-login">Entrar</Button>
                     </div>
                   </div>
-                    <Button className="modal-button-login">Cadastrar nova conta</Button>
                 </div>
               </Rodal>
               <Rodal
@@ -350,6 +350,7 @@ function Home() {
                       size="md"
                       value={password}
                       onChange={handlePasswordChange}
+                      type="password"
                     />
                     <Input
                       color={isPasswordConfirmationValid ? 'neutral' : 'danger'}
@@ -357,6 +358,7 @@ function Home() {
                       placeholder="Confirme sua senha..."
                       size="md"
                       value={passwordConfirmation}
+                      type="password"
                       onChange={handlePasswordConfirmationChange}
                     />
 
