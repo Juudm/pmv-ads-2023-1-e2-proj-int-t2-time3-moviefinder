@@ -24,6 +24,8 @@ public class UsuarioService
             {
                 return false;
             }
+
+            usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
             _context.Add(usuario);
             await _context.SaveChangesAsync();
             return true;
@@ -40,8 +42,13 @@ public class UsuarioService
     {
         try
         {
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == usuarioDto.Email && u.Senha == usuarioDto.Senha);
-            return usuario != null;
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == usuarioDto.Email);
+            var isSenhaCorreta = false;
+            if (usuario != null)
+            {
+                isSenhaCorreta = BCrypt.Net.BCrypt.Verify(usuarioDto.Senha, usuario.Senha);
+            }
+            return usuario != null && isSenhaCorreta;
         }
         catch (Exception e)
         {

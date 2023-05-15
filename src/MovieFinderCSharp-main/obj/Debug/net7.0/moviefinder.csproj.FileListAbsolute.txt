@@ -295,3 +295,4 @@ E:\Projetos\Faculdade\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\src\MovieF
 E:\Projetos\Faculdade\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\src\MovieFinderCSharp-main\obj\Debug\net7.0\moviefinder.pdb
 E:\Projetos\Faculdade\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\src\MovieFinderCSharp-main\obj\Debug\net7.0\moviefinder.genruntimeconfig.cache
 E:\Projetos\Faculdade\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\src\MovieFinderCSharp-main\obj\Debug\net7.0\ref\moviefinder.dll
+C:\Users\pedro\Desenvolvimento\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\src\MovieFinderCSharp-main\bin\Debug\net7.0\BCrypt.Net-Next.dll

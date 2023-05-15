@@ -34,8 +34,10 @@ function Home() {
   const [isNameValid, setIsNameValid] = useState(true);
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true);
+  const [emailLogin, setEmailLogin] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [passwordLogin, setPasswordLogin] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [isPasswordConfirmationValid, setIsPasswordConfirmationValid] = useState(true);
   const [age, setAge] = useState('');
@@ -49,7 +51,11 @@ function Home() {
   const navigate = useNavigate()
 
   const showModalLogin = () => { setvisibleLogin(true);}
-  const closeModalLogin = () => {setvisibleLogin(false);}
+  const closeModalLogin = () => {
+    setvisibleLogin(false);
+    setEmailLogin('');
+    setPasswordLogin('');
+  }
   const showModalRegister = () => { setvisibleRegister(true);}
   const closeModalRegister = () => {
     setvisibleRegister(false);
@@ -127,6 +133,28 @@ function Home() {
         }
       }
 
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setSeverity("error");
+        setMessage(error.response.data);
+        setOpen(true);
+        console.error(error.response.data);
+      } else {
+        console.error(error);
+      }
+    }
+  }
+
+  const handleLogin = async () => {
+    try {
+      const response = await api.post('/movieFinder/login', {
+        email: emailLogin,
+        senha: passwordLogin
+      })
+      closeModalLogin();
+      setSeverity("success");
+      setMessage(response.data);
+      setOpen(true)
     } catch (error) {
       if (error.response && error.response.data) {
         setSeverity("error");
@@ -243,6 +271,16 @@ function Home() {
     }
   };
 
+  const handleEmailLoginChange = e => {
+    const emailLogin = e.target.value;
+    setEmailLogin(emailLogin);
+  }
+
+  const handlePasswordLoginChange = e => {
+    const passwordLogin = e.target.value;
+    setPasswordLogin(passwordLogin);
+  }
+
   useEffect(() => {
     getPopularMovies()
     getTopRatedMovies()
@@ -269,10 +307,10 @@ function Home() {
               <Rodal
                 visible={visibleLogin}
                 onClose={closeModalLogin}
-                showMask={true}
-                closeOnEsc={true}
-                closeMaskOnClick={true}
-                showCloseButton={true}
+                // showMask={true}
+                // closeOnEsc={true}
+                // closeMaskOnClick={true}
+                // showCloseButton={true}
                 className="rodal-login-home"
                 width={450}
                 height={500}
@@ -290,22 +328,26 @@ function Home() {
                     <div className="modal-login-input-label">
                       <Input
                         color="neutral"
+                        value={emailLogin}
                         disabled={false}
                         size="md"
+                        onChange={handleEmailLoginChange}
                         placeholder="Email..."
 
                       />
                       <Input
                         color="neutral"
+                        value={passwordLogin}
                         disabled={false}
                         placeholder="Senha..."
                         size="md"
+                        onChange={handlePasswordLoginChange}
                         type="password"
                       />
                     </div>
                     <div className="modal-login-in">
                       <p>Esqueceu a senha?</p>
-                      <Button className="modal-button-login">Entrar</Button>
+                      <Button className="modal-button-login" onClick={handleLogin}>Entrar</Button>
                     </div>
                   </div>
                 </div>

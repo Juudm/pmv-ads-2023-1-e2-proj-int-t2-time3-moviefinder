@@ -70,7 +70,6 @@ function Resultado() {
 
   }
 
-
   const theme = createTheme({
     palette: {
       primary: {

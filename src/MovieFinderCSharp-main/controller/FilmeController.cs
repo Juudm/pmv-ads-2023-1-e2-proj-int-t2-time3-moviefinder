@@ -145,7 +145,7 @@ public class FilmeController : ControllerBase
         var loginValido = await _usuarioService.Login(usuarioDto);
         if (loginValido)
         {
-            return Ok("Login com sucesso!");
+            return Ok("Login efetuado com sucesso!");
         }
 
         return Unauthorized("Credenciais inválidas!");
