@@ -121,10 +121,21 @@ public class FilmeController : ControllerBase
         
         if (filmeFavoritado)
         {
-            return Ok("Filme favoritado com sucesso!");
+            var responseOk = new
+            {
+                Message = "Filme favoritado com sucesso!",
+                Data = filmeDto.Title
+            };
+            return Ok(responseOk);
         }
+        
+        var responseErro = new
+        {
+            Message = "Filme já favoritado!",
+            Data = filmeDto.Title
+        };
 
-        return BadRequest("Filme já favoritado!");
+        return BadRequest(responseErro);
 
     }
     
@@ -134,10 +145,20 @@ public class FilmeController : ControllerBase
         var cadastrarUsuario = await _usuarioService.CadastrarUsuario(usuario);
         if (cadastrarUsuario)
         {
-            return Ok("Usuario cadastrado com sucesso!");
+            var responseOk = new
+            {
+                Message = "Usuario cadastrado com sucesso!",
+                Data = usuario.Email
+            };
+            return Ok(responseOk);
         }
+        var responseErro = new
+        {
+            Message = "Já existe usuário cadastrado com esse endereço de e-mail!",
+            Data = usuario.Email
+        };
 
-        return BadRequest("Já existe usuário cadastrado com esse endereço de e-mail!");
+        return BadRequest(responseErro);
     }
     
     [HttpPost("login")]
@@ -146,14 +167,25 @@ public class FilmeController : ControllerBase
         var usuario = await _usuarioService.Login(usuarioDto);
         if (usuario == null)
         {
-            return Unauthorized("Credenciais inválidas!");
+            var responseErro = new
+            {
+                Message = "Credenciais inválidas!",
+                Data = usuarioDto.Email
+            };
+            
+            return Unauthorized(responseErro);
         }
 
         var isSenhaCorreta = BCrypt.Net.BCrypt.Verify(usuarioDto.Senha, usuario.Senha);
 
         if (!isSenhaCorreta)
         {
-            return Unauthorized("Credenciais inválidas!");
+            var responseErro = new
+            {
+                Message = "Credenciais inválidas!",
+                Data = usuarioDto.Email
+            };
+            return Unauthorized(responseErro);
         }
         
         var claims = new List<Claim>
@@ -175,6 +207,12 @@ public class FilmeController : ControllerBase
 
         await HttpContext.SignInAsync(principal, props);
 
-        return Ok("Login efetuado com sucesso!");
+        var responseOk = new
+        {
+            Message = "Login efetuado com sucesso!",
+            Data = usuario.Nome
+        };
+        
+        return Ok(responseOk);
     }
 }

@@ -11,6 +11,7 @@
       <Content Remove="dto\filme\NovaPasta\**" />
       <EmbeddedResource Remove="dto\filme\NovaPasta\**" />
       <None Remove="dto\filme\NovaPasta\**" />
+      <Compile Remove="dto\ResponseDto.cs" />
     </ItemGroup>
 
     <ItemGroup>

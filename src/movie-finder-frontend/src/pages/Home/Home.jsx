@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {api} from "../../services/api";
+import Cookies from 'js-cookie';
 
 import {Swiper, SwiperSlide} from "swiper/react";
 import {MdKeyboardArrowRight} from "react-icons/Md"
@@ -24,7 +25,7 @@ import Footer from '../../components/Footer/Footer';
 SwiperCore.use([Virtual, Navigation, Pagination]);
 
 function Home() {
-  
+
   const [visibleLogin, setvisibleLogin] = useState(false)
   const [visibleRegister, setvisibleRegister] = useState(false)
   const [popularMovies, setPopularMovies ] = useState([])
@@ -48,7 +49,8 @@ function Home() {
   const [message, setMessage] = useState('');
   const [severity, setSeverity] = useState('');
   const [isLogged, setIsLogged] = useState(false);
-  
+  const [user, setUser] = useState('')
+
   const navigate = useNavigate()
 
   const showModalLogin = () => { setvisibleLogin(true);}
@@ -98,9 +100,9 @@ function Home() {
         })
         closeModalRegister()
         setSeverity("success");
-        setMessage(response.data);
+        setMessage(response.data.message);
         setOpen(true)
-        console.log(response.data);
+        console.log(response.data.message);
       } else {
         if (genre === '') {
           setIsGenreValid(false);
@@ -137,9 +139,9 @@ function Home() {
     } catch (error) {
       if (error.response && error.response.data) {
         setSeverity("error");
-        setMessage(error.response.data);
+        setMessage(error.response.data.message);
         setOpen(true);
-        console.error(error.response.data);
+        console.error(error.response.data.message);
       } else {
         console.error(error);
       }
@@ -154,14 +156,19 @@ function Home() {
       })
       closeModalLogin();
       setSeverity("success");
-      setMessage(response.data);
-      setOpen(true)
+      setMessage(response.data.message);
+      setOpen(true);
+
+      setIsLogged(true);
+      setUser(response.data.data);
+      localStorage.setItem('user', response.data.data);
+
     } catch (error) {
       if (error.response && error.response.data) {
         setSeverity("error");
-        setMessage(error.response.data);
+        setMessage(error.response.data.message);
         setOpen(true);
-        console.error(error.response.data);
+        console.error(error.response.data.message);
       } else {
         console.error(error);
       }
@@ -182,10 +189,10 @@ function Home() {
     const response = await api.get('/movieFinder/movie/top_rated')
     setTopRatedMovies(response.data)
   }
-  
+
   const getGenreList = async () => {
     const response = await api.get('/movieFinder/genre/list')
-    const { genres } = response.data 
+    const { genres } = response.data
     const promises = genres.map(async (genre) => {
       const discoverList = await getDiscoverList(genre.id)
       return {
@@ -202,7 +209,7 @@ function Home() {
     return response.data.results
   }
 
-  const gotoDetails = (movie) => { 
+  const gotoDetails = (movie) => {
     navigate(`/Resultado/${movie.id}`);
   }
 
@@ -405,7 +412,7 @@ function Home() {
                       onChange={handlePasswordConfirmationChange}
                     />
 
-                    <select                   
+                    <select
                       value={genre}
                       className={`modal-register-select ${isGenreValid ? '' : 'invalid'}`}
                       onChange={handleGenreChange}
@@ -469,7 +476,7 @@ function Home() {
           ))}
         </Swiper>
       </div>
-      
+
     <div className="content-home-body">
       <div className="content-home">
           <div className='recommendation-movies'>
@@ -499,7 +506,7 @@ function Home() {
             >
               {topRatedMovies.map((movie, index) => (
                 <SwiperSlide onClick={ () => gotoDetails(movie) }  className="swiper-cards-slide" key={movie} virtualIndex={index}>
-                  <MovieCard movie={movie} posterSize="200px" /> 
+                  <MovieCard movie={movie} posterSize="200px" />
                 </SwiperSlide>
                 ))}
             </Swiper>
@@ -531,7 +538,7 @@ function Home() {
               }}
             >
               <SwiperSlide className="swiper-cards-slide">
-                <MovieCard onClick={ () => gotoDetails(movie) } posterSize="200px" /> 
+                <MovieCard onClick={ () => gotoDetails(movie) } posterSize="200px" />
               </SwiperSlide>
             </Swiper>
           </div>
@@ -561,9 +568,9 @@ function Home() {
                 },
               }}
             >
-              {moviesByGenre.movies.map((movie) => 
+              {moviesByGenre.movies.map((movie) =>
                 <SwiperSlide onClick={ () => gotoDetails(movie) } className="swiper-cards-slide">
-                  <MovieCard movie={movie} posterSize="200px" /> 
+                  <MovieCard movie={movie} posterSize="200px" />
                 </SwiperSlide>
               )}
             </Swiper>

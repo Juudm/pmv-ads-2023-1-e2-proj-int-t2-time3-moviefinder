@@ -62,9 +62,9 @@ namespace moviefinder
 
             app.UseCors("AllowFrontEnd");
             app.UseHttpsRedirection();
+            app.UseCookiePolicy();
             app.UseAuthorization();
             app.UseAuthentication();
-            app.UseCookiePolicy();
             app.MapControllers();
             app.Run();
         }
