@@ -47,6 +47,7 @@ function Home() {
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = useState('');
   const [severity, setSeverity] = useState('');
+  const [isLogged, setIsLogged] = useState(false);
   
   const navigate = useNavigate()
 

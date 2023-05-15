@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using moviefinder.dto.usuario;
 using moviefinder.Entities;
-using moviefinder.exception;
 
 namespace moviefinder.service;
 
@@ -38,17 +36,12 @@ public class UsuarioService
         }
     }
 
-    public async Task<bool> Login(UsuarioDto usuarioDto)
+    public async Task<Usuario?> Login(UsuarioDto usuarioDto)
     {
         try
         {
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == usuarioDto.Email);
-            var isSenhaCorreta = false;
-            if (usuario != null)
-            {
-                isSenhaCorreta = BCrypt.Net.BCrypt.Verify(usuarioDto.Senha, usuario.Senha);
-            }
-            return usuario != null && isSenhaCorreta;
+            return usuario;
         }
         catch (Exception e)
         {

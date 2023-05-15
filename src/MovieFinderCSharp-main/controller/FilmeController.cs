@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using moviefinder.client;
 using moviefinder.dto;
+using moviefinder.dto.filme;
 using moviefinder.dto.genero;
 using moviefinder.dto.pessoa;
 using moviefinder.dto.provedor;
 using moviefinder.dto.recomendado;
-using Newtonsoft.Json;
-using System.Text.Json.Nodes;
-using moviefinder.dto.filme;
 using moviefinder.dto.usuario;
 using moviefinder.Entities;
 using moviefinder.service;
+using Newtonsoft.Json;
 
 namespace moviefinder.controller;
 
@@ -142,13 +143,38 @@ public class FilmeController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] UsuarioDto usuarioDto)
     {
-        var loginValido = await _usuarioService.Login(usuarioDto);
-        if (loginValido)
+        var usuario = await _usuarioService.Login(usuarioDto);
+        if (usuario == null)
         {
-            return Ok("Login efetuado com sucesso!");
+            return Unauthorized("Credenciais inválidas!");
         }
 
-        return Unauthorized("Credenciais inválidas!");
+        var isSenhaCorreta = BCrypt.Net.BCrypt.Verify(usuarioDto.Senha, usuario.Senha);
+
+        if (!isSenhaCorreta)
+        {
+            return Unauthorized("Credenciais inválidas!");
+        }
+        
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, usuario.Nome),
+            new Claim(ClaimTypes.NameIdentifier, usuario.Nome)
+        };
+
+        var usuarioIdentity = new ClaimsIdentity(claims, "login");
+
+        var principal = new ClaimsPrincipal(usuarioIdentity);
+            
+        var props = new AuthenticationProperties
+        {
+            AllowRefresh = true,
+            ExpiresUtc = DateTime.Now.ToLocalTime().AddDays(1),
+            IsPersistent = true
+        };
+
+        await HttpContext.SignInAsync(principal, props);
+
+        return Ok("Login efetuado com sucesso!");
     }
-    
 }
