@@ -98,7 +98,7 @@ function Busca() {
             <div className="teste">
               <Autocomplete
                 className='teste'
-                placeholder="Type something"
+                placeholder="Digite sua busca"
                 options={movies}
                 getOptionLabel={(option) => option.title || ''}
                 filterOptions={filterOptions}
@@ -125,6 +125,11 @@ function Busca() {
               <MenuItem onClick={orderMoviesByBestVote}> Melhores avaliados </MenuItem>
               <MenuItem onClick={orderMoviesByWorstVote}> Piores avaliados </MenuItem>
             </SubMenu>
+            <div className="sidebar-favorite-search">
+              <h3>Favoritos</h3>
+              <MenuItem>Meus Favoritos</MenuItem>
+              <MenuItem>Recomendados para você</MenuItem>
+            </div>
           </div>
         </Menu>
       </Sidebar>
