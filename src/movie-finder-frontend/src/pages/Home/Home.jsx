@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {api} from "../../services/api";
-import Cookies from 'js-cookie';
 
 import {Swiper, SwiperSlide} from "swiper/react";
 import {MdKeyboardArrowRight} from "react-icons/Md"
@@ -315,10 +314,10 @@ function Home() {
               <Rodal
                 visible={visibleLogin}
                 onClose={closeModalLogin}
-                // showMask={true}
-                // closeOnEsc={true}
-                // closeMaskOnClick={true}
-                // showCloseButton={true}
+                showMask={true}
+                closeOnEsc={true}
+                closeMaskOnClick={true}
+                showCloseButton={true}
                 className="rodal-login-home"
                 width={450}
                 height={500}
@@ -363,6 +362,10 @@ function Home() {
               <Rodal
                 visible={visibleRegister}
                 onClose={closeModalRegister}
+                showMask={true}
+                closeOnEsc={true}
+                closeMaskOnClick={true}
+                showCloseButton={true}
                 className="rodal-register-home"
                 width={450}
                 height={500}

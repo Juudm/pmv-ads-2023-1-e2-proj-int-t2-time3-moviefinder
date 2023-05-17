@@ -111,6 +111,7 @@ function Busca() {
           <div className="sidebar-filter-search">
             <h2>Filtros</h2>
             <MenuItem onClick={orderReleaseDate}>Lançamentos</MenuItem>
+            <MenuItem>Favoritados por você</MenuItem>
             <SubMenu label="Generos" >
               {genreList.map((name) => (
                 <MenuItem onClick={() => getDiscoverList(name)}>

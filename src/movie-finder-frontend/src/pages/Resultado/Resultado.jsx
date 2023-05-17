@@ -79,11 +79,9 @@ function Resultado() {
   const theme = createTheme({
     palette: {
       primary: {
-        // Purple and green play nicely together.
         main: 'rgba(255, 255, 255, 0.849)',
       },
       secondary: {
-        // This is green.A700 as hex.
         main: '#ff0000',
       },
     },
@@ -137,17 +135,19 @@ function Resultado() {
                 }}
               >
                 <div className="modal-perfil">
-                  <h1>MovieFinder</h1>
+                  <div>
+                    <h1>MovieFinder</h1>
+                  </div>
                   <div className="modal-perfil-results">
                     <FormControl>
-                      <FormLabel>Nome:</FormLabel>
+                      <FormLabel>E-mail:</FormLabel>
                       <Input
                         disabled={false}
                         size="md"
                       />
                     </FormControl>
                     <FormControl>
-                      <FormLabel>E-mail:</FormLabel>
+                      <FormLabel>Nome:</FormLabel>
                       <Input
                         disabled={false}
                         size="md"
