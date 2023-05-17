@@ -187,30 +187,22 @@ public class FilmeController : ControllerBase
             };
             return Unauthorized(responseErro);
         }
-        
-        var claims = new List<Claim>
+
+        var usuarioAuthDto = new UsuarioAuthDto
         {
-            new Claim(ClaimTypes.Name, usuario.Nome),
-            new Claim(ClaimTypes.NameIdentifier, usuario.Nome)
+            Nome = usuario.Nome,
+            Email = usuario.Email,
+            Idade = usuario.Idade,
+            Genero = usuario.Genero
         };
 
-        var usuarioIdentity = new ClaimsIdentity(claims, "login");
-
-        var principal = new ClaimsPrincipal(usuarioIdentity);
-            
-        var props = new AuthenticationProperties
-        {
-            AllowRefresh = true,
-            ExpiresUtc = DateTime.Now.ToLocalTime().AddDays(1),
-            IsPersistent = true
-        };
-
-        await HttpContext.SignInAsync(principal, props);
+        var token = TokenService.GenerateToken(usuario);
 
         var responseOk = new
         {
             Message = "Login efetuado com sucesso!",
-            Data = usuario.Nome
+            Data = usuarioAuthDto,
+            token
         };
         
         return Ok(responseOk);

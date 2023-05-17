@@ -20,6 +20,8 @@ import 'rodal/lib/rodal.css';
 
 import MovieCard from '../../components/MovieCard/MovieCard';
 import Footer from '../../components/Footer/Footer';
+import {useContext} from "react";
+import {AuthContext} from "../../contexts/AuthContext.jsx";
 
 SwiperCore.use([Virtual, Navigation, Pagination]);
 
@@ -47,8 +49,8 @@ function Home() {
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = useState('');
   const [severity, setSeverity] = useState('');
-  const [isLogged, setIsLogged] = useState(false);
-  const [user, setUser] = useState('')
+  const [isLogged, setIsLogged] = useState(Cookies.get('moviefinder-token') !== undefined);
+  const authContext = useContext(AuthContext);
 
   const navigate = useNavigate()
 
@@ -149,18 +151,15 @@ function Home() {
 
   const handleLogin = async () => {
     try {
-      const response = await api.post('/movieFinder/login', {
-        email: emailLogin,
-        senha: passwordLogin
-      })
+      const response = await authContext.logIn(emailLogin, passwordLogin);
+      navigate('/');
       closeModalLogin();
       setSeverity("success");
-      setMessage(response.data.message);
+      setMessage(response.message);
       setOpen(true);
+      console.log()
 
       setIsLogged(true);
-      setUser(response.data.data);
-      localStorage.setItem('user', response.data.data);
 
     } catch (error) {
       if (error.response && error.response.data) {
@@ -309,8 +308,15 @@ function Home() {
               </Link>
             </div>
             <div className='header-right'>
-              <h2 onClick={showModalRegister}>Cadastro</h2>
-              <h2 onClick={showModalLogin}>Login</h2>
+              {isLogged ? (
+                  <span>Teste</span>
+              ) :
+                  <>
+                    <h2 onClick={showModalRegister}>Cadastro</h2>
+                    <h2 onClick={showModalLogin}>Login</h2>
+                  </>
+              }
+
               <Rodal
                 visible={visibleLogin}
                 onClose={closeModalLogin}

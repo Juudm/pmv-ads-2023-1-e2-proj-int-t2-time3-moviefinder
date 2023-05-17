@@ -1,8 +1,13 @@
+using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using moviefinder.client;
 using moviefinder.Entities;
 using moviefinder.service;
+using moviefinder.util;
 
 namespace moviefinder
 {
@@ -28,18 +33,25 @@ namespace moviefinder
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.Configure<CookiePolicyOptions>(options =>
+            var key = Encoding.ASCII.GetBytes(Key.Secret);
+            
+            builder.Services.AddAuthentication(x =>
             {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
 
-            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    options.AccessDeniedPath = "/Account/AccessDenied/";
-                    // options.LoginPath = "/Account/Login";
-                });
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowFrontEnd",
