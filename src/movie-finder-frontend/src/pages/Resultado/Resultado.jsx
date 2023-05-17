@@ -8,15 +8,21 @@ import MovieCard from '../../components/MovieCard/MovieCard'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { GoSearch } from "react-icons/go"
 import { MdKeyboardArrowRight } from "react-icons/Md"
-import { BsListStars, BsFillCircleFill } from "react-icons/bs"
+import { BsFillCircleFill } from "react-icons/bs"
 import { MdOutlineFavorite } from "react-icons/Md"
 import { Typography, CircularProgress } from '@mui/material';
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { FaUserAlt } from "react-icons/fa"
 
 import Box from '@mui/material/Box';
 import Rodal from 'rodal';
 import moment from 'moment/moment';
+import Input from '@mui/joy/Input';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
 
 import "swiper/css";
 import "swiper/css/scrollbar";
@@ -113,7 +119,7 @@ function Resultado() {
           </div>
           <div className="results-header-right">
             <span onClick={showModalFavorites}>
-              <BsListStars/>
+              <FaUserAlt/>
             </span>
             <Rodal
                 visible={visibleFavorites}
@@ -123,15 +129,42 @@ function Resultado() {
                 closeMaskOnClick={true}
                 showCloseButton={true}
                 className="rodal-favorites-results"
-                width={600}
-                height={600}
+                width={450}
+                height={450}
                 customStyles={{
                   background: 'linear-gradient(45deg, rgba(6,35,64,1) 24%, rgba(6,10,64,1) 49%, rgba(11,4,46,1) 68%)',
                   borderRadius: '10px',
                 }}
               >
-                <div className="modal-favorites-results">
+                <div className="modal-perfil">
                   <h1>MovieFinder</h1>
+                  <div className="modal-perfil-results">
+                    <FormControl>
+                      <FormLabel>Nome:</FormLabel>
+                      <Input
+                        disabled={false}
+                        size="md"
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>E-mail:</FormLabel>
+                      <Input
+                        disabled={false}
+                        size="md"
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Senha:</FormLabel>
+                      <Input
+                        disabled={false}
+                        size="md"
+                        type="password"
+                      />
+                    </FormControl>
+                    <div className='modal-perfil-results-button'>
+                      <Button className="modal-button-perfil" >Atualizar</Button>
+                    </div>
+                  </div>
                 </div>
               </Rodal>
           </div>
