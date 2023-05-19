@@ -49,8 +49,8 @@ function Home() {
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = useState('');
   const [severity, setSeverity] = useState('');
-  const [isLogged, setIsLogged] = useState(Cookies.get('moviefinder-token') !== undefined);
-  const authContext = useContext(AuthContext);
+  // const [isLogged, setIsLogged] = useState(Cookies.get('moviefinder-token') !== undefined);
+  const { logIn } = useContext(AuthContext);
 
   const navigate = useNavigate()
 
@@ -151,15 +151,14 @@ function Home() {
 
   const handleLogin = async () => {
     try {
-      const response = await authContext.logIn(emailLogin, passwordLogin);
+      const response = await logIn(emailLogin, passwordLogin);
       navigate('/');
       closeModalLogin();
       setSeverity("success");
       setMessage(response.message);
       setOpen(true);
-      console.log()
 
-      setIsLogged(true);
+      console.log(authContext.authenticated);
 
     } catch (error) {
       if (error.response && error.response.data) {
@@ -308,14 +307,8 @@ function Home() {
               </Link>
             </div>
             <div className='header-right'>
-              {isLogged ? (
-                  <span>Teste</span>
-              ) :
-                  <>
-                    <h2 onClick={showModalRegister}>Cadastro</h2>
-                    <h2 onClick={showModalLogin}>Login</h2>
-                  </>
-              }
+                <h2 onClick={showModalRegister}>Cadastro</h2>
+                <h2 onClick={showModalLogin}>Login</h2>
 
               <Rodal
                 visible={visibleLogin}
