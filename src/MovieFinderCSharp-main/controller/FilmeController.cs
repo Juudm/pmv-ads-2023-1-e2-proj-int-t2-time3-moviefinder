@@ -1,6 +1,9 @@
-﻿using System.Security.Claims;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Net;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using moviefinder.client;
 using moviefinder.dto;
 using moviefinder.dto.filme;
@@ -24,8 +27,9 @@ public class FilmeController : ControllerBase
     private readonly string _apiLanguage;
     private readonly FilmeService _filmeService;
     private readonly UsuarioService _usuarioService;
-    
-    public FilmeController(TheMovieDataBaseClient theMovieDataBaseClient, FilmeService filmeService, UsuarioService usuarioService)
+
+    public FilmeController(TheMovieDataBaseClient theMovieDataBaseClient, FilmeService filmeService,
+        UsuarioService usuarioService)
     {
         _theMovieDataBaseClient = theMovieDataBaseClient;
         _apiKey = "a99efb9137ad32d6eb76bc2453ba6c28";
@@ -38,7 +42,7 @@ public class FilmeController : ControllerBase
     public async Task<IActionResult> ListPopularityMovies()
     {
         var response = await _theMovieDataBaseClient.ListPopularityMovies(_apiKey, _apiLanguage);
-        var moviesByPopularity = JsonConvert.DeserializeObject<ListaPopularFilmes>(response); 
+        var moviesByPopularity = JsonConvert.DeserializeObject<ListaPopularFilmes>(response);
         return Ok(moviesByPopularity.Results);
     }
 
@@ -83,7 +87,7 @@ public class FilmeController : ControllerBase
     }
 
     [HttpGet("discover/movie")]
-        public async Task<IActionResult> DiscoverMovies([FromQuery] string genreId)
+    public async Task<IActionResult> DiscoverMovies([FromQuery] string genreId)
     {
         var response = await _theMovieDataBaseClient.DiscoverMovies(_apiKey, _apiLanguage, genreId);
         var discover = JsonConvert.DeserializeObject<ListaDiscoverFilmeDto>(response);
@@ -118,7 +122,7 @@ public class FilmeController : ControllerBase
     public async Task<IActionResult> FavoritarFilme(string userId, [FromBody] FilmeDto filmeDto)
     {
         var filmeFavoritado = await _filmeService.FavoritarFilme(userId, filmeDto);
-        
+
         if (filmeFavoritado)
         {
             var responseOk = new
@@ -128,7 +132,7 @@ public class FilmeController : ControllerBase
             };
             return Ok(responseOk);
         }
-        
+
         var responseErro = new
         {
             Message = "Filme já favoritado!",
@@ -136,9 +140,8 @@ public class FilmeController : ControllerBase
         };
 
         return BadRequest(responseErro);
-
     }
-    
+
     [HttpPost("cadastrarUsuario")]
     public async Task<IActionResult> CadastrarUsuario([FromBody] Usuario usuario)
     {
@@ -152,6 +155,7 @@ public class FilmeController : ControllerBase
             };
             return Ok(responseOk);
         }
+
         var responseErro = new
         {
             Message = "Já existe usuário cadastrado com esse endereço de e-mail!",
@@ -160,7 +164,7 @@ public class FilmeController : ControllerBase
 
         return BadRequest(responseErro);
     }
-    
+
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] UsuarioDto usuarioDto)
     {
@@ -172,7 +176,7 @@ public class FilmeController : ControllerBase
                 Message = "Credenciais inválidas!",
                 Data = usuarioDto.Email
             };
-            
+
             return Unauthorized(responseErro);
         }
 
@@ -204,7 +208,28 @@ public class FilmeController : ControllerBase
             Data = usuarioAuthDto,
             token
         };
-        
+
         return Ok(responseOk);
+    }
+
+    [HttpGet("informacoesusuario")]
+    public async Task<IActionResult> InformacoesLoggedUser([FromHeader(Name = "Authorization")] string authorizationHeader)
+    {
+        if (authorizationHeader.StartsWith("Bearer "))
+        {
+            var token = authorizationHeader.Substring("Bearer ".Length);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+
+            var jwtTokenId = jwtToken.Claims.FirstOrDefault(c => c.Type.Equals("userId")).Value;
+            
+            if (!string.IsNullOrEmpty(jwtTokenId))
+            {
+                var usuarioAuthDto = await _usuarioService.InformacoesUser(jwtTokenId);
+
+                return Ok(usuarioAuthDto);
+            }
+        }
+        return Unauthorized();
     }
 }

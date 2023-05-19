@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.IdentityModel.Tokens.Jwt;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using moviefinder.dto.usuario;
 using moviefinder.Entities;
+using Snacker.Domain.Entities;
 
 namespace moviefinder.service;
 
@@ -12,7 +15,7 @@ public class UsuarioService
     {
         _context = context;
     }
-    
+
     public async Task<bool> CadastrarUsuario(Usuario usuario)
     {
         try
@@ -27,7 +30,6 @@ public class UsuarioService
             _context.Add(usuario);
             await _context.SaveChangesAsync();
             return true;
-
         }
         catch (Exception e)
         {
@@ -48,5 +50,21 @@ public class UsuarioService
             Console.WriteLine($"Ocorreu um erro: {e.Message}");
             throw;
         }
+    }
+
+    public async Task<UsuarioAuthDto> InformacoesUser(string userId)
+    {
+        var usuario = await _context.Usuarios.SingleOrDefaultAsync(u => u.Id == int.Parse(userId));
+        var usuarioAuthDto = new UsuarioAuthDto();
+        if (usuario != null)
+        
+        {
+            usuarioAuthDto.Nome = usuario.Nome;
+            usuarioAuthDto.Email = usuario.Email;
+            usuarioAuthDto.Idade = usuario.Idade;
+            usuarioAuthDto.Genero = usuario.Genero;
+        }
+
+        return usuarioAuthDto;
     }
 }
