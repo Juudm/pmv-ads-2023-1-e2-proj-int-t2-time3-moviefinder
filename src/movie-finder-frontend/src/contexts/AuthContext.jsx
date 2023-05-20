@@ -44,8 +44,16 @@ export function AuthProvider({children}) {
         return response.data;
     }
 
+    function logOut() {
+        Cookies.remove('moviefinder-token');
+        localStorage.removeItem("user");
+
+        setIsAuthenticated(false);
+        setUserDto(null);
+    }
+
     return (
-        <AuthContext.Provider value={{ authenticated, logIn, userDto }}>
+        <AuthContext.Provider value={{ authenticated, logIn, logOut, userDto }}>
             {children}
         </AuthContext.Provider>
     )

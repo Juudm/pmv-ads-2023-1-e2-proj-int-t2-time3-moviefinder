@@ -49,7 +49,6 @@ function Home() {
     const [open, setOpen] = React.useState(false);
     const [message, setMessage] = useState('');
     const [severity, setSeverity] = useState('');
-    // const [isLogged, setIsLogged] = useState(Cookies.get('moviefinder-token') !== undefined);
     const authContext = useContext(AuthContext);
     const {userDto} = authContext;
 
@@ -175,6 +174,10 @@ function Home() {
                 console.error(error);
             }
         }
+    }
+
+    const logout = () => {
+        authContext.logOut();
     }
 
     function validateEmail(email) {
@@ -315,7 +318,10 @@ function Home() {
                     <div className='header-right'>
                         <div>
                             {userDto !== null ? (
-                                <div>{userDto.nome}</div>
+                                <div style={{display: 'flex'}}>
+                                    <h2 style={{paddingRight: '15px'}}>{userDto.nome}</h2>
+                                    <h2 onClick={logout}>Logout</h2>
+                                </div>
                             ) : (
                                 <div style={{display: 'flex'}}>
                                     <h2 onClick={showModalRegister} style={{paddingRight: '15px'}}>Cadastro</h2>
