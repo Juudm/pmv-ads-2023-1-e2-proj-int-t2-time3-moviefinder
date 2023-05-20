@@ -7,7 +7,7 @@ export const AuthContext = createContext({})
 export function AuthProvider({children}) {
 
     const [userDto, setUserDto] = useState(null);
-    const [authenticated, isAuthenticated] = useState(false);
+    const [authenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         const getUserInformation = async () => {
@@ -21,6 +21,7 @@ export function AuthProvider({children}) {
                             },
                         });
                     setUserDto(response.data);
+                    setIsAuthenticated(true);
                 } catch (error) {
                     console.error(error);
                 }
@@ -35,7 +36,7 @@ export function AuthProvider({children}) {
             senha: passwordLogin
         });
 
-        isAuthenticated(true);
+        setIsAuthenticated(true);
         setUserDto(response.data.data)
 
         Cookies.set('moviefinder-token', response.data.token.token, {expires: 2})

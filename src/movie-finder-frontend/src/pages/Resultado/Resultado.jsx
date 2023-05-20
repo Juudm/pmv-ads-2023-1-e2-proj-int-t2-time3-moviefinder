@@ -1,5 +1,5 @@
 import Footer from '../../components/Footer/Footer'
-import { useEffect, useState } from 'react'
+import {useContext, useEffect, useState} from 'react'
 import { api } from "../../services/api";
 
 import { Link, useParams, useNavigate } from 'react-router-dom'
@@ -27,6 +27,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import "swiper/css";
 import "swiper/css/scrollbar";
 import './Resultado.css'
+import {AuthContext} from "../../contexts/AuthContext.jsx";
 
 function Resultado() {
 
@@ -36,6 +37,8 @@ function Resultado() {
   const [recomendationMovies, setRecomendationMovies ] = useState([])
   const [movie, setMovie ] = useState({})
   const [discoverList, setDiscoverList ] = useState([])
+  const authContext = useContext(AuthContext);
+  const {authenticated} = authContext;
 
   const navigate = useNavigate()
 
@@ -116,9 +119,9 @@ function Resultado() {
             </Link>
           </div>
           <div className="results-header-right">
-            <span onClick={showModalFavorites}>
+            {authenticated && (<span onClick={showModalFavorites}>
               <FaUserAlt/>
-            </span>
+            </span>)}
             <Rodal
                 visible={visibleFavorites}
                 onClose={closeModalFavorites}
@@ -183,12 +186,12 @@ function Resultado() {
               {movie?.providers?.results?.br?.flatrate[0].logoPath ? 
               <img src={"https://image.tmdb.org/t/p/original/" + movie?.providers?.results?.br?.flatrate[0].logoPath} alt="plataforma" />
               : <p>?</p> }
-              <div className='results-movie-details-favorite'>
+              {authenticated && (<div className='results-movie-details-favorite'>
                 <h4 className='results-movie-details-favorite-circle' onClick={ starFillCheck }>
                   {starFill ? <span><MdOutlineFavorite className='results-movie-details-favorite-icon' style={{color: "rgba(255, 0, 0, 0.596"}} /></span> :
-                  <span><MdOutlineFavorite className='results-movie-details-favorite-icon' /></span>}
+                      <span><MdOutlineFavorite className='results-movie-details-favorite-icon' /></span>}
                 </h4>
-              </div>
+              </div>)}
               <div className='results-movie-details-card-streaming-text'>
                 <p>Disponivel em</p>
                 <h2>Asista agora</h2>
