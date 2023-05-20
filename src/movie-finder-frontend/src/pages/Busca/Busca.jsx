@@ -1,7 +1,7 @@
 import './Busca.css'
 
 import {api} from "../../services/api.js";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import MovieCard from '../../components/MovieCard/MovieCard'
 
@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem, SubMenu, sidebarClasses } from 'react-pro-sidebar';
 import FormControl from '@mui/joy/FormControl';
 import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
+import {AuthContext} from "../../contexts/AuthContext.jsx";
 
 function Busca() {
 
@@ -16,6 +17,8 @@ function Busca() {
   const [movies, setMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [genreList, setGenreList] = useState([])
+  const authContext = useContext(AuthContext);
+  const {authenticated} = authContext;
   
   const navigate = useNavigate()
 
@@ -127,8 +130,14 @@ function Busca() {
             </SubMenu>
             <div className="sidebar-favorite-search">
               <h3>Favoritos</h3>
-              <MenuItem>Meus Favoritos</MenuItem>
-              <MenuItem>Recomendados para você</MenuItem>
+              {authenticated ? (
+                  <>
+                    <MenuItem>Meus Favoritos</MenuItem>
+                    <MenuItem>Recomendados para você</MenuItem>
+                  </>
+              ) : (
+                  <p className='results-message-login'>Faça login ou cadastre-se para favoritar suas preferências e ver recomendações!</p>
+              )}
             </div>
           </div>
         </Menu>

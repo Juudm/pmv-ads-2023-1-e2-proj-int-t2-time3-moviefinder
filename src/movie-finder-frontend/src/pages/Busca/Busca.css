@@ -56,6 +56,14 @@
     font-weight: 900;
 }
 
+.results-message-login{
+    text-align: center;
+    font-weight: 400;
+    padding-top: 20px;
+    line-height: 24px;
+    margin: 10px;
+}
+
 .sidebar-menu-search {
     display: flex;
     justify-content: center;

@@ -51,6 +51,7 @@ function Home() {
     const [severity, setSeverity] = useState('');
     const authContext = useContext(AuthContext);
     const {userDto} = authContext;
+    const {authenticated} = authContext;
 
     const navigate = useNavigate()
 
@@ -538,34 +539,38 @@ function Home() {
                     </div>
 
                     <div className='recommendation-movies'>
-                        <div className='recommendation-movies-text'>
-                            <h2>Filmes recomendados</h2>
-                            <MdKeyboardArrowRight/>
-                        </div>
-                        <Swiper
-                            loop={true}
-                            loopPreventsSliding={true}
-                            navigation={true}
-                            virtual
-                            breakpoints={{
-                                "@0.00": {
-                                    slidesPerView: 1,
-                                },
-                                "@0.75": {
-                                    slidesPerView: 3,
-                                },
-                                "@1.00": {
-                                    slidesPerView: 4,
-                                },
-                                "@1.50": {
-                                    slidesPerView: 8,
-                                },
-                            }}
-                        >
-                            <SwiperSlide className="swiper-cards-slide">
-                                <MovieCard onClick={() => gotoDetails(movie)} posterSize="200px"/>
-                            </SwiperSlide>
-                        </Swiper>
+                        {authenticated && (
+                            <>
+                                <div className='recommendation-movies-text'>
+                                    <h2>Filmes recomendados</h2>
+                                    <MdKeyboardArrowRight/>
+                                </div>
+                                <Swiper
+                                    loop={true}
+                                    loopPreventsSliding={true}
+                                    navigation={true}
+                                    virtual
+                                    breakpoints={{
+                                        "@0.00": {
+                                            slidesPerView: 1,
+                                        },
+                                        "@0.75": {
+                                            slidesPerView: 3,
+                                        },
+                                        "@1.00": {
+                                            slidesPerView: 4,
+                                        },
+                                        "@1.50": {
+                                            slidesPerView: 8,
+                                        },
+                                    }}
+                                >
+                                    <SwiperSlide className="swiper-cards-slide">
+                                        <MovieCard onClick={() => gotoDetails(movie)} posterSize="200px"/>
+                                    </SwiperSlide>
+                                </Swiper>
+                            </>
+                        )}
                     </div>
                     {discoverList.map((moviesByGenre) => (
                         <div className='recommendation-movies'>
