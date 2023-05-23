@@ -5,7 +5,7 @@ namespace moviefinder.dto;
 
 public class ProvedoresResultadoDto
 {
-    public ProvedorPaisDto BR { get; set; }
+    public ProvedorPaisDto? BR { get; set; }
 
     public ProvedoresResultadoDto(ProvedorPaisDto br)
     {

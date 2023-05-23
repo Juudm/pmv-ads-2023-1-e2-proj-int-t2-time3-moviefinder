@@ -28,6 +28,7 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import './Resultado.css'
 import {AuthContext} from "../../contexts/AuthContext.jsx";
+import Cookies from 'js-cookie';
 
 function Resultado() {
 
@@ -39,6 +40,24 @@ function Resultado() {
   const [discoverList, setDiscoverList ] = useState([])
   const authContext = useContext(AuthContext);
   const {authenticated} = authContext;
+  const token = Cookies.get('moviefinder-token');
+  const { title, genres, status, credits, overview, providers, posterPath, releaseDate, backdropPath, originalTitle, recommendations, spokenLanguages, originalLanguage } = movie;
+
+  const requestData = {
+    title: title,
+    genres: genres,
+    status: status,
+    credits: credits,
+    overview: overview,
+    providers: providers,
+    posterPath: posterPath,
+    releaseDate: releaseDate,
+    backdropPath: backdropPath,
+    originalTitle: originalTitle,
+    recommendations: recommendations,
+    spokenLanguages: spokenLanguages,
+    originalLanguage: originalLanguage
+  };
 
   const navigate = useNavigate()
 
@@ -53,8 +72,24 @@ function Resultado() {
 
   const showModalFavorites = () => { setvisibleFavorites(true);}
   const closeModalFavorites = () => {setvisibleFavorites(false);}
-  
-  const starFillCheck = () =>  setStarFill(!starFill) 
+
+  const favoriteMovie  = async () => {
+
+    console.log(movie);
+    const response = await api.post('/movieFinder/favoritarFilme', movie, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    console.log(response);
+    return response;
+  };
+
+  const starFillCheck = () =>  {
+    setStarFill(!starFill)
+    favoriteMovie()
+  }
 
   const gotoDetails = (movie) => { 
     navigate(`/Resultado/${movie.id}`);

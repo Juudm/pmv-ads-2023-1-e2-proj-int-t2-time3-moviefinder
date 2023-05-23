@@ -118,28 +118,45 @@ public class FilmeController : ControllerBase
         return Ok(recommendations);
     }
 
-    [HttpPost("favoritarFilme/{userId}")]
-    public async Task<IActionResult> FavoritarFilme(string userId, [FromBody] FilmeDto filmeDto)
+    [HttpPost("favoritarFilme")]
+    public async Task<IActionResult> FavoritarFilme([FromHeader(Name = "Authorization")] string authorizationHeader, [FromBody] FilmeDto filmeDto)
     {
-        var filmeFavoritado = await _filmeService.FavoritarFilme(userId, filmeDto);
-
-        if (filmeFavoritado)
+        if (authorizationHeader.StartsWith("Bearer "))
         {
-            var responseOk = new
+            var token = authorizationHeader.Substring("Bearer ".Length);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+
+            var userId = jwtToken.Claims.FirstOrDefault(c => c.Type.Equals("userId")).Value;
+            
+            if (!string.IsNullOrEmpty(userId))
             {
-                Message = "Filme favoritado com sucesso!",
-                Data = filmeDto.Title
-            };
-            return Ok(responseOk);
+                var filmeFavoritado = await _filmeService.FavoritarFilme(userId, filmeDto);
+
+                if (filmeFavoritado)
+                {
+                    var responseOk = new
+                    {
+                        Message = "Filme favoritado com sucesso!",
+                        Data = filmeDto.Title
+                    };
+                    return Ok(responseOk);
+                }
+                else
+                {
+                    var responseErro = new
+                    {
+                        Message = "Filme já favoritado!",
+                        Data = filmeDto.Title
+                    }; 
+                    
+                    return BadRequest(responseErro);
+                }
+            }
+            
         }
 
-        var responseErro = new
-        {
-            Message = "Filme já favoritado!",
-            Data = filmeDto.Title
-        };
-
-        return BadRequest(responseErro);
+        return Unauthorized();
     }
 
     [HttpPost("cadastrarUsuario")]

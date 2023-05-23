@@ -48,7 +48,7 @@ function Home() {
     const [isGenreValid, setIsGenreValid] = useState(true);
     const [open, setOpen] = React.useState(false);
     const [message, setMessage] = useState('');
-    const [severity, setSeverity] = useState('');
+    const [severity, setSeverity] = useState('success');
     const authContext = useContext(AuthContext);
     const {userDto} = authContext;
     const {authenticated} = authContext;
