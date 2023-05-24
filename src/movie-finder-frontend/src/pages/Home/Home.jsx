@@ -529,7 +529,7 @@ function Home() {
                                 },
                             }}
                         >
-                            {topRatedMovies.map((movie, index) => (
+                            {topRatedMovies.map((movie, index) => movie.posterPath && (
                                 <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide"
                                              key={movie} virtualIndex={index}>
                                     <MovieCard movie={movie} posterSize="200px"/>
@@ -598,7 +598,7 @@ function Home() {
                                     },
                                 }}
                             >
-                                {moviesByGenre.movies.map((movie) =>
+                                {moviesByGenre.movies.map((movie) => movie.posterPath && 
                                     <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide">
                                         <MovieCard movie={movie} posterSize="200px"/>
                                     </SwiperSlide>

@@ -455,3 +455,4 @@ C:\Users\Juliana Dutra\Desenvolvimento\Repositorios\pmv-ads-2023-1-e2-proj-int-t
 C:\Users\Juliana Dutra\Desenvolvimento\Repositorios\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\src\MovieFinderCSharp-main\obj\Debug\net7.0\moviefinder.pdb
 C:\Users\Juliana Dutra\Desenvolvimento\Repositorios\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\src\MovieFinderCSharp-main\obj\Debug\net7.0\moviefinder.genruntimeconfig.cache
 C:\Users\Juliana Dutra\Desenvolvimento\Repositorios\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\src\MovieFinderCSharp-main\obj\Debug\net7.0\ref\moviefinder.dll
+E:\Projetos\Faculdade\pmv-ads-2023-1-e2-proj-int-t2-time3-moviefinder\src\MovieFinderCSharp-main\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

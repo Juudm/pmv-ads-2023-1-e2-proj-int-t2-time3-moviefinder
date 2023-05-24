@@ -341,7 +341,7 @@ function Resultado() {
               <div className='content-body-details-elenco-card-img-name'>
                 <div className='content-body-details-elenco-card-img-name-inside'>
                   {actor.profilePath ?
-                  <img src={"https://image.tmdb.org/t/p/w185/" + actor.profilePath} alt="foto ator" />
+                  <img src={"https://image.tmdb.org/t/p/w185/" + actor?.profilePath} alt="foto ator" />
                   : <img src="https://i.mydramalist.com/23E3Of.jpg" style={{width: "185px", height: "277px"}} alt="" />
                   }
                   <p>{actor.name }</p>
@@ -391,7 +391,7 @@ function Resultado() {
               },
             }}
           >
-          {recomendationMovies.map((movie, index) => movie.posterPath && (
+          {recomendationMovies?.map((movie, index) => movie.posterPath && (
             <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide"virtualIndex={index}>
               <MovieCard movie={movie} posterSize="200px" /> 
             </SwiperSlide>
@@ -423,7 +423,7 @@ function Resultado() {
               },
             }}
           >
-            {discoverList.map(movie => (
+            {discoverList?.map(movie => movie.posterPath && (
               <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide" >
                 <MovieCard movie={movie} posterSize="200px" /> 
               </SwiperSlide>
