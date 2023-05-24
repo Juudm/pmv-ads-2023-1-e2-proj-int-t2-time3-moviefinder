@@ -11,6 +11,8 @@ import Input from '@mui/joy/Input';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
 
 import './Home.css'
 import "swiper/css";
@@ -29,6 +31,7 @@ function Home() {
 
     const [visibleLogin, setvisibleLogin] = useState(false)
     const [visibleRegister, setvisibleRegister] = useState(false)
+    const [visibleFavorites, setvisibleFavorites] = useState(false)
     const [popularMovies, setPopularMovies] = useState([])
     const [topRatedMovies, setTopRatedMovies] = useState([])
     const [discoverList, setDiscoverList] = useState([])
@@ -52,6 +55,9 @@ function Home() {
     const authContext = useContext(AuthContext);
     const {userDto} = authContext;
     const {authenticated} = authContext;
+
+    const showModalFavorites = () => { setvisibleFavorites(true);}
+    const closeModalFavorites = () => {setvisibleFavorites(false);}
 
     const navigate = useNavigate()
 
@@ -162,8 +168,6 @@ function Home() {
             setSeverity("success");
             setMessage(response.message);
             setOpen(true);
-
-            console.log(userDto);
 
         } catch (error) {
             if (error.response && error.response.data) {
@@ -320,7 +324,7 @@ function Home() {
                         <div>
                             {userDto !== null ? (
                                 <div style={{display: 'flex'}}>
-                                    <h2 style={{paddingRight: '15px'}}>{userDto.nome}</h2>
+                                    <h2 style={{paddingRight: '15px'}} onClick={showModalFavorites}>{userDto.nome}</h2>
                                     <h2 onClick={logout}>Logout</h2>
                                 </div>
                             ) : (
@@ -330,8 +334,54 @@ function Home() {
                                 </div>
                             )}
                         </div>
-
-
+                        <Rodal
+                            visible={visibleFavorites}
+                            onClose={closeModalFavorites}
+                            showMask={true}
+                            closeOnEsc={true}
+                            closeMaskOnClick={true}
+                            showCloseButton={true}
+                            className="rodal-favorites-results"
+                            width={450}
+                            height={450}
+                            customStyles={{
+                            background: 'linear-gradient(45deg, rgba(6,35,64,1) 24%, rgba(6,10,64,1) 49%, rgba(11,4,46,1) 68%)',
+                            borderRadius: '10px',
+                            }}
+                        >
+                            <div className="modal-perfil">
+                            <div>
+                                <h1>MovieFinder</h1>
+                            </div>
+                            <div className="modal-perfil-results">
+                                <FormControl>
+                                <FormLabel>E-mail:</FormLabel>
+                                <Input
+                                    disabled={false}
+                                    size="md"
+                                />
+                                </FormControl>
+                                <FormControl>
+                                <FormLabel>Nome:</FormLabel>
+                                <Input
+                                    disabled={false}
+                                    size="md"
+                                />
+                                </FormControl>
+                                <FormControl>
+                                <FormLabel>Senha:</FormLabel>
+                                <Input
+                                    disabled={false}
+                                    size="md"
+                                    type="password"
+                                />
+                                </FormControl>
+                                <div className='modal-perfil-results-button'>
+                                <Button className="modal-button-perfil" >Atualizar</Button>
+                                </div>
+                            </div>
+                            </div>
+                        </Rodal>
                         <Rodal
                             visible={visibleLogin}
                             onClose={closeModalLogin}

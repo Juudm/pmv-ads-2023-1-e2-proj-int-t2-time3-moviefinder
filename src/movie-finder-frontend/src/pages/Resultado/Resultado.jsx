@@ -42,6 +42,8 @@ function Resultado() {
   const {authenticated} = authContext;
   const token = Cookies.get('moviefinder-token');
   const { title, genres, status, credits, overview, providers, posterPath, releaseDate, backdropPath, originalTitle, recommendations, spokenLanguages, originalLanguage } = movie;
+  const {userDto} = authContext;
+
 
   const requestData = {
     title: title,
@@ -154,9 +156,10 @@ function Resultado() {
             </Link>
           </div>
           <div className="results-header-right">
-            {authenticated && (<span onClick={showModalFavorites}>
-              <FaUserAlt/>
-            </span>)}
+            {authenticated && (<h2 onClick={showModalFavorites}>
+              {userDto.nome}
+            </h2>)}
+
             <Rodal
                 visible={visibleFavorites}
                 onClose={closeModalFavorites}
