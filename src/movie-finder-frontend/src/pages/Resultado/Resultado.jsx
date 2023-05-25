@@ -7,20 +7,17 @@ import MovieCard from '../../components/MovieCard/MovieCard'
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { GoSearch } from "react-icons/go"
-import { MdKeyboardArrowRight } from "react-icons/Md"
+import { MdKeyboardArrowRight } from "react-icons/md"
 import { BsFillCircleFill } from "react-icons/bs"
-import { MdOutlineFavorite } from "react-icons/Md"
+import { MdOutlineFavorite } from "react-icons/md"
 import { Typography, CircularProgress } from '@mui/material';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaUserAlt } from "react-icons/fa"
 
 import Box from '@mui/material/Box';
 import Rodal from 'rodal';
 import moment from 'moment/moment';
 import Input from '@mui/joy/Input';
 import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 
