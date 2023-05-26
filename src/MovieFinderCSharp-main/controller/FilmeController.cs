@@ -135,12 +135,7 @@ public class FilmeController : ControllerBase
 
                 if (filmeFavoritado)
                 {
-                    var responseOk = new
-                    {
-                        Message = "Filme favoritado com sucesso!",
-                        Data = filmeDto.Title
-                    };
-                    return Ok(responseOk);
+                    return Ok(filmeFavoritado);
                 }
                 else
                 {
@@ -148,6 +143,47 @@ public class FilmeController : ControllerBase
                     {
                         Message = "Filme já favoritado!",
                         Data = filmeDto.Title
+                    };
+
+                    return BadRequest(responseErro);
+                }
+            }
+            
+        }
+
+        return Unauthorized();
+    }
+    
+    [HttpGet("favoriteList")]
+    public async Task<IActionResult> getFavoritesMoviesList([FromHeader(Name = "Authorization")] string authorizationHeader)
+    {
+        if (authorizationHeader.StartsWith("Bearer "))
+        {
+            var token = authorizationHeader.Substring("Bearer ".Length);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+
+            var userId = jwtToken.Claims.FirstOrDefault(c => c.Type.Equals("userId")).Value;
+            
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var favoritesList = await _filmeService.GetListaFilmesFavoritosByUsuario(int.Parse(userId));
+                
+                if (!favoritesList.IsNullOrEmpty())
+                {
+                    var responseOk = new
+                    {
+                        Message = "Filmes favoritos listados",
+                        Data = favoritesList
+                    };
+                    return Ok(responseOk);
+                }
+                else
+                {
+                    var responseErro = new
+                    {
+                        Message = "Erro ao buscar lista",
+                        Data = favoritesList
                     }; 
                     
                     return BadRequest(responseErro);

@@ -83,5 +83,16 @@ public class FilmeService
     
         return filmeFavorito;
     }
+    
+    public async Task<List<FilmeFavorito>> GetListaFilmesFavoritosByUsuario(int usuarioId)
+    {
+        var usuarioDb = await _context.Usuarios.FindAsync(usuarioId);
+        
+        var filmeFavoritoLista = await _context.FilmesFavoritos
+            .Where(ff => ff.IdUsuario == usuarioDb).ToListAsync();
+    
+        return filmeFavoritoLista;
+    }
+    
 }
 

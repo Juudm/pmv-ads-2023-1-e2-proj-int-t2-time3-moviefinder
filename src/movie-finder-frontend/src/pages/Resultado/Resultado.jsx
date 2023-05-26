@@ -7,9 +7,9 @@ import MovieCard from '../../components/MovieCard/MovieCard'
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { GoSearch } from "react-icons/go"
-import { MdKeyboardArrowRight } from "react-icons/md"
+import { MdKeyboardArrowRight } from "react-icons/Md"
 import { BsFillCircleFill } from "react-icons/bs"
-import { MdOutlineFavorite } from "react-icons/md"
+import { MdOutlineFavorite } from "react-icons/Md"
 import { Typography, CircularProgress } from '@mui/material';
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -38,25 +38,7 @@ function Resultado() {
   const authContext = useContext(AuthContext);
   const {authenticated} = authContext;
   const token = Cookies.get('moviefinder-token');
-  const { title, genres, status, credits, overview, providers, posterPath, releaseDate, backdropPath, originalTitle, recommendations, spokenLanguages, originalLanguage } = movie;
   const {userDto} = authContext;
-
-
-  const requestData = {
-    title: title,
-    genres: genres,
-    status: status,
-    credits: credits,
-    overview: overview,
-    providers: providers,
-    posterPath: posterPath,
-    releaseDate: releaseDate,
-    backdropPath: backdropPath,
-    originalTitle: originalTitle,
-    recommendations: recommendations,
-    spokenLanguages: spokenLanguages,
-    originalLanguage: originalLanguage
-  };
 
   const navigate = useNavigate()
 

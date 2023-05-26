@@ -1,5 +1,5 @@
 import './Footer.css'
-import { AiOutlineInstagram, AiOutlineFacebook, AiOutlineTwitter } from 'react-icons/ai'
+import { AiOutlineInstagram, AiOutlineFacebook, AiOutlineTwitter } from 'react-icons/Ai'
 
 
 function Footer() {
