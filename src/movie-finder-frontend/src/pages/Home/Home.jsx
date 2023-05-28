@@ -206,8 +206,6 @@ function Home() {
         });
 
         setRecommendedMovies(response.data)
-        console.log(recommendedMovies.results)
-        console.log(Array.isArray(recommendedMovies.results))
     }
 
     const getTopRatedMovies = async () => {
@@ -631,7 +629,7 @@ function Home() {
                                         },
                                     }}
                                 >
-                                    {recommendedMovies?.results?.map((movie) => movie.posterPath &&
+                                    {recommendedMovies?.map((movie) => movie.posterPath &&
                                         <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide">
                                             <MovieCard movie={movie} posterSize="200px"/>
                                         </SwiperSlide>

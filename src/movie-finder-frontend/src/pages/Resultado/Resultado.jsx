@@ -55,8 +55,6 @@ function Resultado() {
   const closeModalFavorites = () => {setvisibleFavorites(false);}
 
   const favoriteMovie  = async () => {
-
-    console.log(movie);
     const response = await api.post('/movieFinder/favoritarFilme', movie, {
       headers: {
         'Authorization': `Bearer ${token}`,

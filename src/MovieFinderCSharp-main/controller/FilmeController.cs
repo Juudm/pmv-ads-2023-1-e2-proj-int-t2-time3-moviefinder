@@ -124,7 +124,7 @@ public class FilmeController : ControllerBase
             var response = await _theMovieDataBaseClient.ListRecommendationsByMovie(userId, _apiKey, _apiLanguage);
             
             var recommendations = JsonConvert.DeserializeObject<RecomendadoDto>(response);
-            return Ok(recommendations);
+            return Ok(recommendations.Results);
         }
         return Unauthorized();
     }

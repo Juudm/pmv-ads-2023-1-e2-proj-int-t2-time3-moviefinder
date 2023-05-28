@@ -17,6 +17,7 @@ function Busca() {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [genreList, setGenreList] = useState([])
   const authContext = useContext(AuthContext);
@@ -95,6 +96,21 @@ function Busca() {
     setMovies(response.data)
     setFavoriteMovies(response.data)
   }
+
+  const getRecommendedMovies = async () => {
+    const response = await api.get(`/movieFinder/recommendation/list`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+    });
+    const orderMovies = [...response?.data].sort((a, b) => {
+      a = a.releaseDate.split('/').reverse().join('');
+      b = b.releaseDate.split('/').reverse().join('');
+      return b > a ? 1 : b < a ? -1 : 0;
+    })
+    setMovies(orderMovies)
+    setRecommendedMovies(response?.data)
+  }
   
   useEffect(() => {
     getPopularMovies()
@@ -146,7 +162,7 @@ function Busca() {
               {authenticated ? (
                   <>
                     <MenuItem onClick={getFavoritesList}> Meus Favoritos </MenuItem>
-                    <MenuItem> Recomendados para você </MenuItem>
+                    <MenuItem onClick={getRecommendedMovies}> Recomendados para você </MenuItem>
                   </>
               ) : (
                   <p className='results-message-login'>Faça login ou cadastre-se para favoritar suas preferências e ver recomendações!</p>
