@@ -31,10 +31,13 @@ public class FilmeDto
 
     [JsonProperty("release_date")]
     public string ReleaseDate { get; set; }
+    
+    public long Revenue { get; set; }
     public int Runtime { get; set; }
 
     [JsonProperty("spoken_languages")]
     public List<IdiomaFaladoDto> SpokenLanguages { get; set; }
+    
     public string status { get; set; }
     public string Title { get; set; }
 
@@ -51,7 +54,7 @@ public class FilmeDto
     [JsonProperty("watch/providers")]
     public ProvedoresFilmeDto Providers { get; set; }
 
-    public FilmeDto(int budget, List<GeneroDto> genres, int id, string originalLanguage, string backdropPath, string originalTitle,  string overview, double popularity, string posterPath, string releaseDate, int runtime, List<IdiomaFaladoDto> spokenLanguages, string title, double voteAverage, int voteCount, FilmeCreditosDto credits, RecomendadoDto recommendations, ProvedoresFilmeDto providers)
+    public FilmeDto(int budget, List<GeneroDto> genres, int id, string originalLanguage, string backdropPath, string originalTitle,  string overview, double popularity, string posterPath, string releaseDate, long revenue, int runtime, List<IdiomaFaladoDto> spokenLanguages, string title, double voteAverage, int voteCount, FilmeCreditosDto credits, RecomendadoDto recommendations, ProvedoresFilmeDto providers)
     {
         Budget = budget;
         Genres = genres;
@@ -61,6 +64,7 @@ public class FilmeDto
         Overview = overview;
         Popularity = popularity;
         ReleaseDate = releaseDate;
+        Revenue = revenue;
         Runtime = runtime;
         SpokenLanguages = spokenLanguages;
         Title = title;

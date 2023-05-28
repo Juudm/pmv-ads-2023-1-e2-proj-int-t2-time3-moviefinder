@@ -81,7 +81,9 @@ function Resultado() {
     const movie = response.data
     setMovie(movie)
     const genres = movie.genres.map((genre) => genre.id).join()
-    getDiscoverList(genres)
+    if (genres) {
+      getDiscoverList(genres)
+    }
   }
 
   const getDiscoverList = async (genreIds) => {
@@ -218,10 +220,10 @@ function Resultado() {
           <div className='results-movie-details-text' >
             <div className='results-movie-details-title-subdetails'>
               <div className='results-movie-details-title'>
-                <h1>{movie.title + "  " }({moment(movie.releaseDate).format("YYYY")})</h1>  
+                <h1>{movie.title + "  " }{movie.releaseDate ? (moment(movie.releaseDate).format("YYYY")) : ''}</h1>
               </div>
               <div className='results-movie-details-subdetails'>
-                <p>{moment(movie.releaseDate).format("DD/MM/YYYY")}</p>
+                <p>{movie.releaseDate ? moment(movie.releaseDate).format("DD/MM/YYYY") : ''}</p>
                 <p>{movie.originalLanguage?.toUpperCase()}</p>
                 <span><BsFillCircleFill /></span>
                 {movie?.genres?.map((movie) => (
@@ -288,7 +290,11 @@ function Resultado() {
             </div>
             <div className='results-movie-details-title-subdetails'>
               <h2>Nome Diretor</h2>
-              <p>{movie?.credits?.crew?.find(crewMember => crewMember.job === "Director").name}</p>
+              {movie?.credits?.crew?.find(crewMember => crewMember.job === "Director") ? (
+                  <p>{movie.credits.crew.find(crewMember => crewMember.job === "Director").name}</p>
+              ) : (
+                  <p>Não há dados sobre o nome do diretor</p>
+              )}
             </div>
           </div>
         </div>
@@ -340,7 +346,7 @@ function Resultado() {
             </div>
             <div>
               <h2>Receita</h2>
-              <p>$ {USDollar.format(movie.revenue)}</p>
+              <p>$ {movie.revenue ? USDollar.format(movie.revenue) : ''}</p>
             </div>
             <div>
               <h2>Situação</h2>
