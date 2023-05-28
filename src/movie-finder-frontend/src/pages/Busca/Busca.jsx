@@ -10,15 +10,18 @@ import { Sidebar, Menu, MenuItem, SubMenu, sidebarClasses } from 'react-pro-side
 import FormControl from '@mui/joy/FormControl';
 import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
 import {AuthContext} from "../../contexts/AuthContext.jsx";
+import Cookies from "js-cookie";
 
 function Busca() {
 
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [genreList, setGenreList] = useState([])
   const authContext = useContext(AuthContext);
   const {authenticated} = authContext;
+  const token = Cookies.get('moviefinder-token');
   
   const navigate = useNavigate()
 
@@ -27,7 +30,7 @@ function Busca() {
   }
 
   const orderReleaseDate = () => {
-    const orderMovies = [...movies].sort((a, b) => {
+    const orderMovies = [...popularMovies].sort((a, b) => {
       a = a.releaseDate.split('/').reverse().join('');
       b = b.releaseDate.split('/').reverse().join('');
       return b > a ? 1 : b < a ? -1 : 0;
@@ -82,6 +85,16 @@ function Busca() {
     const response = await api.get('/movieFinder/genre/list')
     setGenreList(response.data.genres) 
   }
+
+  const getFavoritesList = async () => {
+    const response = await api.get(`/movieFinder/favoriteList`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+    });
+    setMovies(response.data)
+    setFavoriteMovies(response.data)
+  }
   
   useEffect(() => {
     getPopularMovies()
@@ -132,8 +145,8 @@ function Busca() {
               <h3>Favoritos</h3>
               {authenticated ? (
                   <>
-                    <MenuItem>Meus Favoritos</MenuItem>
-                    <MenuItem>Recomendados para você</MenuItem>
+                    <MenuItem onClick={getFavoritesList}> Meus Favoritos </MenuItem>
+                    <MenuItem> Recomendados para você </MenuItem>
                   </>
               ) : (
                   <p className='results-message-login'>Faça login ou cadastre-se para favoritar suas preferências e ver recomendações!</p>

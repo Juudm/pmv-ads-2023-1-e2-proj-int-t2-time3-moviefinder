@@ -89,8 +89,10 @@ public class FilmeService
         var usuarioDb = await _context.Usuarios.FindAsync(usuarioId);
         
         var filmeFavoritoLista = await _context.FilmesFavoritos
-            .Where(ff => ff.IdUsuario == usuarioDb).ToListAsync();
-    
+            .Include(ff => ff.IdFilme)
+            .Where(ff => ff.IdUsuario == usuarioDb)
+            .ToListAsync();
+        
         return filmeFavoritoLista;
     }
     

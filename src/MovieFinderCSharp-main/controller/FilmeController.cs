@@ -110,12 +110,23 @@ public class FilmeController : ControllerBase
         return Ok(idiomas);
     }
 
-    [HttpGet("recommendation/list/{id}")]
-    public async Task<IActionResult> ListRecommendationsByMovie(string id)
+    [HttpGet("recommendation/list")]
+    public async Task<IActionResult> ListRecommendationsByMovie([FromHeader(Name = "Authorization")] string authorizationHeader)
     {
-        var response = await _theMovieDataBaseClient.ListRecommendationsByMovie(id, _apiKey, _apiLanguage);
-        var recommendations = JsonConvert.DeserializeObject<RecomendadoDto>(response);
-        return Ok(recommendations);
+        if (authorizationHeader.StartsWith("Bearer "))
+        {
+            var token = authorizationHeader.Substring("Bearer ".Length);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+
+            var userId = jwtToken.Claims.FirstOrDefault(c => c.Type.Equals("userId")).Value;
+            
+            var response = await _theMovieDataBaseClient.ListRecommendationsByMovie(userId, _apiKey, _apiLanguage);
+            
+            var recommendations = JsonConvert.DeserializeObject<RecomendadoDto>(response);
+            return Ok(recommendations);
+        }
+        return Unauthorized();
     }
 
     [HttpPost("favoritarFilme")]
@@ -169,25 +180,17 @@ public class FilmeController : ControllerBase
             {
                 var favoritesList = await _filmeService.GetListaFilmesFavoritosByUsuario(int.Parse(userId));
                 
-                if (!favoritesList.IsNullOrEmpty())
+                List<FilmeDto> listaFilmes = new List<FilmeDto>();
+
+                foreach (var favorito in favoritesList)
                 {
-                    var responseOk = new
-                    {
-                        Message = "Filmes favoritos listados",
-                        Data = favoritesList
-                    };
-                    return Ok(responseOk);
+                    var response = await _theMovieDataBaseClient.FindMovieById(favorito.IdFilme.TheMovieDbId.ToString(), _apiKey, _apiLanguage);
+                    var movieById = JsonConvert.DeserializeObject<FilmeDto>(response);
+                    listaFilmes.Add(movieById);
                 }
-                else
-                {
-                    var responseErro = new
-                    {
-                        Message = "Erro ao buscar lista",
-                        Data = favoritesList
-                    }; 
-                    
-                    return BadRequest(responseErro);
-                }
+                
+                return Ok(listaFilmes);
+                
             }
             
         }
