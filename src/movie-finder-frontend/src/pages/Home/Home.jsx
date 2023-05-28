@@ -24,6 +24,7 @@ import MovieCard from '../../components/MovieCard/MovieCard';
 import Footer from '../../components/Footer/Footer';
 import {useContext} from "react";
 import {AuthContext} from "../../contexts/AuthContext.jsx";
+import Cookies from "js-cookie";
 
 SwiperCore.use([Virtual, Navigation, Pagination]);
 
@@ -33,6 +34,7 @@ function Home() {
     const [visibleRegister, setvisibleRegister] = useState(false)
     const [visibleFavorites, setvisibleFavorites] = useState(false)
     const [popularMovies, setPopularMovies] = useState([])
+    const [recommendedMovies, setRecommendedMovies] = useState([])
     const [topRatedMovies, setTopRatedMovies] = useState([])
     const [discoverList, setDiscoverList] = useState([])
     const [name, setName] = useState('');
@@ -55,6 +57,7 @@ function Home() {
     const authContext = useContext(AuthContext);
     const {userDto} = authContext;
     const {authenticated} = authContext;
+    const token = Cookies.get('moviefinder-token');
 
     const showModalFavorites = () => { setvisibleFavorites(true);}
     const closeModalFavorites = () => {setvisibleFavorites(false);}
@@ -195,6 +198,18 @@ function Home() {
         setPopularMovies(response.data)
     }
 
+    const getRecommendedMovies = async () => {
+        const response = await api.get(`/movieFinder/recommendation/list`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+        });
+
+        setRecommendedMovies(response.data)
+        console.log(recommendedMovies.results)
+        console.log(Array.isArray(recommendedMovies.results))
+    }
+
     const getTopRatedMovies = async () => {
         const response = await api.get('/movieFinder/movie/top_rated')
         setTopRatedMovies(response.data)
@@ -303,6 +318,7 @@ function Home() {
         getPopularMovies()
         getTopRatedMovies()
         getGenreList()
+        getRecommendedMovies()
         window.scrollTo(0, 0)
     }, [])
 
@@ -615,9 +631,11 @@ function Home() {
                                         },
                                     }}
                                 >
-                                    <SwiperSlide className="swiper-cards-slide">
-                                        <MovieCard onClick={() => gotoDetails(movie)} posterSize="200px"/>
-                                    </SwiperSlide>
+                                    {recommendedMovies?.results?.map((movie) => movie.posterPath &&
+                                        <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide">
+                                            <MovieCard movie={movie} posterSize="200px"/>
+                                        </SwiperSlide>
+                                    )}
                                 </Swiper>
                             </>
                         )}
@@ -648,7 +666,7 @@ function Home() {
                                     },
                                 }}
                             >
-                                {moviesByGenre.movies.map((movie) => movie.posterPath && 
+                                {moviesByGenre.movies.map((movie) => movie.posterPath &&
                                     <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide">
                                         <MovieCard movie={movie} posterSize="200px"/>
                                     </SwiperSlide>
