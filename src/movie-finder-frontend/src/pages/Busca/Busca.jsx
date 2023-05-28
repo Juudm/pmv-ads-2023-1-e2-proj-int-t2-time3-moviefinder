@@ -56,13 +56,14 @@ function Busca() {
     stringify: (option) => option.title,
   });
   
-  const handleChange = async (event, inputValue) => {
-    setQuery(inputValue);
-    if (inputValue === '') {
+  const handleChange = async (event) => {
+    const newInputValue = event.target.value;
+    setQuery(newInputValue);
+    if (newInputValue === '') {
       setMovies(popularMovies)
       return
     } 
-    const response = await findMovie(inputValue);
+    const response = await findMovie(newInputValue);
     setMovies(response);
   }
 
