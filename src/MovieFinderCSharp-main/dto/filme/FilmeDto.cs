@@ -31,7 +31,6 @@ public class FilmeDto
 
     [JsonProperty("release_date")]
     public string ReleaseDate { get; set; }
-    public int Revenue { get; set; }
     public int Runtime { get; set; }
 
     [JsonProperty("spoken_languages")]
