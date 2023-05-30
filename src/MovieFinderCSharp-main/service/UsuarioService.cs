@@ -67,4 +67,12 @@ public class UsuarioService
 
         return usuarioAuthDto;
     }
+
+    public async Task<bool> isFilmeFavoritado(string usuarioId, string movieId)
+    {
+        var filmeFavoritado = await _context.FilmesFavoritos
+            .AnyAsync(ff => ff.IdUsuario.Id == int.Parse(usuarioId) && ff.IdFilme.TheMovieDbId == int.Parse(movieId));
+
+        return filmeFavoritado;
+    }
 }

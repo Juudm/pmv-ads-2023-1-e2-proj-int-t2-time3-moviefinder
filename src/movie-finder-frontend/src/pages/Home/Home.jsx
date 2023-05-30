@@ -58,9 +58,14 @@ function Home() {
     const {userDto} = authContext;
     const {authenticated} = authContext;
     const token = Cookies.get('moviefinder-token');
+    const {favorito} = authContext;
 
-    const showModalFavorites = () => { setvisibleFavorites(true);}
-    const closeModalFavorites = () => {setvisibleFavorites(false);}
+    const showModalFavorites = () => {
+        setvisibleFavorites(true);
+    }
+    const closeModalFavorites = () => {
+        setvisibleFavorites(false);
+    }
 
     const navigate = useNavigate()
 
@@ -232,7 +237,10 @@ function Home() {
         return response.data.results
     }
 
-    const gotoDetails = (movie) => {
+    const gotoDetails = async (movie) => {
+        if (authenticated) {
+            await authContext.isFavorite(movie);
+        }
         navigate(`/Resultado/${movie.id}`);
     }
 
@@ -359,41 +367,41 @@ function Home() {
                             width={450}
                             height={450}
                             customStyles={{
-                            background: 'linear-gradient(45deg, rgba(6,35,64,1) 24%, rgba(6,10,64,1) 49%, rgba(11,4,46,1) 68%)',
-                            borderRadius: '10px',
+                                background: 'linear-gradient(45deg, rgba(6,35,64,1) 24%, rgba(6,10,64,1) 49%, rgba(11,4,46,1) 68%)',
+                                borderRadius: '10px',
                             }}
                         >
                             <div className="modal-perfil">
-                            <div>
-                                <h1>MovieFinder</h1>
-                            </div>
-                            <div className="modal-perfil-results">
-                                <FormControl>
-                                <FormLabel>E-mail:</FormLabel>
-                                <Input
-                                    disabled={false}
-                                    size="md"
-                                />
-                                </FormControl>
-                                <FormControl>
-                                <FormLabel>Nome:</FormLabel>
-                                <Input
-                                    disabled={false}
-                                    size="md"
-                                />
-                                </FormControl>
-                                <FormControl>
-                                <FormLabel>Senha:</FormLabel>
-                                <Input
-                                    disabled={false}
-                                    size="md"
-                                    type="password"
-                                />
-                                </FormControl>
-                                <div className='modal-perfil-results-button'>
-                                <Button className="modal-button-perfil" >Atualizar</Button>
+                                <div>
+                                    <h1>MovieFinder</h1>
                                 </div>
-                            </div>
+                                <div className="modal-perfil-results">
+                                    <FormControl>
+                                        <FormLabel>E-mail:</FormLabel>
+                                        <Input
+                                            disabled={false}
+                                            size="md"
+                                        />
+                                    </FormControl>
+                                    <FormControl>
+                                        <FormLabel>Nome:</FormLabel>
+                                        <Input
+                                            disabled={false}
+                                            size="md"
+                                        />
+                                    </FormControl>
+                                    <FormControl>
+                                        <FormLabel>Senha:</FormLabel>
+                                        <Input
+                                            disabled={false}
+                                            size="md"
+                                            type="password"
+                                        />
+                                    </FormControl>
+                                    <div className='modal-perfil-results-button'>
+                                        <Button className="modal-button-perfil">Atualizar</Button>
+                                    </div>
+                                </div>
                             </div>
                         </Rodal>
                         <Rodal

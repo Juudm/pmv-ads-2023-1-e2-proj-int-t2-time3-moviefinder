@@ -2,6 +2,7 @@
 using System.Net;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using moviefinder.client;
@@ -130,7 +131,8 @@ public class FilmeController : ControllerBase
     }
 
     [HttpPost("favoritarFilme")]
-    public async Task<IActionResult> FavoritarFilme([FromHeader(Name = "Authorization")] string authorizationHeader, [FromBody] FilmeDto filmeDto)
+    public async Task<IActionResult> FavoritarFilme([FromHeader(Name = "Authorization")] string authorizationHeader,
+        [FromBody] FilmeDto filmeDto)
     {
         if (authorizationHeader.StartsWith("Bearer "))
         {
@@ -139,7 +141,7 @@ public class FilmeController : ControllerBase
             var jwtToken = tokenHandler.ReadJwtToken(token);
 
             var userId = jwtToken.Claims.FirstOrDefault(c => c.Type.Equals("userId")).Value;
-            
+
             if (!string.IsNullOrEmpty(userId))
             {
                 var filmeFavoritado = await _filmeService.FavoritarFilme(userId, filmeDto);
@@ -159,14 +161,14 @@ public class FilmeController : ControllerBase
                     return BadRequest(responseErro);
                 }
             }
-            
         }
 
         return Unauthorized();
     }
-    
+
     [HttpGet("favoriteList")]
-    public async Task<IActionResult> getFavoritesMoviesList([FromHeader(Name = "Authorization")] string authorizationHeader)
+    public async Task<IActionResult> getFavoritesMoviesList(
+        [FromHeader(Name = "Authorization")] string authorizationHeader)
     {
         if (authorizationHeader.StartsWith("Bearer "))
         {
@@ -175,7 +177,7 @@ public class FilmeController : ControllerBase
             var jwtToken = tokenHandler.ReadJwtToken(token);
 
             var userId = jwtToken.Claims.FirstOrDefault(c => c.Type.Equals("userId")).Value;
-            
+
             if (!string.IsNullOrEmpty(userId))
             {
                 var favoritesList = await _filmeService.GetListaFilmesFavoritosByUsuario(int.Parse(userId));
@@ -184,15 +186,15 @@ public class FilmeController : ControllerBase
 
                 foreach (var favorito in favoritesList)
                 {
-                    var response = await _theMovieDataBaseClient.FindMovieById(favorito.IdFilme.TheMovieDbId.ToString(), _apiKey, _apiLanguage);
+                    var response = await _theMovieDataBaseClient.FindMovieById(favorito.IdFilme.TheMovieDbId.ToString(),
+                        _apiKey, _apiLanguage);
                     var movieById = JsonConvert.DeserializeObject<FilmeDto>(response);
                     listaFilmes.Add(movieById);
                 }
-                
+
                 return Ok(listaFilmes);
                 
             }
-            
         }
 
         return Unauthorized();
@@ -269,7 +271,8 @@ public class FilmeController : ControllerBase
     }
 
     [HttpGet("informacoesusuario")]
-    public async Task<IActionResult> InformacoesLoggedUser([FromHeader(Name = "Authorization")] string authorizationHeader)
+    public async Task<IActionResult> InformacoesLoggedUser(
+        [FromHeader(Name = "Authorization")] string authorizationHeader)
     {
         if (authorizationHeader.StartsWith("Bearer "))
         {
@@ -278,7 +281,7 @@ public class FilmeController : ControllerBase
             var jwtToken = tokenHandler.ReadJwtToken(token);
 
             var jwtTokenId = jwtToken.Claims.FirstOrDefault(c => c.Type.Equals("userId")).Value;
-            
+
             if (!string.IsNullOrEmpty(jwtTokenId))
             {
                 var usuarioAuthDto = await _usuarioService.InformacoesUser(jwtTokenId);
@@ -286,6 +289,27 @@ public class FilmeController : ControllerBase
                 return Ok(usuarioAuthDto);
             }
         }
+
+        return Unauthorized();
+    }
+
+    [HttpGet("isFilmeFavoritado/{movieId}")]
+    public async Task<IActionResult> IsFilmeFavoritado([FromHeader(Name = "Authorization")] string authorizationHeader,
+        string movieId)
+    {
+        if (authorizationHeader.StartsWith("Bearer "))
+        {
+            var token = authorizationHeader.Substring("Bearer ".Length);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+
+            var usuarioId = jwtToken.Claims.FirstOrDefault(c => c.Type.Equals("userId")).Value;
+
+            var isFilmeFavoritado = await _usuarioService.isFilmeFavoritado(usuarioId, movieId);
+
+            return Ok(isFilmeFavoritado);
+        }
+
         return Unauthorized();
     }
 }

@@ -23,10 +23,14 @@ function Busca() {
   const authContext = useContext(AuthContext);
   const {authenticated} = authContext;
   const token = Cookies.get('moviefinder-token');
-  
+  const {favorito} = authContext;
+
   const navigate = useNavigate()
 
-  const gotoDetails = (movie) => { 
+  const gotoDetails = async (movie) => {
+    if (authenticated) {
+      await authContext.isFavorite(movie);
+    }
     navigate(`/Resultado/${movie.id}`);
   }
 

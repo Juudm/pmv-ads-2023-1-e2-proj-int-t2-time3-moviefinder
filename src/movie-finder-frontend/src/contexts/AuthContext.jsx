@@ -8,6 +8,7 @@ export function AuthProvider({children}) {
 
     const [userDto, setUserDto] = useState(null);
     const [authenticated, setIsAuthenticated] = useState(false);
+    const [favorito, setFavorito] = useState(false);
 
     useEffect(() => {
         const getUserInformation = async () => {
@@ -52,8 +53,18 @@ export function AuthProvider({children}) {
         setUserDto(null);
     }
 
+    async function isFavorite(movie) {
+        const token = Cookies.get('moviefinder-token');
+        const response = await api.get(`/movieFinder/isFilmeFavoritado/${movie.id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setFavorito(response.data);
+    }
+
     return (
-        <AuthContext.Provider value={{ authenticated, logIn, logOut, userDto }}>
+        <AuthContext.Provider value={{ authenticated, logIn, logOut, userDto, isFavorite, favorito }}>
             {children}
         </AuthContext.Provider>
     )

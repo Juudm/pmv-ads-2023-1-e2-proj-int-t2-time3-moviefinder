@@ -26,6 +26,7 @@ import "swiper/css/scrollbar";
 import './Resultado.css'
 import {AuthContext} from "../../contexts/AuthContext.jsx";
 import Cookies from 'js-cookie';
+import Home from "../Home/Home.jsx";
 
 function Resultado() {
 
@@ -39,6 +40,7 @@ function Resultado() {
   const {authenticated} = authContext;
   const token = Cookies.get('moviefinder-token');
   const {userDto} = authContext;
+  const {favorito} = authContext;
 
   const navigate = useNavigate()
 
@@ -66,11 +68,16 @@ function Resultado() {
   };
 
   const starFillCheck = () =>  {
-    setStarFill(!starFill)
-    favoriteMovie()
+    if (!favorito) {
+        setStarFill(!starFill)
+        favoriteMovie()
+    }
   }
 
-  const gotoDetails = (movie) => { 
+  const gotoDetails = async (movie) => {
+    if (authenticated) {
+      await authContext.isFavorite(movie);
+    }
     navigate(`/Resultado/${movie.id}`);
   }
 
@@ -86,7 +93,7 @@ function Resultado() {
 
   const getDiscoverList = async (genreIds) => {
     const response = await api.get(`/movieFinder/discover/movie?genreId=${genreIds}`)
-    setDiscoverList(response.data.results) 
+    setDiscoverList(response.data.results)
   }
 
   const getRecomendationMovies = async () => {
@@ -116,7 +123,7 @@ function Resultado() {
   return (
     <div className="results-body">
 
-      <div 
+      <div
         className='results-movie'
         style={{
           backgroundImage: `url(${"http://image.tmdb.org/t/p/original" + movie.backdropPath})`,
@@ -124,7 +131,7 @@ function Resultado() {
           backgroundRepeat: 'no-repeat',
           backgroundSize: "cover",
         }}
-      > 
+      >
         <div className='results-movie-header'>
           <div className='results-header-left'>
             <Link to="/Busca" > <h2> <GoSearch style={{color: "rgba(255, 255, 255, 0.849)"}}/>Pesquisar</h2> </Link>
@@ -197,15 +204,15 @@ function Resultado() {
             style={{
               width: "100%",
               height: "450px"
-            }}             
+            }}
             />
             <div className='results-movie-details-card-streaming'>
-              {movie?.providers?.results?.br?.flatrate[0].logoPath ? 
+              {movie?.providers?.results?.br?.flatrate !== null && movie?.providers?.results?.br?.flatrate[0].logoPath ?
               <img src={"https://image.tmdb.org/t/p/original/" + movie?.providers?.results?.br?.flatrate[0].logoPath} alt="plataforma" />
               : <p>?</p> }
               {authenticated && (<div className='results-movie-details-favorite'>
                 <h4 className='results-movie-details-favorite-circle' onClick={ starFillCheck }>
-                  {starFill ? <span><MdOutlineFavorite className='results-movie-details-favorite-icon' style={{color: "rgba(255, 0, 0, 0.596"}} /></span> :
+                  {starFill || favorito ? <span><MdOutlineFavorite className='results-movie-details-favorite-icon' style={{color: "rgba(255, 0, 0, 0.596"}} /></span> :
                       <span><MdOutlineFavorite className='results-movie-details-favorite-icon' /></span>}
                 </h4>
               </div>)}
@@ -228,14 +235,14 @@ function Resultado() {
                   <p>{movie.name}</p>
                 ))}
                 <span><BsFillCircleFill /></span>
-                <p>{toHoursAndMinutes()}</p>  
+                <p>{toHoursAndMinutes()}</p>
               </div>
             </div>
             <div className='results-movie-details-rating-all'>
               <div className='results-movie-details-rating-circle'>
                 <ThemeProvider theme={theme}>
-                  <Box 
-                    sx={{ 
+                  <Box
+                    sx={{
                       position: 'relative',
                       display: 'inline-flex',
                     }}
@@ -379,7 +386,7 @@ function Resultado() {
           >
           {recomendationMovies?.map((movie, index) => movie.posterPath && (
             <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide"virtualIndex={index}>
-              <MovieCard movie={movie} posterSize="200px" /> 
+              <MovieCard movie={movie} posterSize="200px" />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -411,7 +418,7 @@ function Resultado() {
           >
             {discoverList?.map(movie => movie.posterPath && (
               <SwiperSlide onClick={() => gotoDetails(movie)} className="swiper-cards-slide" >
-                <MovieCard movie={movie} posterSize="200px" /> 
+                <MovieCard movie={movie} posterSize="200px" />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -419,7 +426,7 @@ function Resultado() {
       </div>
 
       <Footer/>
-    
+
     </div>
   )
 }
