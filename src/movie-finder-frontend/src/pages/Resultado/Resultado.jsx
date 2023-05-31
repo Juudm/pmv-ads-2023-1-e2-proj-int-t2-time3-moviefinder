@@ -97,8 +97,13 @@ function Resultado() {
   }
 
   const getRecomendationMovies = async () => {
-    const response = await api.get(`/movieFinder/recommendation/list/${id}`)
-    setRecomendationMovies(response.data.results)
+    const response = await api.get(`/movieFinder/recommendation/list`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+    });
+
+    setRecomendationMovies(response?.data)
 
   }
 
