@@ -1,103 +1,120 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
+As personas levantadas durante o processo de entendimento do problema são apresentadas nas Figuras que se seguem:
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+### Pedro Mendes:
+* <b>Idade:</b> 30 anos. 
+* <b>Ocupação</b>: Engenheiro e microempreendedor no ramo de roupas esportivas.
+* <b>Residência</b>: BH - MG
+* <b>Forma de escolha do que assistir</b>: Indicações de amigos; notas e comentários em sites
+* <b>Frustrações</b>: Perda de tempo com a procura de filmes, series, animes e documentários pra assistir, ou em qual plataforma está o produto.
+* <b>Streaming Utilizado</b>:
+  - Netflix 
+  - AmazonPrime 
+  - WhatsApp 
+  - HBO Max 
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+### Lucas Hipolito
+* <b>Idade:</b> 32 anos. 
+* <b>Ocupação</b>: Trader-Esportivo
+* <b>Residência</b>: BH - MG
+* <b>Forma de escolha do que assistir</b>: Baseado em propagandas mostradas em jogos, videos e plataformas como Facebook.
+* <b>Frustrações</b>: Não ter como Favoritar aquiles filmes, séries e documentários que gostei de assistir.
+* <b>Streaming Utilizado</b>:
+  - Netflix 
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+### Daniela Lanna
+* <b>Idade:</b> 29 anos
+* <b>Ocupação</b>: Médica
+* <b>Residência</b>: BH - MG
+* <b>Forma de escolha do que assistir</b>: Recomendações de pessoas com gostos similares; notas e comentários de sites especializados.
+* <b>Frustrações</b>: Os layout dos app de pesquisa são ruins, não consigo configurar minhas preferências como, idioma ou selecionar o episódio que quero assistir.
+* <b>Streaming Utilizado</b>:
+  - Netflix 
+  - Discovery
+  - Crunchyroll
+  - HboMax
+  - Star+
+  - AmazonPrime
+  
+
+### Nicollas Ardigo De Mello
+* <b>Idade:</b> 21 anos
+* <b>Ocupação</b>: Ciências da Computação
+* <b>Residência</b>: Itopava Norte - BC/SC
+* <b>Forma de escolha do que assistir</b>: Filmes que possuem notas iguais ou superiores a 70% de aprovação ou que tenham pelo menos avaliação 7/10.
+* <b>Frustrações</b>: Tenho dificuldades para encontrar filmes com 70% de aprovação ou cujo as notas sejam 7/10.
+Os filtros de sites especializados em pesquisa de filmes, séries e documentários  possuem carência de informação para melhorar a pesquisa.
+* <b>Streaming Utilizado</b>:
+  - Netflix 
+  - HboMax
+
 
 ## Histórias de Usuários
 
-Com base na análise das personas forma identificadas as seguintes histórias de usuários:
+A partir da compreensão do dia a dia das personas identificadas para o projeto, foram registradas as seguintes histórias de usuários:
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
-
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
+|<b>Pedro Mendes</b>  | Otimizar o tempo de procura de filmes e séries entre as diversas streams | Poupar tempo com a procura com o conteúdo que quero assistir                |
+|<b>Daniela Lanna</b>  | Organizar/personalizar os meus meios de pesquisa de forma que a pesquisa seja fácil | Os layouts das plataformas de streaming por vezes são desnecessariamente complicadas e confusas               |
+|<b>Daniela Lanna</b>  | Desejo saber em qual plataforma de streaming eu preciso acessar especificamente para consumir o conteúdo que desejo. | Assino várias plataformas de Streaming e quando quero procurar o que assistir preciso acessar plataforma por plataforma|
+|<b>Nicollas Ardigo De Mello</b>  | Uma plataforma de procura que demonstre as notas dos principais sites de crítica especializada em cinema, séries e documentários | Escolho os conteúdos que vou assistir baseando em suas notas em sites especializados               |
+|<b>Lucas Hipolito</b>  | Ter um botão de favoritos e uma lista que demonstre os conteúdos  selecionados. |Ter a possibilidade de favoritar e ter uma lista dos documentários que gostei e quero assistir novamente ou mostrar à alguém               |
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
+Os requisitos do projeto descrevem a maneira de interação dos usuários com o sistema, mostrando quais serão as funcionalidades disponíveis e os aspectos não funcionais para garantir a usabilidade. Além disso, para o desenvolvimento do sistema, são observadas restrições. A seguir, são descritos estes tópicos:
 
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| A aplicação deve permitir que o usuário faça a busca desejada. | ALTA | 
+|RF-002| A aplicação deve exibir resultados relacionados às palavras buscadas | ALTA |
+|RF-003| A aplicação deve conter filtros para auxiliar na busca do conteúdo pesquisado. | ALTA |
+|RF-004| A aplicação deve exibir em qual plataforma de streaming o conteúdo desejado se encontra disponível para exibição. | ALTA |
+|RF-005| A aplicação deve exibir informações como notas dos principais sites agregadores de crítica, duração total, gênero e outras informações relacionadas. | ALTA |
+|RF-006| A aplicação deve sugerir conteúdos relacionados às buscas já realizadas anteriormente e faviritar conteúdos. | MÉDIA |
+|RF-007| A aplicação deve permitir ao usuário cadastrar, ler, atualizar e excluir suas informações de cadastro. | MÉDIA |
+|RF-008| A aplicação deve permitir ao usuário realizar login na plataforma. | MÉDIA |
+|RF-009| A aplicação deve realizar a verificação de login de usuário na plataforma. | MÉDIA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+|RNF-001| A aplicação deve permitir que o usuário opte por vincular sua conta Google à aplicação ou utilizá-la de forma pontual e sem criação de vínculo. | MÉDIA | 
+|RNF-002| A aplicação deve permitir que o usuário, ao vincular sua conta Google à aplicação, tenha acesso a um perfil com preferências personalizáveis. |  MÉDIA | 
+|RNF-003| A aplicação deve ser publicada em um ambiente acessível publicamente na Internet (GitHub Pages…). |  ALTA | 
+|RNF-004| A aplicação deverá ser responsiva permitindo a visualização em um celular de forma adequada. |  ALTA |
+|RNF-005| A aplicação deve ter bom nível de contraste entre os elementos da tela em conformidade. |  MÉDIA |
+|RNF-006| A aplicação deve ser compatível com os principais navegadores do mercado (Google Chrome, Firefox, Microsoft Edge). |  ALTA |
+|RNF-007| A aplicação deve retornar resultados equivalentes nos idiomas português e inglês. |  BAIXA |
 
 ## Restrições
 
-O projeto está restrito pelos itens apresentados na tabela a seguir.
+A tabela a seguir indica as restrições para o desenvolvimento e realização do projeto:
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+|RE-01| O projeto deve ser entregue até o final do semestre 2023.1 |
+|RE-02| O projeto não possui orçamento definido. |
+|RE-03| Apenas a própria equipe será responsável pelo desenvolvimento do projeto. |
+|RE-04| O projeto fará uso de um banco de dados relacional. |
 
 ## Diagrama de Casos de Uso
 
-O diagrama de casos de uso é o próximo passo após a elicitação de requisitos, que utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. Ele contempla a fronteira do sistema e o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos. 
+<p align = "center">
+<img src="img/DiagramaCasosUso.png" />
+</p>
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Casos de Uso”.
+## Backlog e Plano de Sprints
 
-> **Links Úteis**:
-> - [Criando Casos de Uso](https://www.ibm.com/docs/pt-br/elm/6.0?topic=requirements-creating-use-cases)
-> - [Como Criar Diagrama de Caso de Uso: Tutorial Passo a Passo](https://gitmind.com/pt/fazer-diagrama-de-caso-uso.html/)
-> - [Lucidchart](https://www.lucidchart.com/)
-> - [Astah](https://astah.net/)
-> - [Diagrams](https://app.diagrams.net/)
+A equipe definiu a ferramenta Trello como plataforma para o gerenciamento de projeto e organização e distribuição de tarefas.
+
+
+[Trello - MovieFinder](https://trello.com/invite/b/8tOr5q9j/ATTIeae19eb8d4a66751c9411544031a3d815E47F8FA/kanban-moviefinder)
